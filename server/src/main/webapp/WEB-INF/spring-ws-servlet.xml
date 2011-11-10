@@ -5,7 +5,7 @@
   xmlns:sws="http://www.springframework.org/schema/web-services"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
   http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
-  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-init-method="init">
 
     <context:component-scan base-package="net.dryade.siri.server"/>
 
@@ -22,16 +22,23 @@
         <constructor-arg ref="marshaller"/>
     </bean>
     
+    <bean id="validatingInterceptor"
+        class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+        <property name="schema" value="/WEB-INF/wsdl/siri-IDF.xsd"/>
+        <property name="validateRequest" value="true"/>
+        <property name="validateResponse" value="true"/>
+    </bean>
+    
     <bean id="endpointMapping" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
         <property name="interceptors">
             <list>
-                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <ref bean="validatingInterceptor"/>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>              
             </list>
         </property>
     </bean>
 
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
     
-    <bean id="topologyEndpoint" class="net.dryade.siri.server.ws.TopologyEndpoint"></bean>
 
 </beans>
