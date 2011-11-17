@@ -12,27 +12,92 @@
              xmlns:ns="http://datex2.eu/schema/1_0/1_0" 
              xmlns:ns1="http://www.ifopt.org.uk/acsb" 
              xmlns:ns2="http://www.ifopt.org.uk/ifopt" 
-             targetNamespace="http://wsdl.siri.org.uk">	
-    <types>
-        <xsd:schema xmlns="http://wsdl.siri.org.uk" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:siri="http://www.siri.org.uk/siri"  targetNamespace="http://wsdl.siri.org.uk" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.3" id="siriWS">
-            <xsd:import namespace="http://www.siri.org.uk/siri"  schemaLocation="siri-IDF.xsd"/>            
-            <xsd:complexType name="CheckStatusType">
-                <xsd:sequence>
-                    <xsd:element name="Request" type="siri:RequestStructure" minOccurs="1" maxOccurs="1"></xsd:element>
-                    <xsd:element name="RequestExtension" type="siri:ExtensionsStructure" minOccurs="1" maxOccurs="1"></xsd:element>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="CheckStatusResponseType">
-                <xsd:sequence>
-                    <xsd:element name="CheckStatusAnswerInfo" type="siri:ProducerResponseEndpointStructure" minOccurs="1" maxOccurs="1"></xsd:element>
-                    <xsd:element name="Answer" type="siri:CheckStatusResponseBodyStructure" minOccurs="1" maxOccurs="1"></xsd:element>
-                    <xsd:element name="AnswerExtension" type="siri:ExtensionsStructure" minOccurs="1" maxOccurs="1"></xsd:element>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:element name="CheckStatus" type="CheckStatusType"/>
-            <xsd:element name="CheckStatusResponse" type="CheckStatusResponseType"/>	
-        </xsd:schema>
-    </types>
+             targetNamespace="http://wsdl.siri.org.uk">
+	<types>
+		<xsd:schema xmlns="http://wsdl.siri.org.uk" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:siri="http://www.siri.org.uk/siri" targetNamespace="http://wsdl.siri.org.uk"
+			elementFormDefault="qualified" attributeFormDefault="unqualified"
+			version="1.3" id="siriWS">
+			<xsd:import namespace="http://www.siri.org.uk/siri"
+				schemaLocation="siri-IDF.xsd" />
+			<!-- CheckStatus -->
+			<xsd:complexType name="CheckStatusType">
+				<xsd:sequence>
+					<xsd:element name="Request" type="siri:RequestStructure"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="RequestExtension" type="siri:ExtensionsStructure"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="CheckStatusResponseType">
+				<xsd:sequence>
+					<xsd:element name="CheckStatusAnswerInfo"
+						type="siri:ProducerResponseEndpointStructure" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="Answer"
+						type="siri:CheckStatusResponseBodyStructure" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="AnswerExtension" type="siri:ExtensionsStructure"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="CheckStatus" type="CheckStatusType" />
+			<xsd:element name="CheckStatusResponse" type="CheckStatusResponseType" />
+
+			<!-- GeneralMessage -->
+			<xsd:complexType name="GeneralMessageRequestType">
+				<xsd:sequence>
+					<xsd:element name="ServiceRequestInfo" type="siri:ContextualisedRequestStructure"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="Request" type="siri:GeneralMessageRequestStructure"
+						minOccurs="1" maxOccurs="1" />
+					<xsd:element name="RequestExtension" type="siri:ExtensionsStructure"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="GeneralMessageAnswerType">
+				<xsd:sequence>
+					<xsd:element name="ServiceDeliveryInfo"
+						type="siri:ProducerResponseEndpointStructure" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="Answer"
+						type="siri:GeneralMessageDeliveriesStructure" minOccurs="1"
+						maxOccurs="1" />
+					<xsd:element name="AnswerExtension" type="siri:ExtensionsStructure"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="GetGeneralMessage" type="GeneralMessageRequestType" />
+			<xsd:element name="GetGeneralMessageResponse" type="GeneralMessageAnswerType" />
+
+			<!-- StopMonitoring -->
+
+			<!-- ConnectionMonitoring -->
+
+			<!-- ConnectionTimetable -->
+
+			<!-- EstimatedTimetable -->
+
+			<!-- FacilityMonitoring -->
+
+			<!-- ProductionTimetable -->
+
+			<!-- SituationExchange -->
+
+			<!-- StopTimetable -->
+
+			<!-- VehicleMonitoring -->
+
+			<!-- Subscription -->
+
+			<!-- Capabilities -->
+
+			<!-- DataSuply -->
+
+			<!-- Discovery -->
+		</xsd:schema>
+
+	</types>
     <!--General messages-->
     <message name="CheckStatusRequest">
         <part name="parameters" element="siriWS:CheckStatus"/>
@@ -40,10 +105,10 @@
     <message name="CheckStatusAnswer">
         <part name="parameters" element="siriWS:CheckStatusResponse"/>
     </message>
-<!--    <message name="CheckStatusError">
+    <message name="CheckStatusError">
         <part name="SiriError" element="siri:ErrorConditionElement"/>
     </message>
- 	<message name="SubscriptionRequest">
+ 	<!--<message name="SubscriptionRequest">
 		<part name="SubscriptionRequestInfo" type="siri:AbstractSubscriptionRequestStructure"/>
 		<part name="Request" type="siri:SiriSubscriptionRequestStructure"/>
 		<part name="RequestExtension" type="siri:ExtensionsStructure"/>
@@ -178,21 +243,17 @@
 	</message>
     <message name="ConnectionMonitoringError">
         <part name="SiriError" element="siri:ServiceDeliveryErrorCondition"/>
-    </message>
+    </message> -->
 	<message name="GeneralMessageRequest">
-		<part name="ServiceRequestInfo" type="siri:ContextualisedRequestStructure"/>
-		<part name="Request" type="siri:GeneralMessageRequestStructure"/>
-		<part name="RequestExtension" type="siri:ExtensionsStructure"/>
+		<part name="parameters" element="siriWS:GetGeneralMessage"/>
 	</message>
 	<message name="GeneralMessageAnswer">
-		<part name="ServiceDeliveryInfo" type="siri:ProducerResponseEndpointStructure"/>
-		<part name="Answer" type="siri:GeneralMessageDeliveriesStructure"/>
-		<part name="AnswerExtension" type="siri:ExtensionsStructure"/>
+		<part name="parameters" element="siriWS:GetGeneralMessageResponse"/>
 	</message>
     <message name="GeneralMessageError">
         <part name="SiriError" element="siri:ServiceDeliveryErrorCondition"/>
     </message>
-	<message name="FacilityMonitoringRequest">
+	<!-- <message name="FacilityMonitoringRequest">
 		<part name="ServiceRequestInfo" type="siri:ContextualisedRequestStructure"/>
 		<part name="Request" type="siri:FacilityMonitoringRequestStructure"/>
 		<part name="RequestExtension" type="siri:ExtensionsStructure"/>
@@ -323,13 +384,13 @@
 			<input message="siriWS:ConnectionMonitoringRequest"/>
 			<output message="siriWS:ConnectionMonitoringAnswer"/>
             <fault name="FaultName" message="siriWS:ConnectionMonitoringError"/>
-		</operation>
+		</operation> -->
 		<operation name="GetGeneralMessage">
 			<input message="siriWS:GeneralMessageRequest"/>
 			<output message="siriWS:GeneralMessageAnswer"/>
             <fault name="FaultName" message="siriWS:GeneralMessageError"/>
 		</operation>
-		<operation name="GetFacilityMonitoring">
+		<!-- <operation name="GetFacilityMonitoring">
 			<input message="siriWS:FacilityMonitoringRequest"/>
 			<output message="siriWS:FacilityMonitoringAnswer"/>
             <fault name="FaultName" message="siriWS:FacilityMonitoringError"/>
@@ -481,7 +542,7 @@
 				<soap:body use="literal" namespace="http://wsdl.siri.org.uk"/>
 			</output>
             <fault name="FaultName"/>
-		</operation>
+		</operation> -->
 		<operation name="GetGeneralMessage">
 			<soap:operation soapAction="GetGeneralMessage"/>
 			<input>
@@ -492,7 +553,7 @@
 			</output>
             <fault name="FaultName"/>
 		</operation>
-		<operation name="GetFacilityMonitoring">
+		<!-- <operation name="GetFacilityMonitoring">
 			<soap:operation soapAction="GetFacilityMonitoring"/>
 			<input>
 				<soap:body use="literal" namespace="http://wsdl.siri.org.uk"/>
