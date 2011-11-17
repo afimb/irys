@@ -5,7 +5,11 @@
   xmlns:sws="http://www.springframework.org/schema/web-services"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
   http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
-  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-init-method="init">
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-init-method="init" xmlns:aop="http://www.springframework.org/schema/aop">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="location" value="classpath:/spring.properties"/>
+    </bean>
 
     <context:component-scan base-package="net.dryade.siri.server"/>
 
@@ -40,5 +44,18 @@
 
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
     
+    <bean id="abstractSiriServiceDelegate" class="net.dryade.siri.server.ws.AbstractSiriServiceDelegate" abstract="true">
+       <property name="responseValidation" value="${siri.validation.response}"/>
+       <property name="requestValidation" value="${siri.validation.request}"/>
+       <property name="producerRefValue" value="${siri.producerRef}"/>
+       <property name="url" value="${siri.serverURL}"/>  
+       <property name="wsdlVersion" value="${siri.wsdl.version}"/>         
+    </bean>
+    
+    <bean id="checkStatus" name="checkStatus" class="net.dryade.siri.server.producer.CheckStatus"/>
+    
+    <bean id="checkStatusService" class="net.dryade.siri.server.ws.CheckStatusService" parent="abstractSiriServiceDelegate">
+       <property name="checkStatus" value="${siri.CheckStatus}"/>       
+    </bean>
 
 </beans>

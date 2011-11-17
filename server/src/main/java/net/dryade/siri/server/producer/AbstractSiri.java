@@ -4,7 +4,6 @@
 package net.dryade.siri.server.producer;
 
 import net.dryade.siri.server.common.SiriException;
-import net.dryade.siri.server.common.SiriTool;
 import uk.org.siri.siri.AbstractServiceDeliveryStructure;
 import uk.org.siri.siri.OtherErrorStructure;
 import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
@@ -13,16 +12,8 @@ import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
  * @author michel
  *
  */
-public abstract class AbstractSiriService
+public abstract class AbstractSiri
 {
-
-   protected SiriTool siriTool;
-	
-   public AbstractSiriService()
-   {
-	   siriTool = SiriTool.getInstance();
-   }
-	
    /**
     * add an errocode without setting status false
     * 

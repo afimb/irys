@@ -37,10 +37,6 @@
                 </executions>
                 <inherited>true</inherited>
                 <configuration>
-                    <noPvr>true</noPvr>
-                    <noUpa>true</noUpa>
-                    <noUpa>true</noUpa>
-                    <noVDoc>true</noVDoc>
                     <schemaDirectory>src/main/resources/wsdl</schemaDirectory>
                 </configuration>
             </plugin>

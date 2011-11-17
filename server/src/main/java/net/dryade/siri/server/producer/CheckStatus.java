@@ -24,11 +24,11 @@ import uk.org.siri.siri.CheckStatusResponseBodyStructure.ErrorCondition;
 /**
  * Implémentation du service CheckStatus
  */
-public class CheckStatusService extends AbstractSiriService implements CheckStatusServiceInterface
+public class CheckStatus extends AbstractSiri implements CheckStatusServiceInterface
 {
    public boolean nextStatus = true;
    
-   public CheckStatusService() throws SiriException
+   public CheckStatus() throws SiriException
    {
 	   super();
       // initialiser ici les ressources
