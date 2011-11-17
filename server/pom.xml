@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+    <pluginRepositories>
+        <pluginRepository>
+            <id>eviwarePluginRepository</id>
+            <url>http://www.eviware.com/repository/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+  
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>siri</artifactId>
@@ -61,7 +69,44 @@
     </dependencies>
 
     <build>
-        <plugins>
+        <plugins>           
+            <plugin>
+                <groupId>eviware</groupId>
+                <artifactId>maven-soapui-pro-plugin</artifactId>
+                <version>4.0.0</version>
+                <goals>
+                    <goal>test</goal>
+                </goals>
+                <configuration>
+                    <projectFile>src/test/resources/soapui-project.xml</projectFile>
+                    <outputFolder>target/soapui</outputFolder>
+                    <coverage>target/soapui/coverage</coverage>
+                    <printReport>true</printReport>
+                    <tool>xmlbeans</tool>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>jgoodies</groupId>
+                        <artifactId>looks</artifactId>
+                        <version>2.2.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>fife</groupId>
+                        <artifactId>rsyntaxtextarea</artifactId>
+                        <version>1.3.4</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                        <version>4.4</version>
+                    </dependency>                   
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
