@@ -37,6 +37,7 @@
                 </executions>
                 <inherited>true</inherited>
                 <configuration>
+                    <memoryMaximumSize>1024m</memoryMaximumSize>
                     <schemaDirectory>src/main/resources/wsdl</schemaDirectory>
                 </configuration>
             </plugin>
