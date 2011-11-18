@@ -69,24 +69,61 @@
     </dependencies>
 
     <build>
-        <plugins>           
+        <plugins>       
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.10</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>9999</stopPort>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>eviware</groupId>
                 <artifactId>maven-soapui-pro-plugin</artifactId>
                 <version>4.0.0</version>
-                <goals>
-                    <goal>test</goal>
-                </goals>
                 <configuration>
                     <projectFile>src/test/resources/soapui-project.xml</projectFile>
+                    <soapuiProperties>
+                        <property>
+                            <name>soapui.logroot</name>
+                            <value>${project.build.directory}/soapui-logs/</value>
+                        </property>
+                    </soapuiProperties>
                     <outputFolder>target/soapui</outputFolder>
                     <coverage>target/soapui/coverage</coverage>
                     <printReport>true</printReport>
+                    <host>0.0.0.0:8080/server</host>
                     <tool>xmlbeans</tool>
                 </configuration>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
                     </execution>
                 </executions>
                 <dependencies>
