@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 
+import org.springframework.ws.soap.addressing.server.annotation.Action;
 import uk.org.siri.wsdl.CheckStatusDocument;
 //import uk.org.siri.wsdl.CheckStatusError;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
@@ -53,7 +54,6 @@ public class CheckStatusService extends AbstractSiriServiceDelegate implements A
         }
     }
     
-
     @PayloadRoot(localPart = "CheckStatus", namespace = namespaceUri)
     public CheckStatusResponseDocument checkStatus(CheckStatusDocument requestDoc) //throws CheckStatusError
     {

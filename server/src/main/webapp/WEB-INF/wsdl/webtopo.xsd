@@ -4,6 +4,7 @@
            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://xsd.webtopo"
            elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="topo">
+               <xsd:import schemaLocation="siri-IDF.xsd" />
     <xsd:complexType name="TopologyResponseType">
         <xsd:sequence>
             <xsd:element name="topologyAvailable" type="xsd:boolean"/>
