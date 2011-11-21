@@ -105,7 +105,7 @@
                 <artifactId>maven-soapui-pro-plugin</artifactId>
                 <version>4.0.0</version>
                 <configuration>
-                    <projectFile>src/test/resources/soapui-project.xml</projectFile>
+                    <projectFile>${basedir}/src/test/resources/soapui-project.xml</projectFile>
                     <soapuiProperties>
                         <property>
                             <name>soapui.logroot</name>
