@@ -34,7 +34,7 @@ public abstract class AbstractSiriServiceDelegate {
 
     protected String producerRefValue;
     protected String url;
-    protected static IdentifierGeneratorInterface identifierGenerator;
+    protected IdentifierGeneratorInterface identifierGenerator;
     protected boolean requestValidation = false;
     protected String wsdlVersion = "1.0";
     protected boolean responseValidation = false;
@@ -124,11 +124,8 @@ public abstract class AbstractSiriServiceDelegate {
     /**
      * @param identifierGenerator the identifierGenerator to set
      */
-    public static void setIdentifierGenerator(
-            IdentifierGeneratorInterface identifierGenerator) {
-        if (AbstractSiriServiceDelegate.identifierGenerator == null) {
-            AbstractSiriServiceDelegate.identifierGenerator = identifierGenerator;
-        }
+    public void setIdentifierGenerator(IdentifierGeneratorInterface identifierGenerator) {
+        this.identifierGenerator = identifierGenerator;
     }
 
     /**

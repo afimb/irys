@@ -11,12 +11,10 @@
  */
 package net.dryade.siri.server.ws;
 
+import net.dryade.siri.server.producer.CheckStatusInterface;
 import java.util.Calendar;
 import net.dryade.siri.server.common.SiriException;
 import org.apache.log4j.Logger;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 
@@ -33,26 +31,14 @@ import uk.org.siri.siri.ProducerResponseEndpointStructure;
 import uk.org.siri.siri.RequestStructure;
 
 @Endpoint
-public class CheckStatusService extends AbstractSiriServiceDelegate implements ApplicationContextAware{
+public class CheckStatusService extends AbstractSiriServiceDelegate{
 
     /**
      * Logger for this class
      */
     private static final Logger logger = Logger.getLogger(CheckStatusService.class);
     private static final String namespaceUri = "http://wsdl.siri.org.uk";
-    private CheckStatusServiceInterface checkStatusServiceInterface;
-    private String checkStatus;
-    private ApplicationContext context;
-    
-
-   public void init(){
-        if(context.containsBean(checkStatus))
-        {          
-            logger.debug( "applicationContext : " + context.getBean(checkStatus) );
-            this.checkStatusServiceInterface = (CheckStatusServiceInterface) context.getBean(checkStatus);
-        }
-    }
-    
+    private CheckStatusInterface checkStatusService;    
 
     @PayloadRoot(localPart = "CheckStatus", namespace = namespaceUri)
     public CheckStatusResponseDocument checkStatus(CheckStatusDocument requestDoc) //throws CheckStatusError
@@ -112,7 +98,7 @@ public class CheckStatusService extends AbstractSiriServiceDelegate implements A
                     logger.info("CheckStatus : requestorRef = " + requestorRef.getStringValue());
 
                     try {
-                        answer = this.checkStatusServiceInterface.getCheckStatus(request);
+                        answer = this.checkStatusService.getCheckStatus(request);
                     } catch (Exception e) {
                         answer = response.addNewAnswer();
                         CheckStatusResponseBodyStructure.ErrorCondition errorCondition = answer.addNewErrorCondition();
@@ -160,17 +146,12 @@ public class CheckStatusService extends AbstractSiriServiceDelegate implements A
     /**
      * @param checkStatusService the checkStatusService to set
      */
-    public void setCheckStatus(String checkStatus) {        
-        this.checkStatus = checkStatus;       
+    public void setCheckStatus(CheckStatusInterface checkStatusService) {        
+        this.checkStatusService = checkStatusService;       
     }
 
     @Override
     protected Logger getLogger() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
+        return logger;
     }
 }

@@ -12,7 +12,6 @@
 package net.dryade.siri.server.producer;
 
 
-import net.dryade.siri.server.ws.CheckStatusServiceInterface;
 import net.dryade.siri.server.common.SiriException;
 import uk.org.siri.siri.CheckStatusResponseBodyStructure;
 import uk.org.siri.siri.ErrorDescriptionStructure;
@@ -24,7 +23,7 @@ import uk.org.siri.siri.CheckStatusResponseBodyStructure.ErrorCondition;
 /**
  * Implémentation du service CheckStatus
  */
-public class CheckStatus extends AbstractSiri implements CheckStatusServiceInterface
+public class CheckStatus extends AbstractSiri implements CheckStatusInterface
 {
    public boolean nextStatus = true;
    

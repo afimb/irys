@@ -11,21 +11,24 @@
  */
 package net.dryade.siri.server.ws;
 
+import java.util.Calendar;
+
 import net.dryade.siri.server.common.SiriException;
 
-import uk.org.siri.siri.CheckStatusResponseBodyStructure;
-import uk.org.siri.siri.RequestStructure;
+import uk.org.siri.siri.CapabilitiesRequestStructure;
+import uk.org.siri.siri.CapabilitiesResponseStructure;
 
 /**
  * 
  */
-public interface CheckStatusServiceInterface
+public interface CapabilitiesInterface
 {
 
    /**
-    * @param request 
-   * @return
+    * @param request
+    * @param responseTimestamp
+    * @return
     */
-   CheckStatusResponseBodyStructure getCheckStatus(RequestStructure request) throws SiriException;
+   CapabilitiesResponseStructure getCapabilities(CapabilitiesRequestStructure request, Calendar responseTimestamp) throws SiriException;
 
 }

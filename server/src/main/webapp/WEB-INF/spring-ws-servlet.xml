@@ -14,13 +14,6 @@
     <context:component-scan base-package="net.dryade.siri.server"/>
 
     <sws:annotation-driven/>
-  
-    <sws:dynamic-wsdl id="webtopo"                                                           
-    portTypeName="SOAP-Port"                                                         
-    locationUri="/server/"                                                       
-    targetNamespace="http://soap.webtopo">                               
-        <sws:xsd location="/WEB-INF/wsdl/webtopo.xsd"/>                                                  
-    </sws:dynamic-wsdl>
 
     <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
         <constructor-arg ref="marshaller"/>
@@ -36,7 +29,6 @@
     <bean id="endpointMapping" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
         <property name="interceptors">
             <list>
-                <ref bean="validatingInterceptor"/>
                 <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>              
             </list>
         </property>
@@ -44,18 +36,25 @@
 
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
     
+    <bean id="identifierGenerator" class="net.dryade.siri.server.ws.DefaultIdentifierGenerator"/>
+    
     <bean id="abstractSiriServiceDelegate" class="net.dryade.siri.server.ws.AbstractSiriServiceDelegate" abstract="true">
        <property name="responseValidation" value="${siri.validation.response}"/>
        <property name="requestValidation" value="${siri.validation.request}"/>
        <property name="producerRefValue" value="${siri.producerRef}"/>
        <property name="url" value="${siri.serverURL}"/>  
        <property name="wsdlVersion" value="${siri.wsdl.version}"/>         
+       <property name="identifierGenerator" ref="identifierGenerator"/>                
     </bean>
     
-    <bean id="checkStatus" name="checkStatus" class="net.dryade.siri.server.producer.CheckStatus"/>
-    
+    <bean id="checkStatus" name="checkStatus" class="net.dryade.siri.server.producer.CheckStatus"/>    
     <bean id="checkStatusService" class="net.dryade.siri.server.ws.CheckStatusService" parent="abstractSiriServiceDelegate">
-       <property name="checkStatus" value="${siri.CheckStatus}"/>       
+       <property name="checkStatus" ref="checkStatus"/>       
+    </bean>
+    
+    <bean id="generalMessage" name="generalMessage" class="net.dryade.siri.server.producer.GeneralMessage"/>
+    <bean id="generalMessageService" class="net.dryade.siri.server.ws.GeneralMessageService" parent="abstractSiriServiceDelegate">
+       <property name="generalMessage" ref="generalMessage"/>       
     </bean>
 
 </beans>
