@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by christophe duquesne (Dryade SARL) -->
+<xsd:schema xmlns:siriws="http://wsdl.siri.org.uk"
+           xmlns:siri="http://www.siri.org.uk/siri"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://wsdl.siri.org.uk"
+           elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" id="siriws">
+                    <xsd:import namespace="http://www.siri.org.uk/siri" schemaLocation="siri-IDF.xsd"/>
+    <xsd:complexType name="CheckStatusRequestType">
+        <xsd:sequence>
+            <xsd:element name="Request" type="siri:RequestStructure"/>
+            <xsd:element name="RequestExtension" type="siri:ExtensionsStructure"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CheckStatus" type="siriws:CheckStatusRequestType"/>
+
+    <xsd:complexType name="CheckStatusAnswerType">
+        <xsd:sequence>
+            <xsd:element name="CheckStatusAnswerInfo" type="siri:ProducerResponseEndpointStructure"/>
+            <xsd:element name="Answer" type="siri:CheckStatusResponseBodyStructure"/>
+            <xsd:element name="AnswerExtension" type="siri:ExtensionsStructure"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CheckStatusAnswer" type="siriws:CheckStatusAnswerType"/>
+    
+</xsd:schema>

@@ -13,27 +13,29 @@
 
     <context:component-scan base-package="net.dryade.siri.server"/>
 
-    <sws:annotation-driven/>
-
     <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
         <constructor-arg ref="marshaller"/>
     </bean>
     
-    <bean id="validatingInterceptor"
-        class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
-        <property name="schema" value="/WEB-INF/wsdl/siri-IDF.xsd"/>
-        <property name="validateRequest" value="true"/>
-        <property name="validateResponse" value="true"/>
-    </bean>
+    <sws:interceptors>
+        <bean id="validatingInterceptor"
+            class="net.dryade.siri.server.ws.ValidationInterceptor">
+            <property name="schema" value="/WEB-INF/wsdl/siri_wsProducer-IDF.xsd"/>
+            <property name="validateRequest" value="false"/>
+            <property name="validateResponse" value="true"/>
+        </bean>
+    </sws:interceptors>
     
-    <bean id="endpointMapping" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
-        <property name="interceptors">
-            <list>
-                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>              
-            </list>
+    <bean id="exceptionResolver" class="net.dryade.siri.server.ws.EndpointExceptionResolver">
+        <property name="defaultFault" value="SERVER" />
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.oxm.ValidationFailureException">CLIENT,Invalid request</prop>
+                <prop key="net.dryade.siri.server.ws.CheckStatusFaultException">SERVER</prop>
+            </props>
         </property>
     </bean>
-
+    
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
     
     <bean id="identifierGenerator" class="net.dryade.siri.server.ws.DefaultIdentifierGenerator"/>
