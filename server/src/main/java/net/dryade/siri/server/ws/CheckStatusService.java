@@ -20,9 +20,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 
-import org.springframework.ws.soap.addressing.server.annotation.Action;
 import uk.org.siri.wsdl.CheckStatusDocument;
-//import uk.org.siri.wsdl.CheckStatusError;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
 import uk.org.siri.wsdl.CheckStatusResponseType;
 import uk.org.siri.siri.CheckStatusResponseBodyStructure;
@@ -31,7 +29,6 @@ import uk.org.siri.siri.MessageRefStructure;
 import uk.org.siri.siri.OtherErrorStructure;
 import uk.org.siri.siri.ParticipantRefStructure;
 import uk.org.siri.siri.ProducerResponseEndpointStructure;
-import uk.org.siri.siri.RequestStructure;
 
 @Endpoint
 public class CheckStatusService extends AbstractSiriServiceDelegate implements ApplicationContextAware{
@@ -53,100 +50,96 @@ public class CheckStatusService extends AbstractSiriServiceDelegate implements A
             this.checkStatusServiceInterface = (CheckStatusServiceInterface) context.getBean(checkStatus);
         }
     }
+
+           
+   private CheckStatusResponseDocument newBasicResponseDocument()
+   {
+          
+        CheckStatusResponseDocument responseDoc = CheckStatusResponseDocument.Factory.newInstance();
+        CheckStatusResponseType response = responseDoc.addNewCheckStatusResponse();
+
+        ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewCheckStatusAnswerInfo();
+//        response.setCheckStatusAnswerInfo(serviceDeliveryInfo);
+        
+        ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
+        producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
+
+        response.addNewAnswerExtension(); // obligatoire bien que inutile !
+
+        // URL du Serveur : siri.serverURL
+        serviceDeliveryInfo.setAddress(url);
+        Calendar responseTimestamp = Calendar.getInstance();
+        serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
+
+        MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
+        responseMessageIdentifier.setStringValue("test"/*identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.CheckStatus)*/);
+
+        return responseDoc;       
+   }
+   
+    private CheckStatusResponseDocument newFailureResponseDocument( SiriException.Code code, String message) {
+        CheckStatusResponseDocument responseDoc = newBasicResponseDocument();
+        CheckStatusResponseType response = responseDoc.getCheckStatusResponse();
+        MessageRefStructure requestMessageRef = response.getCheckStatusAnswerInfo().addNewRequestMessageRef();
+        
+        requestMessageRef.setStringValue(message);
+
+        CheckStatusResponseBodyStructure answer = response.addNewAnswer();
+        CheckStatusResponseBodyStructure.ErrorCondition errorCondition = answer.addNewErrorCondition();
+
+        OtherErrorStructure error = errorCondition.addNewOtherError();
+
+        error.setErrorText("[" + code + "] : " + message);
+        answer.setStatus(false);
+
+        return responseDoc;
+    }
+    
+    private CheckStatusResponseDocument newResponseDocument( CheckStatusDocument requestDoc, CheckStatusResponseBodyStructure answer) {
+        CheckStatusResponseDocument responseDoc = newBasicResponseDocument();
+        CheckStatusResponseType response = responseDoc.getCheckStatusResponse();
+        MessageRefStructure requestMessageRef = response.getCheckStatusAnswerInfo().addNewRequestMessageRef();
+        
+        requestMessageRef.setStringValue(requestDoc.getCheckStatus().getRequest().getMessageIdentifier().getStringValue());
+        ParticipantRefStructure requestorRef = requestDoc.getCheckStatus().getRequest().getRequestorRef();
+        logger.info("CheckStatus : requestorRef = " + requestorRef.getStringValue());
+
+        response.setAnswer(answer);
+
+        return responseDoc;
+    }
     
     @PayloadRoot(localPart = "CheckStatus", namespace = namespaceUri)
-    public CheckStatusResponseDocument checkStatus(CheckStatusDocument requestDoc) //throws CheckStatusError
+    public CheckStatusResponseDocument checkStatus(CheckStatusDocument requestDoc) throws CheckStatusFaultException
     {
         logger.debug("Appel CheckStatus");
         long debut = System.currentTimeMillis();
         try {
-            // habillage de la reponse                   
-            CheckStatusResponseDocument responseDoc = CheckStatusResponseDocument.Factory.newInstance();
-            CheckStatusResponseType response = responseDoc.addNewCheckStatusResponse();
+            CheckStatusValidity validity = new CheckStatusValidity( this, requestDoc);
+            if ( ! validity.isValid())
+                return newFailureResponseDocument(SiriException.Code.BAD_REQUEST, validity.errorMessage());
+                
+            CheckStatusResponseDocument responseDoc = null;
+            try {
+                CheckStatusResponseBodyStructure answer = this.checkStatusServiceInterface.getCheckStatus(requestDoc.getCheckStatus().getRequest());
+                responseDoc = newResponseDocument( requestDoc, answer);
+            } catch (Exception e) {
+                SiriException.Code code = SiriException.Code.INTERNAL_ERROR;
 
-            ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewCheckStatusAnswerInfo();
-            ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
-            producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
-
-            CheckStatusResponseBodyStructure answer = null;
-            response.addNewAnswerExtension(); // obligatoire bien que inutile !
-
-            // URL du Serveur : siri.serverURL
-            serviceDeliveryInfo.setAddress(url);
-            Calendar responseTimestamp = Calendar.getInstance();
-            serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
-
-            MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
-            MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
-            responseMessageIdentifier.setStringValue("test"/*identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.CheckStatus)*/);
-
-            // validation XSD de la requete
-            boolean validate = true;
-            if (requestValidation) {
-                validate = checkXmlSchema(requestDoc, logger);
-            } else {
-                validate = (requestDoc.getCheckStatus().getRequest() != null);
-                if (validate) {
-                    // controle moins restrictif limite aux elements necessaires a la requete
-                    RequestStructure request = requestDoc.getCheckStatus().getRequest();
-                    boolean requestOk = checkXmlSchema(request, logger);
-                    validate = requestOk;
-                }
-            }
-
-            if (!validate) {
-                requestMessageRef.setStringValue("Invalid Request Structure");
-                answer = response.addNewAnswer();
-                CheckStatusResponseBodyStructure.ErrorCondition errorCondition = answer.addNewErrorCondition();
-
-                OtherErrorStructure error = errorCondition.addNewOtherError();
-
-                error.setErrorText("[" + SiriException.Code.BAD_REQUEST + "] : Invalid Request Structure");
-                answer.setStatus(false);
-            } else {
-                RequestStructure request = requestDoc.getCheckStatus().getRequest();
-                logger.info("CheckStatus : request = " + request);
-                if (request.isSetMessageIdentifier()) {
-                    requestMessageRef.setStringValue(request.getMessageIdentifier().getStringValue());
-                    ParticipantRefStructure requestorRef = request.getRequestorRef();
-                    logger.info("CheckStatus : requestorRef = " + requestorRef.getStringValue());
-
-                    try {
-                        answer = this.checkStatusServiceInterface.getCheckStatus(request);
-                    } catch (Exception e) {
-                        answer = response.addNewAnswer();
-                        CheckStatusResponseBodyStructure.ErrorCondition errorCondition = answer.addNewErrorCondition();
-
-                        OtherErrorStructure error = errorCondition.addNewOtherError();
-
-                        if (e instanceof SiriException) {
-                            logger.warn(e.getMessage());
-                            SiriException siriExcp = (SiriException) e;
-                            error.setErrorText("[" + siriExcp.getCode() + "] : " + siriExcp.getMessage());
-                        } else {
-                            logger.error(e.getMessage(), e);
-                            error.setErrorText("[" + SiriException.Code.INTERNAL_ERROR + "] : " + e.getMessage());
-                        }
-                        answer.setStatus(false);
-                    }
-
+                if (e instanceof SiriException) {
+                    logger.warn(e.getMessage());
+                    code = ((SiriException)e).getCode();
                 } else {
-                    requestMessageRef.setStringValue("missing MessageIdentifier");
-                    answer = response.addNewAnswer();
-                    CheckStatusResponseBodyStructure.ErrorCondition errorCondition = answer.addNewErrorCondition();
-
-                    OtherErrorStructure error = errorCondition.addNewOtherError();
-                    logger.warn("missing argument: MessageIdentifier");
-
-                    error.setErrorText("[" + SiriException.Code.BAD_REQUEST + "] : missing MessageIdentifier");
-                    answer.setStatus(false);
-                }
-                response.setAnswer(answer);
+                    logger.error(e.getMessage());
+                }                        
+                responseDoc = newFailureResponseDocument(code, e.getMessage());
             }
             return responseDoc;
+            
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            //throw new CheckStatusError(e.getMessage());
+            
+            throw new CheckStatusFaultException();
         } catch (Error e) {
             logger.error(e.getMessage(), e);
             //throw new CheckStatusError(e.getMessage());

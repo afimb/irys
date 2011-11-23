@@ -4,37 +4,34 @@
  */
 package net.dryade.siri.server.ws;
 
-import org.apache.log4j.Logger;
-import org.springframework.ws.context.MessageContext;
-import org.springframework.ws.server.EndpointInterceptor;
 import javax.xml.transform.Source;
-import javax.xml.transform.TransformerException;
 import org.springframework.ws.WebServiceMessage;
-import org.springframework.ws.client.support.interceptor.AbstractValidatingInterceptor;
+import org.springframework.ws.context.MessageContext;
 import org.xml.sax.SAXParseException;
 
 /**
  *
  * @author marc
  */
-public class MyValidatingInterceptor extends AbstractValidatingInterceptor
-{
- 
-    private static final String NAMESPACE_URI = "http://wsdl.siri.org.uk";
- 
-   @Override
-   protected Source getValidationRequestSource(WebServiceMessage webServiceMessage)
-   {
+public class ValidationInterceptor extends org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor {
+    @Override
+    protected Source getValidationRequestSource(WebServiceMessage request) 
+    {
+        logger.debug( "######################################");
+        logger.debug( "##### getValidationRequestSource #####");
+        try {
+            return super.getValidationRequestSource(request);
+            
+        } catch (RuntimeException  e) {
+            logger.error( "####### Runtime ####################");
+            throw e;
+        }
+    }
+    @Override
+    protected Source getValidationResponseSource(WebServiceMessage response) {
         logger.error( "######################################");
-      return webServiceMessage.getPayloadSource();
-   }
- 
-   @Override
-   protected Source getValidationResponseSource(WebServiceMessage webServiceMessage)
-   {
-        logger.error( "######################################");
-      return webServiceMessage.getPayloadSource();
-   }
+        return super.getValidationResponseSource(response);
+    }
  
    @Override
    protected boolean handleRequestValidationErrors(MessageContext messageContext,
@@ -55,6 +52,4 @@ public class MyValidatingInterceptor extends AbstractValidatingInterceptor
        }
        return false;
    }
- 
-    
-}
+ }
