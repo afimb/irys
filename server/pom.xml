@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
-    <pluginRepositories>
-        <pluginRepository>
-            <id>eviwarePluginRepository</id>
-            <url>http://www.eviware.com/repository/maven2/</url>
-        </pluginRepository>
-    </pluginRepositories>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
   
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -29,7 +22,7 @@
     <dependencies>
         <dependency>                    
             <groupId>net.dryade.siri</groupId>
-            <artifactId>beans</artifactId>                       
+            <artifactId>siri-api</artifactId>                       
         </dependency>
         <dependency>
             <groupId>log4j</groupId>

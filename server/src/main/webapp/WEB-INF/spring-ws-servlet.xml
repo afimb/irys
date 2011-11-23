@@ -57,4 +57,9 @@
        <property name="generalMessage" ref="generalMessage"/>       
     </bean>
 
+    <bean id="discovery" name="discovery" class="net.dryade.siri.server.producer.Discovery"/>
+    <bean id="discoveryService" class="net.dryade.siri.server.ws.DiscoveryService" parent="abstractSiriServiceDelegate">
+       <property name="discovery" ref="discovery"/>       
+    </bean>
+
 </beans>

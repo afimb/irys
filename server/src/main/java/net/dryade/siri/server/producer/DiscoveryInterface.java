@@ -9,7 +9,7 @@
  * 
  *   Copyright DRYADE 2009-2010
  */
-package net.dryade.siri.server.ws;
+package net.dryade.siri.server.producer;
 
 import java.util.Calendar;
 
@@ -24,7 +24,7 @@ import uk.org.siri.siri.StopPointsDiscoveryRequestStructure;
 /**
  * 
  */
-public interface DiscoveryServiceInterface
+public interface DiscoveryInterface
 {
 
    /**

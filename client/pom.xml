@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>                    
             <groupId>net.dryade.siri</groupId>
-            <artifactId>beans</artifactId>                       
+            <artifactId>siri-api</artifactId>                       
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
