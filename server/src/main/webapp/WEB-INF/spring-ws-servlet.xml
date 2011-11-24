@@ -63,5 +63,10 @@
     <bean id="discoveryService" class="net.dryade.siri.server.ws.DiscoveryService" parent="abstractSiriServiceDelegate">
        <property name="discovery" ref="discovery"/>       
     </bean>
+    
+    <bean id="stopMonitoring" name="stopMonitoring" class="net.dryade.siri.server.producer.StopMonitoring"/>
+    <bean id="stopMonitoringService" class="net.dryade.siri.server.ws.StopMonitoringService" parent="abstractSiriServiceDelegate">
+       <property name="stopMonitoring" ref="stopMonitoring"/>       
+    </bean>
 
 </beans>

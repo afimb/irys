@@ -38388,224 +38388,48 @@ Rail transport, Roads and road transport</Category>
          </RequestExtension>
       </wsdl:GetStopTimetable>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wsdl.siri.org.uk/SOAP-Port/GetStopTimetableRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetStopMonitoring TestCase" searchProperties="true" id="cb4e6fd6-50c6-49e8-8801-256f28f676fa"><con:settings/><con:testStep type="request" name="GetStopMonitoring"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>GetStopMonitoring</con:operation><con:request name="GetStopMonitoring" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://wsdl.siri.org.uk/SOAP-Port/GetStopTimetableRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetStopMonitoring TestCase" searchProperties="true" id="cb4e6fd6-50c6-49e8-8801-256f28f676fa"><con:settings/><con:testStep type="request" name="GetStopMonitoring"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>GetStopMonitoring</con:operation><con:request name="GetStopMonitoring" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
    <soapenv:Header/>
    <soapenv:Body>
       <wsdl:GetStopMonitoring>
          <ServiceRequestInfo>
-            <!--Optional:-->
-            <siri:ServiceRequestContext>
-               <!--Optional:-->
-               <siri:CheckStatusAddress>?</siri:CheckStatusAddress>
-               <!--Optional:-->
-               <siri:SubscribeAddress>?</siri:SubscribeAddress>
-               <!--Optional:-->
-               <siri:ManageSubscriptionAddress>?</siri:ManageSubscriptionAddress>
-               <!--Optional:-->
-               <siri:GetDataAddress>?</siri:GetDataAddress>
-               <!--Optional:-->
-               <siri:StatusResponseAddress>?</siri:StatusResponseAddress>
-               <!--Optional:-->
-               <siri:SubscriberAddress>?</siri:SubscriberAddress>
-               <!--Optional:-->
-               <siri:NotifyAddress>?</siri:NotifyAddress>
-               <!--Optional:-->
-               <siri:ConsumerAddress>?</siri:ConsumerAddress>
-               <!--Optional:-->
-               <siri:DataNameSpaces>
-                  <!--Optional:-->
-                  <siri:StopPointNameSpace>?</siri:StopPointNameSpace>
-                  <!--Optional:-->
-                  <siri:LineNameSpace>?</siri:LineNameSpace>
-                  <!--Optional:-->
-                  <siri:ProductCategoryNameSpace>?</siri:ProductCategoryNameSpace>
-                  <!--Optional:-->
-                  <siri:ServiceFeatureNameSpace>?</siri:ServiceFeatureNameSpace>
-                  <!--Optional:-->
-                  <siri:VehicleFeatureNameSpace>?</siri:VehicleFeatureNameSpace>
-               </siri:DataNameSpaces>
-               <!--Optional:-->
-               <siri:Language>en</siri:Language>
-               <!--You have a CHOICE of the next 2 items at this level-->
-               <siri:WgsDecimalDegrees>?</siri:WgsDecimalDegrees>
-               <siri:GmlCoordinateFormat>?</siri:GmlCoordinateFormat>
-               <!--Optional:-->
-               <siri:DataHorizon>?</siri:DataHorizon>
-               <!--Optional:-->
-               <siri:RequestTimeout>?</siri:RequestTimeout>
-               <!--Optional:-->
-               <siri:DeliveryMethod>direct</siri:DeliveryMethod>
-               <!--Optional:-->
-               <siri:MultipartDespatch>?</siri:MultipartDespatch>
-               <!--Optional:-->
-               <siri:ConfirmDelivery>false</siri:ConfirmDelivery>
-               <!--Optional:-->
-               <siri:MaximimumNumberOfSubscriptions>?</siri:MaximimumNumberOfSubscriptions>
-               <!--Optional:-->
-               <siri:AllowedPredictors>anyone</siri:AllowedPredictors>
-               <!--Optional:-->
-               <siri:PredictionFunction>?</siri:PredictionFunction>
-            </siri:ServiceRequestContext>
-            <siri:RequestTimestamp>?</siri:RequestTimestamp>
-            <!--Optional:-->
-            <siri:Address>?</siri:Address>
-            <siri:RequestorRef>?</siri:RequestorRef>
-            <!--Optional:-->
-            <siri:MessageIdentifier>?</siri:MessageIdentifier>
+            <siri:RequestTimestamp>2011-11-24T09:22:51.046+01:00</siri:RequestTimestamp>
+            <siri:RequestorRef>tests</siri:RequestorRef>
+            <siri:MessageIdentifier>StopMonitoringClient:Test:0</siri:MessageIdentifier>
          </ServiceRequestInfo>
-         <Request version="?">
-            <siri:RequestTimestamp>?</siri:RequestTimestamp>
-            <!--Optional:-->
-            <siri:MessageIdentifier>?</siri:MessageIdentifier>
-            <!--Optional:-->
-            <siri:PreviewInterval>?</siri:PreviewInterval>
-            <!--Optional:-->
-            <siri:StartTime>?</siri:StartTime>
-            <siri:MonitoringRef>?</siri:MonitoringRef>
-            <!--Optional:-->
-            <siri:OperatorRef>?</siri:OperatorRef>
-            <!--Optional:-->
-            <siri:LineRef>?</siri:LineRef>
-            <!--Optional:-->
-            <siri:DirectionRef>?</siri:DirectionRef>
-            <!--Optional:-->
-            <siri:DestinationRef>?</siri:DestinationRef>
-            <!--Optional:-->
-            <siri:StopVisitTypes>all</siri:StopVisitTypes>
-            <!--Optional:-->
-            <siri:Language>en</siri:Language>
-            <!--Optional:-->
-            <siri:MaximumStopVisits>?</siri:MaximumStopVisits>
-            <!--Optional:-->
-            <siri:MinimumStopVisitsPerLine>?</siri:MinimumStopVisitsPerLine>
-            <!--Optional:-->
-            <siri:MaximumTextLength>30</siri:MaximumTextLength>
-            <!--Optional:-->
-            <siri:StopMonitoringDetailLevel>normal</siri:StopMonitoringDetailLevel>
-            <!--Optional:-->
-            <siri:MaximumNumberOfCalls>
-               <!--Optional:-->
-               <siri:Previous>?</siri:Previous>
-               <!--Optional:-->
-               <siri:Onwards>?</siri:Onwards>
-            </siri:MaximumNumberOfCalls>
-            <!--Optional:-->
-            <siri:Extensions>
-               <!--You may enter ANY elements at this point-->
-            </siri:Extensions>
+         <Request version="1.3">
+            <siri:RequestTimestamp>2011-11-24T09:22:51.046+01:00</siri:RequestTimestamp>
+            <siri:MessageIdentifier>StopMonitoringClient:Test:0</siri:MessageIdentifier>
+            <siri:MonitoringRef>NINOXE:StopPoint:BP:12345:LOC</siri:MonitoringRef>
+            <siri:LineRef>NINOXE:Line:12:LOC</siri:LineRef>
+            <siri:MaximumStopVisits>3</siri:MaximumStopVisits>
          </Request>
          <RequestExtension>
             <!--You may enter ANY elements at this point-->
          </RequestExtension>
       </wsdl:GetStopMonitoring>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GetStopMonitoring"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetMultipleStopMonitoring TestCase" searchProperties="true" id="83e32851-4a36-493d-b22b-7ed0a897c237"><con:settings/><con:testStep type="request" name="GetMultipleStopMonitoring"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>GetMultipleStopMonitoring</con:operation><con:request name="GetMultipleStopMonitoring" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>&lt;siri:Description>Erreur simulée&lt;/siri:Description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="GetStopMonitoring"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetMultipleStopMonitoring TestCase" searchProperties="true" id="83e32851-4a36-493d-b22b-7ed0a897c237"><con:settings/><con:testStep type="request" name="GetMultipleStopMonitoring"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>GetMultipleStopMonitoring</con:operation><con:request name="GetMultipleStopMonitoring" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
    <soapenv:Header/>
    <soapenv:Body>
       <wsdl:GetMultipleStopMonitoring>
          <ServiceRequestInfo>
-            <!--Optional:-->
-            <siri:ServiceRequestContext>
-               <!--Optional:-->
-               <siri:CheckStatusAddress>?</siri:CheckStatusAddress>
-               <!--Optional:-->
-               <siri:SubscribeAddress>?</siri:SubscribeAddress>
-               <!--Optional:-->
-               <siri:ManageSubscriptionAddress>?</siri:ManageSubscriptionAddress>
-               <!--Optional:-->
-               <siri:GetDataAddress>?</siri:GetDataAddress>
-               <!--Optional:-->
-               <siri:StatusResponseAddress>?</siri:StatusResponseAddress>
-               <!--Optional:-->
-               <siri:SubscriberAddress>?</siri:SubscriberAddress>
-               <!--Optional:-->
-               <siri:NotifyAddress>?</siri:NotifyAddress>
-               <!--Optional:-->
-               <siri:ConsumerAddress>?</siri:ConsumerAddress>
-               <!--Optional:-->
-               <siri:DataNameSpaces>
-                  <!--Optional:-->
-                  <siri:StopPointNameSpace>?</siri:StopPointNameSpace>
-                  <!--Optional:-->
-                  <siri:LineNameSpace>?</siri:LineNameSpace>
-                  <!--Optional:-->
-                  <siri:ProductCategoryNameSpace>?</siri:ProductCategoryNameSpace>
-                  <!--Optional:-->
-                  <siri:ServiceFeatureNameSpace>?</siri:ServiceFeatureNameSpace>
-                  <!--Optional:-->
-                  <siri:VehicleFeatureNameSpace>?</siri:VehicleFeatureNameSpace>
-               </siri:DataNameSpaces>
-               <!--Optional:-->
-               <siri:Language>en</siri:Language>
-               <!--You have a CHOICE of the next 2 items at this level-->
-               <siri:WgsDecimalDegrees>?</siri:WgsDecimalDegrees>
-               <siri:GmlCoordinateFormat>?</siri:GmlCoordinateFormat>
-               <!--Optional:-->
-               <siri:DataHorizon>?</siri:DataHorizon>
-               <!--Optional:-->
-               <siri:RequestTimeout>?</siri:RequestTimeout>
-               <!--Optional:-->
-               <siri:DeliveryMethod>direct</siri:DeliveryMethod>
-               <!--Optional:-->
-               <siri:MultipartDespatch>?</siri:MultipartDespatch>
-               <!--Optional:-->
-               <siri:ConfirmDelivery>false</siri:ConfirmDelivery>
-               <!--Optional:-->
-               <siri:MaximimumNumberOfSubscriptions>?</siri:MaximimumNumberOfSubscriptions>
-               <!--Optional:-->
-               <siri:AllowedPredictors>anyone</siri:AllowedPredictors>
-               <!--Optional:-->
-               <siri:PredictionFunction>?</siri:PredictionFunction>
-            </siri:ServiceRequestContext>
-            <siri:RequestTimestamp>?</siri:RequestTimestamp>
-            <!--Optional:-->
-            <siri:Address>?</siri:Address>
-            <siri:RequestorRef>?</siri:RequestorRef>
-            <!--Optional:-->
-            <siri:MessageIdentifier>?</siri:MessageIdentifier>
+            <siri:RequestTimestamp>2011-11-24T09:24:59.093+01:00</siri:RequestTimestamp>
+            <siri:RequestorRef>tests</siri:RequestorRef>
+            <siri:MessageIdentifier>StopMonitoringClient:Test:0</siri:MessageIdentifier>
          </ServiceRequestInfo>
-         <Request version="?">
-            <siri:RequestTimestamp>?</siri:RequestTimestamp>
-            <!--Optional:-->
-            <siri:MessageIdentifier>?</siri:MessageIdentifier>
-            <!--1 or more repetitions:-->
+         <Request version="1.3">
+            <siri:RequestTimestamp>2011-11-24T09:24:59.093+01:00</siri:RequestTimestamp>
+            <siri:MessageIdentifier>StopMonitoringClient:Test:0</siri:MessageIdentifier>
             <siri:StopMonitoringFIlter>
-               <!--Optional:-->
-               <siri:PreviewInterval>?</siri:PreviewInterval>
-               <!--Optional:-->
-               <siri:StartTime>?</siri:StartTime>
-               <siri:MonitoringRef>?</siri:MonitoringRef>
-               <!--Optional:-->
-               <siri:OperatorRef>?</siri:OperatorRef>
-               <!--Optional:-->
-               <siri:LineRef>?</siri:LineRef>
-               <!--Optional:-->
-               <siri:DirectionRef>?</siri:DirectionRef>
-               <!--Optional:-->
-               <siri:DestinationRef>?</siri:DestinationRef>
-               <!--Optional:-->
-               <siri:StopVisitTypes>all</siri:StopVisitTypes>
-               <!--Optional:-->
-               <siri:Language>en</siri:Language>
-               <!--Optional:-->
-               <siri:MaximumStopVisits>?</siri:MaximumStopVisits>
-               <!--Optional:-->
-               <siri:MinimumStopVisitsPerLine>?</siri:MinimumStopVisitsPerLine>
-               <!--Optional:-->
-               <siri:MaximumTextLength>30</siri:MaximumTextLength>
-               <!--Optional:-->
-               <siri:StopMonitoringDetailLevel>normal</siri:StopMonitoringDetailLevel>
-               <!--Optional:-->
-               <siri:MaximumNumberOfCalls>
-                  <!--Optional:-->
-                  <siri:Previous>?</siri:Previous>
-                  <!--Optional:-->
-                  <siri:Onwards>?</siri:Onwards>
-               </siri:MaximumNumberOfCalls>
-               <!--Optional:-->
-               <siri:Extensions>
-                  <!--You may enter ANY elements at this point-->
-               </siri:Extensions>
+               <siri:MonitoringRef>NINOXE:StopPoint:SP:3426:LOC</siri:MonitoringRef>
+               <siri:DestinationRef>NINOXE:StopPoint:BP:1245:LOC</siri:DestinationRef>
+               <siri:MaximumStopVisits>3</siri:MaximumStopVisits>
+            </siri:StopMonitoringFIlter>
+            <siri:StopMonitoringFIlter>
+               <siri:MonitoringRef>NINOXE:StopPoint:BP:3426:LOC</siri:MonitoringRef>
+               <siri:LineRef>NINOXE:Line:1245:LOC</siri:LineRef>
+               <siri:MaximumStopVisits>3</siri:MaximumStopVisits>
             </siri:StopMonitoringFIlter>
          </Request>
          <RequestExtension>
@@ -38613,7 +38437,7 @@ Rail transport, Roads and road transport</Category>
          </RequestExtension>
       </wsdl:GetMultipleStopMonitoring>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="GetMultipleStopMonitoring"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetVehicleMonitoring TestCase" searchProperties="true" id="b715b841-07d7-41d2-b89d-1310dfe29ffc"><con:settings/><con:testStep type="request" name="GetVehicleMonitoring"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>GetVehicleMonitoring</con:operation><con:request name="GetVehicleMonitoring" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>&lt;siri:Description>Erreur simulée&lt;/siri:Description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="GetMultipleStopMonitoring"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetVehicleMonitoring TestCase" searchProperties="true" id="b715b841-07d7-41d2-b89d-1310dfe29ffc"><con:settings/><con:testStep type="request" name="GetVehicleMonitoring"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>GetVehicleMonitoring</con:operation><con:request name="GetVehicleMonitoring" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
    <soapenv:Header/>
    <soapenv:Body>
       <wsdl:GetVehicleMonitoring>
