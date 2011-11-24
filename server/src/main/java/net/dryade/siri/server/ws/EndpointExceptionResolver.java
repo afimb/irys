@@ -50,6 +50,8 @@ import uk.org.siri.siri.ErrorDescriptionStructure;
          }
      }
 
+     // TODO: adapter ce code pour maintenir le comportement AXIS
+     //
      private CheckStatusFaultException createFaultMessage(Exception e) {
 
          ErrorConditionElementDocument errorCED = ErrorConditionElementDocument.Factory.newInstance();

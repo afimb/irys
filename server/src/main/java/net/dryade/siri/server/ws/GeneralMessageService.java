@@ -46,96 +46,105 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
     private static final String namespaceUri = "http://wsdl.siri.org.uk";
     private GeneralMessageInterface generalMessage ;
 
+    //
+    //
+    private GetGeneralMessageResponseDocument newBasicResponseDocument(Calendar timestamp)
+    {
+        GetGeneralMessageResponseDocument responseDoc = GetGeneralMessageResponseDocument.Factory.newInstance();
+        GeneralMessageAnswerType response = responseDoc.addNewGetGeneralMessageResponse();
+
+        ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewServiceDeliveryInfo();
+        ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
+        producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
+
+        GeneralMessageDeliveriesStructure answer = null;
+        response.addNewAnswerExtension(); // obligatoire bien que inutile !
+
+        // URL du Serveur : siri.serverURL
+        serviceDeliveryInfo.setAddress(url);
+        serviceDeliveryInfo.setResponseTimestamp(timestamp);
+
+        MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
+        MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
+        responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.GeneralMessage));
+
+        return responseDoc;
+    }
+    private GetGeneralMessageResponseDocument newFailureResponseDocument( Calendar timestamp, SiriException.Code code, String message)
+    {
+        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        MessageRefStructure requestMessageRef = responseDoc.getGetGeneralMessageResponse().getServiceDeliveryInfo().getRequestMessageRef();
+        requestMessageRef.setStringValue( message);
+        
+        GeneralMessageDeliveriesStructure answer = responseDoc.getGetGeneralMessageResponse().addNewAnswer();
+        GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
+        delivery.setVersion(wsdlVersion);
+        setOtherError(delivery, code, message, responseDoc.getGetGeneralMessageResponse().getServiceDeliveryInfo().getResponseTimestamp());
+        
+        return responseDoc;
+    }
+    private GetGeneralMessageResponseDocument newResponseDocument( Calendar timestamp, GetGeneralMessageDocument requestDoc, GeneralMessageDeliveriesStructure answer)
+    {
+        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetGeneralMessage().getServiceRequestInfo();
+
+        MessageRefStructure requestMessageRef = responseDoc.getGetGeneralMessageResponse().getServiceDeliveryInfo().getRequestMessageRef();
+        requestMessageRef.setStringValue( requestDoc.getGetGeneralMessage().getServiceRequestInfo().getMessageIdentifier().getStringValue());
+        
+        // traitement du serviceRequestInfo
+        ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
+        logger.info("GetGeneralMessage : requestorRef = " + requestorRef.getStringValue());
+        
+        responseDoc.getGetGeneralMessageResponse().setAnswer(answer);
+        return responseDoc;
+    }
+    private GetGeneralMessageResponseDocument newNoMessageResponseDocument( Calendar timestamp)
+    {
+        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        
+        GeneralMessageDeliveriesStructure answer = responseDoc.getGetGeneralMessageResponse().addNewAnswer();
+        
+        GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
+        delivery.setVersion(wsdlVersion);
+        setCapabilityNotSupportedError(delivery, "GeneralMessage");
+                            
+        return responseDoc;
+    }
+    
     @PayloadRoot(localPart = "GetGeneralMessage", namespace = namespaceUri)
     public GetGeneralMessageResponseDocument getGeneralMessage(GetGeneralMessageDocument requestDoc) //throws GeneralMessageError 
     {
         logger.debug("Appel GetGeneralMessage");
         long debut = System.currentTimeMillis();
         try {
-            // habillage de la reponse
-            GetGeneralMessageResponseDocument responseDoc = GetGeneralMessageResponseDocument.Factory.newInstance();
-            GeneralMessageAnswerType response = responseDoc.addNewGetGeneralMessageResponse();
-
-            ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewServiceDeliveryInfo();
-            ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
-            producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
-
-            GeneralMessageDeliveriesStructure answer = null;
-            response.addNewAnswerExtension(); // obligatoire bien que inutile !
-
-            // URL du Serveur : siri.serverURL
-            serviceDeliveryInfo.setAddress(url);
             Calendar responseTimestamp = Calendar.getInstance();
-            serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
-
-            MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
-            MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
-            responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.GeneralMessage));
-
-            // validation XSD de la requete
-            boolean validate = true;
-            if (requestValidation) {
-                validate = checkXmlSchema(requestDoc, logger);
-            } else {
-                validate = (requestDoc.getGetGeneralMessage() != null);
-                if (validate) {
-                    // controle moins restrictif limite aux elements necessaires a la requete
+            
+            GeneralMessageServiceValidity validity = new GeneralMessageServiceValidity( this, requestDoc);
+            if (!validity.isValid()) 
+                return newFailureResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage());
+            
+            GetGeneralMessageResponseDocument responseDoc = null;
+            // traitement de la requete proprement dite
+            try {
+                if (this.generalMessage != null) {
+                    logger.debug("appel au service generalMessageService");
                     ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetGeneralMessage().getServiceRequestInfo();
-                    GeneralMessageRequestStructure request = (GeneralMessageRequestStructure) requestDoc.getGetGeneralMessage().getRequest().copy();
-
-                    if (request.isSetExtensions()) {
-                        request.unsetExtensions();
-                    }
-
-                    boolean infoOk = checkXmlSchema(serviceRequestInfo, logger);
-                    boolean requestOk = checkXmlSchema(request, logger);
-
-                    validate = infoOk && requestOk;
-                }
-            }
-
-            if (!validate) {
-                requestMessageRef.setStringValue("Invalid Request Structure");
-                answer = response.addNewAnswer();
-                GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
-                delivery.setVersion(wsdlVersion);
-                setOtherError(delivery, SiriException.Code.BAD_REQUEST, "Invalid Request Structure", responseTimestamp);
-            } else {
-                ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetGeneralMessage().getServiceRequestInfo();
-                GeneralMessageRequestStructure request = requestDoc.getGetGeneralMessage().getRequest();
-
-                // traitement du serviceRequestInfo
-                ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
-                logger.info("GetGeneralMessage : requestorRef = " + requestorRef.getStringValue());
-
-                if (serviceRequestInfo.isSetMessageIdentifier() && request.isSetMessageIdentifier()) {
-                    requestMessageRef.setStringValue(serviceRequestInfo.getMessageIdentifier().getStringValue());
-                    // traitement de la requete proprement dite
-                    try {
-                        if (this.generalMessage != null) {
-                            logger.debug("appel au service generalMessageService");
-                            answer = this.generalMessage.getGeneralMessage(serviceRequestInfo, request, responseTimestamp);
-                            response.setAnswer(answer);
-                        } else {
-                            answer = response.addNewAnswer();
-                            GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
-                            delivery.setVersion(wsdlVersion);
-                            setCapabilityNotSupportedError(delivery, "GeneralMessage");
-                        }
-                    } catch (Exception e) {
-                        answer = response.addNewAnswer();
-                        GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
-                        delivery.setVersion(wsdlVersion);
-                        setOtherError(delivery, e, responseTimestamp);
-                    }
+                    GeneralMessageRequestStructure request = requestDoc.getGetGeneralMessage().getRequest();
+                    GeneralMessageDeliveriesStructure answer = this.generalMessage.getGeneralMessage(serviceRequestInfo, request, responseTimestamp);
+                    responseDoc = newResponseDocument( responseTimestamp, requestDoc, answer);
                 } else {
-                    requestMessageRef.setStringValue("missing MessageIdentifier");
-                    answer = response.addNewAnswer();
-                    GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
-                    delivery.setVersion(wsdlVersion);
-                    setOtherError(delivery, SiriException.Code.BAD_REQUEST, "missing argument: MessageIdentifier", responseTimestamp);
-
+                    responseDoc = newNoMessageResponseDocument( responseTimestamp);
                 }
+            } catch (Exception e) {
+                SiriException.Code code = SiriException.Code.INTERNAL_ERROR;
+
+                if (e instanceof SiriException) {
+                    logger.warn(e.getMessage());
+                    code = ((SiriException)e).getCode();
+                } else {
+                    logger.error(e.getMessage());
+                }                        
+                responseDoc = newFailureResponseDocument( responseTimestamp, code, e.getMessage());
             }
 
             return responseDoc;
