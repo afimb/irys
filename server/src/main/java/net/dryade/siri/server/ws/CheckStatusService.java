@@ -101,12 +101,13 @@ public class CheckStatusService extends AbstractSiriServiceDelegate{
     {
         logger.debug("Appel CheckStatus");
         long debut = System.currentTimeMillis();
+        CheckStatusResponseDocument responseDoc = null;
         try {
+            
             CheckStatusValidity validity = new CheckStatusValidity( this, requestDoc);
             if ( ! validity.isValid())
                 return newFailureResponseDocument(SiriException.Code.BAD_REQUEST, validity.errorMessage());
                 
-            CheckStatusResponseDocument responseDoc = null;
             try {
                 CheckStatusResponseBodyStructure answer = this.checkStatusService.getCheckStatus(requestDoc.getCheckStatus().getRequest());
                 responseDoc = newResponseDocument( requestDoc, answer);
@@ -135,7 +136,7 @@ public class CheckStatusService extends AbstractSiriServiceDelegate{
         } finally {
             long fin = System.currentTimeMillis();
             //logger.debug("fin CheckStatus : duree = "+siriTool.getTimeAsString(fin - debut));
-            return null; // en attendant de voir la gestion du CheckStatusError
+            return responseDoc; // en attendant de voir la gestion du CheckStatusError
         }
     }
 
