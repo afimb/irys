@@ -21,6 +21,7 @@ import uk.org.siri.siri.AccessNotAllowedErrorStructure;
 import uk.org.siri.siri.ContextualisedRequestStructure;
 import uk.org.siri.siri.ErrorDescriptionStructure;
 import uk.org.siri.siri.GeneralMessageDeliveriesStructure;
+import uk.org.siri.siri.GeneralMessageDeliveryStructure;
 import uk.org.siri.siri.GeneralMessageSubscriptionStructure;
 import uk.org.siri.siri.InfoMessageCancellationStructure;
 import uk.org.siri.siri.InfoMessageStructure;
@@ -40,7 +41,10 @@ public class GeneralMessage extends AbstractSiri implements GeneralMessageInterf
     public GeneralMessageDeliveriesStructure getGeneralMessage(ContextualisedRequestStructure serviceRequestInfo, GeneralMessageRequestStructure request, Calendar responseTimestamp) throws SiriException {
         GeneralMessageDeliveriesStructure answer = GeneralMessageDeliveriesStructure.Factory.newInstance();
 
-        ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewGeneralMessageDelivery().addNewErrorCondition();
+        GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
+        delivery.setResponseTimestamp(responseTimestamp);
+        delivery.setVersion(request.getVersion());
+        ServiceDeliveryErrorConditionStructure errorCondition = delivery.addNewErrorCondition();
         ErrorDescriptionStructure description = errorCondition.addNewDescription();
         description.setStringValue("Erreur simulée");
 

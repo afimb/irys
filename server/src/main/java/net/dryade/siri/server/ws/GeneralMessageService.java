@@ -57,14 +57,14 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
         ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
         producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
 
-        GeneralMessageDeliveriesStructure answer = null;
+//        GeneralMessageDeliveriesStructure answer = null;
         response.addNewAnswerExtension(); // obligatoire bien que inutile !
 
         // URL du Serveur : siri.serverURL
         serviceDeliveryInfo.setAddress(url);
         serviceDeliveryInfo.setResponseTimestamp(timestamp);
 
-        MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
+        serviceDeliveryInfo.addNewRequestMessageRef();
         MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
         responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.GeneralMessage));
 
@@ -79,6 +79,7 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
         GeneralMessageDeliveriesStructure answer = responseDoc.getGetGeneralMessageResponse().addNewAnswer();
         GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
         delivery.setVersion(wsdlVersion);
+        delivery.setResponseTimestamp(timestamp);
         setOtherError(delivery, code, message, responseDoc.getGetGeneralMessageResponse().getServiceDeliveryInfo().getResponseTimestamp());
         
         return responseDoc;
@@ -96,6 +97,7 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
         logger.info("GetGeneralMessage : requestorRef = " + requestorRef.getStringValue());
         
         responseDoc.getGetGeneralMessageResponse().setAnswer(answer);
+        
         return responseDoc;
     }
     private GetGeneralMessageResponseDocument newNoMessageResponseDocument( Calendar timestamp)
@@ -106,6 +108,8 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
         
         GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
         delivery.setVersion(wsdlVersion);
+        delivery.setResponseTimestamp(timestamp);
+
         setCapabilityNotSupportedError(delivery, "GeneralMessage");
                             
         return responseDoc;
@@ -133,6 +137,8 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
                     GeneralMessageDeliveriesStructure answer = this.generalMessage.getGeneralMessage(serviceRequestInfo, request, responseTimestamp);
                     responseDoc = newResponseDocument( responseTimestamp, requestDoc, answer);
                 } else {
+                    logger.debug("generalMessageService not available");
+
                     responseDoc = newNoMessageResponseDocument( responseTimestamp);
                 }
             } catch (Exception e) {
