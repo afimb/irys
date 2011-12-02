@@ -11,7 +11,6 @@
  */
 package net.dryade.siri.server.ws;
 
-import net.dryade.siri.server.common.SiriTool;
 
 /**
  * 
@@ -33,13 +32,7 @@ public class DefaultIdentifierGenerator implements IdentifierGeneratorInterface
 
 	public void init()
 	{
-		if (SiriTool.getInstance().isSiriPropertySupported())
-		{
-			if (this.producerName == null)
-			{
-				this.producerName = SiriTool.getInstance().getSiriProperty("siri.producerRef");		   
-			}
-		}
+
 	}
 	/* (non-Javadoc)
 	 * @see uk.org.siri.soapimpl.IdentifierGeneratorInterface#getNewIdentifier()

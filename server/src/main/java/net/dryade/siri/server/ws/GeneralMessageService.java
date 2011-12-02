@@ -162,7 +162,7 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
             //throw new GeneralMessageError(e.getMessage());
         } finally {
             long fin = System.currentTimeMillis();
-            //logger.debug("fin GetGeneralMessage : durée = " + siriTool.getTimeAsString(fin - debut));
+            // logger.debug("fin GetGeneralMessage : durée = " + siriTool.getTimeAsString(fin - debut));
         }
         return null; 
 
