@@ -29,7 +29,8 @@ public class ValidationInterceptor extends org.springframework.ws.soap.server.en
     }
     @Override
     protected Source getValidationResponseSource(WebServiceMessage response) {
-        logger.error( "######################################");
+        logger.debug( "######################################");
+        logger.debug( "##### getValidationResponseSource #####");
         return super.getValidationResponseSource(response);
     }
  

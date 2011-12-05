@@ -22,6 +22,7 @@ import uk.org.siri.siri.ErrorDescriptionStructure;
 import uk.org.siri.siri.MessageQualifierStructure;
 import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
 import uk.org.siri.siri.StopMonitoringDeliveriesStructure;
+import uk.org.siri.siri.StopMonitoringDeliveryStructure;
 import uk.org.siri.siri.StopMonitoringMultipleRequestStructure;
 import uk.org.siri.siri.StopMonitoringRequestStructure;
 import uk.org.siri.siri.StopMonitoringSubscriptionStructure;
@@ -38,6 +39,9 @@ public class StopMonitoring extends AbstractSiri implements StopMonitoringInterf
     public StopMonitoringDeliveriesStructure getStopMonitoringDeliveries(ContextualisedRequestStructure serviceRequestInfo, StopMonitoringRequestStructure request, Calendar responseTimestamp) throws SiriException {
         StopMonitoringDeliveriesStructure answer = StopMonitoringDeliveriesStructure.Factory.newInstance();
 
+        StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
+        delivery.setResponseTimestamp(responseTimestamp);
+        delivery.setVersion(request.getVersion());
         ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewStopMonitoringDelivery().addNewErrorCondition();
         ErrorDescriptionStructure description = errorCondition.addNewDescription();
         description.setStringValue("Erreur simulée");

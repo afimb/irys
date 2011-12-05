@@ -5,15 +5,12 @@
 package net.dryade.siri.server.ws;
 
 import uk.org.siri.wsdl.CheckStatusDocument;
-import org.apache.log4j.Logger;
 import uk.org.siri.siri.RequestStructure;
 /**
  *
  * @author marc
  */
 public class CheckStatusValidity {
-    private static final Logger logger = Logger.getLogger(CheckStatusValidity.class);
-    
     private AbstractSiriServiceDelegate siriService;
     private CheckStatusDocument requestDoc;
     
@@ -35,13 +32,13 @@ public class CheckStatusValidity {
            return isSchemaCompliant.booleanValue();
        
         if (siriService.requestValidation) {
-            logger.debug( "validation struct complete");
-            isSchemaCompliant = siriService.checkXmlSchema(requestDoc, logger);
+            siriService.getLogger().debug( "validation struct complete");
+            isSchemaCompliant = siriService.checkXmlSchema(requestDoc, siriService.getLogger());
         } else {
-            logger.debug( "validation struct partielle");
+            siriService.getLogger().debug( "validation struct partielle");
             // controle moins restrictif limite aux elements necessaires a la requete
             RequestStructure request = requestDoc.getCheckStatus().getRequest();
-            isSchemaCompliant = (request != null) && siriService.checkXmlSchema(request, logger);
+            isSchemaCompliant = (request != null) && siriService.checkXmlSchema(request, siriService.getLogger());
         }
         
         return isSchemaCompliant.booleanValue();
@@ -61,7 +58,7 @@ public class CheckStatusValidity {
        if ( isSchemaCompliantRequest() && !isServiceCompliantRequest())
            return "missing MessageIdentifier";
        if ( !isSchemaCompliantRequest())
-           return "missing MessageIdentifier";
+           return "Invalid Request Structure";
        return null;
    }
     

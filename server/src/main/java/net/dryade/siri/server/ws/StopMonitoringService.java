@@ -11,18 +11,15 @@
  */
 package net.dryade.siri.server.ws;
 
-import net.dryade.siri.server.producer.StopMonitoringInterface;
 import java.util.Calendar;
 
-
 import net.dryade.siri.server.common.SiriException;
-import org.apache.log4j.Logger;
+import net.dryade.siri.server.producer.StopMonitoringInterface;
 
+import org.apache.log4j.Logger;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
-import uk.org.siri.wsdl.GetMultipleStopMonitoringDocument;
-import uk.org.siri.wsdl.GetStopMonitoringDocument;
-import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
+
 import uk.org.siri.siri.ContextualisedRequestStructure;
 import uk.org.siri.siri.MessageQualifierStructure;
 import uk.org.siri.siri.MessageRefStructure;
@@ -32,7 +29,10 @@ import uk.org.siri.siri.StopMonitoringDeliveriesStructure;
 import uk.org.siri.siri.StopMonitoringDeliveryStructure;
 import uk.org.siri.siri.StopMonitoringMultipleRequestStructure;
 import uk.org.siri.siri.StopMonitoringRequestStructure;
+import uk.org.siri.wsdl.GetMultipleStopMonitoringDocument;
 import uk.org.siri.wsdl.GetMultipleStopMonitoringResponseDocument;
+import uk.org.siri.wsdl.GetStopMonitoringDocument;
+import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
 import uk.org.siri.wsdl.StopMonitoringAnswerType;
 
 @Endpoint
@@ -48,98 +48,192 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
     private static long callCount = 0;
     private static long callDurationSum = 0;
 
-    private static synchronized long addDuration(long duration) {
+    private static synchronized long addDuration(long duration) 
+    {
         callCount++;
         callDurationSum += duration;
         return callDurationSum / callCount;
     }
 
-    @PayloadRoot(localPart = "GetStopMonitoring", namespace = namespaceUri)
+    private GetStopMonitoringResponseDocument newBasicResponseDocument(Calendar timestamp)
+    {
+        GetStopMonitoringResponseDocument responseDoc = GetStopMonitoringResponseDocument.Factory.newInstance();
+        StopMonitoringAnswerType response = responseDoc.addNewGetStopMonitoringResponse();
+
+        ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewServiceDeliveryInfo();
+        ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
+        producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
+
+        response.addNewAnswerExtension(); // obligatoire bien que inutile !
+
+        // URL du Serveur : siri.serverURL
+        serviceDeliveryInfo.setAddress(url);
+        Calendar responseTimestamp = Calendar.getInstance();
+        serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
+
+        serviceDeliveryInfo.addNewRequestMessageRef();
+        MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
+        responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.StopMonitoring));
+
+        return responseDoc;
+    }
+    
+    private GetStopMonitoringResponseDocument newFailureResponseDocument( Calendar timestamp, SiriException.Code code, String message)
+    {
+    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        MessageRefStructure requestMessageRef = responseDoc.getGetStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
+        requestMessageRef.setStringValue( message);
+        
+        StopMonitoringDeliveriesStructure answer = responseDoc.getGetStopMonitoringResponse().addNewAnswer();
+        StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
+        delivery.setVersion(wsdlVersion);
+        delivery.setResponseTimestamp(timestamp);
+        setOtherError(delivery, code, message, responseDoc.getGetStopMonitoringResponse().getServiceDeliveryInfo().getResponseTimestamp());
+        
+        return responseDoc;
+    }
+    private GetStopMonitoringResponseDocument newResponseDocument( Calendar timestamp, GetStopMonitoringDocument requestDoc, StopMonitoringDeliveriesStructure answer)
+    {
+    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetStopMonitoring().getServiceRequestInfo();
+
+        MessageRefStructure requestMessageRef = responseDoc.getGetStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
+        requestMessageRef.setStringValue( requestDoc.getGetStopMonitoring().getServiceRequestInfo().getMessageIdentifier().getStringValue());
+        
+        // traitement du serviceRequestInfo
+        ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
+        logger.info("GetGeneralMessage : requestorRef = " + requestorRef.getStringValue());
+        
+        responseDoc.getGetStopMonitoringResponse().setAnswer(answer);
+        
+        return responseDoc;
+    }
+    private GetStopMonitoringResponseDocument newNoMessageResponseDocument( Calendar timestamp)
+    {
+    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        
+    	StopMonitoringDeliveriesStructure answer = responseDoc.getGetStopMonitoringResponse().addNewAnswer();
+        
+    	StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
+        delivery.setVersion(wsdlVersion);
+        delivery.setResponseTimestamp(timestamp);
+
+        setCapabilityNotSupportedError(delivery, "StopMonitoring");
+                            
+        return responseDoc;
+    }
+    
+    private GetMultipleStopMonitoringResponseDocument newBasicMultipleResponseDocument(
+			Calendar timestamp) {
+    	GetMultipleStopMonitoringResponseDocument responseDoc = GetMultipleStopMonitoringResponseDocument.Factory.newInstance();
+        StopMonitoringAnswerType response = responseDoc.addNewGetMultipleStopMonitoringResponse();
+
+        ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewServiceDeliveryInfo();
+        ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
+        producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
+
+        response.addNewAnswerExtension(); // obligatoire bien que inutile !
+
+        // URL du Serveur : siri.serverURL
+        serviceDeliveryInfo.setAddress(url);
+        Calendar responseTimestamp = Calendar.getInstance();
+        serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
+
+        serviceDeliveryInfo.addNewRequestMessageRef();
+        MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
+        responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.StopMonitoring));
+
+        return responseDoc;
+	}
+
+    private GetMultipleStopMonitoringResponseDocument newFailureMultipleResponseDocument( Calendar timestamp, SiriException.Code code, String message)
+    {
+    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp);
+        MessageRefStructure requestMessageRef = responseDoc.getGetMultipleStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
+        requestMessageRef.setStringValue( message);
+        
+        StopMonitoringDeliveriesStructure answer = responseDoc.getGetMultipleStopMonitoringResponse().addNewAnswer();
+        StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
+        delivery.setVersion(wsdlVersion);
+        delivery.setResponseTimestamp(timestamp);
+        setOtherError(delivery, code, message, responseDoc.getGetMultipleStopMonitoringResponse().getServiceDeliveryInfo().getResponseTimestamp());
+        
+        return responseDoc;
+    }
+    private GetMultipleStopMonitoringResponseDocument newMultipleResponseDocument( Calendar timestamp, GetMultipleStopMonitoringDocument requestDoc, StopMonitoringDeliveriesStructure answer)
+    {
+    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp);
+        ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo();
+
+        MessageRefStructure requestMessageRef = responseDoc.getGetMultipleStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
+        requestMessageRef.setStringValue( requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo().getMessageIdentifier().getStringValue());
+        
+        // traitement du serviceRequestInfo
+        ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
+        logger.info("GetGeneralMessage : requestorRef = " + requestorRef.getStringValue());
+        
+        responseDoc.getGetMultipleStopMonitoringResponse().setAnswer(answer);
+        
+        return responseDoc;
+    }
+
+    private GetMultipleStopMonitoringResponseDocument newNoMessageMultipleResponseDocument( Calendar timestamp)
+    {
+    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp);
+        
+    	StopMonitoringDeliveriesStructure answer = responseDoc.getGetMultipleStopMonitoringResponse().addNewAnswer();
+        
+    	StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
+        delivery.setVersion(wsdlVersion);
+        delivery.setResponseTimestamp(timestamp);
+
+        setCapabilityNotSupportedError(delivery, "StopMonitoring");
+                            
+        return responseDoc;
+    }
+    
+
+	@PayloadRoot(localPart = "GetStopMonitoring", namespace = namespaceUri)
     public GetStopMonitoringResponseDocument getStopMonitoring(GetStopMonitoringDocument requestDoc) // throws StopMonitoringError
     {
         logger.debug("Appel GetStopMonitoring");
         long debut = System.currentTimeMillis();
         try {
-            // habillage de la reponse
-            GetStopMonitoringResponseDocument responseDoc = GetStopMonitoringResponseDocument.Factory.newInstance();
-            StopMonitoringAnswerType response = responseDoc.addNewGetStopMonitoringResponse();
-
-            ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewServiceDeliveryInfo();
-            ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
-            producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
-
-            StopMonitoringDeliveriesStructure answer = null;
-            response.addNewAnswerExtension(); // obligatoire bien que inutile !
-
-
-            // URL du Serveur : siri.serverURL
-            serviceDeliveryInfo.setAddress(url);
             Calendar responseTimestamp = Calendar.getInstance();
-            serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
-
-            MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
-            MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
-            responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.StopMonitoring));
-
-            // validation XSD de la requete
-            boolean validate = true;
-            if (requestValidation) {
-                validate = checkXmlSchema(requestDoc, logger);
-            } else {
-                validate = (requestDoc.getGetStopMonitoring() != null);
-                if (validate) {
-                    // controle moins restrictif limite aux elements necessaires a la requete
-                    ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetStopMonitoring().getServiceRequestInfo();
+            
+            StopMonitoringServiceValidity validity = new StopMonitoringServiceValidity(this, requestDoc);
+            if (!validity.isValid()) 
+                return newFailureResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage());
+            
+            GetStopMonitoringResponseDocument responseDoc = null;
+            
+            // traitement de la requete proprement dite
+            try 
+            {
+                StopMonitoringDeliveriesStructure answer;
+				if (this.stopMonitoring != null) 
+                {
+                    logger.debug("appel au service stopMonitoringService");
+                	ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetStopMonitoring().getServiceRequestInfo();
                     StopMonitoringRequestStructure request = requestDoc.getGetStopMonitoring().getRequest();
-
-                    boolean infoOk = checkXmlSchema(serviceRequestInfo, logger);
-                    boolean requestOk = checkXmlSchema(request, logger);
-
-                    validate = infoOk && requestOk;
-                }
-            }
-
-            if (!validate) {
-                requestMessageRef.setStringValue("Invalid Request Structure");
-                answer = response.addNewAnswer();
-                StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                delivery.setVersion(wsdlVersion);
-                setOtherError(delivery, SiriException.Code.BAD_REQUEST, "Invalid Request Structure", responseTimestamp);
+                    answer = this.stopMonitoring.getStopMonitoringDeliveries(serviceRequestInfo, request, responseTimestamp);
+                    responseDoc = newResponseDocument( responseTimestamp, requestDoc, answer);
+                    
             } else {
-                ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetStopMonitoring().getServiceRequestInfo();
-                StopMonitoringRequestStructure request = requestDoc.getGetStopMonitoring().getRequest();
+                logger.debug("stopMonitoringService not available");
 
-                // traitement du serviceRequestInfo
-                ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
-                logger.info("GetStopMonitoring : requestorRef = " + requestorRef.getStringValue());
+                responseDoc = newNoMessageResponseDocument( responseTimestamp);
+            }
+            } catch (Exception e) {
+                SiriException.Code code = SiriException.Code.INTERNAL_ERROR;
 
-
-                if (serviceRequestInfo.isSetMessageIdentifier() && request.isSetMessageIdentifier()) {
-                    requestMessageRef.setStringValue(serviceRequestInfo.getMessageIdentifier().getStringValue());
-                    // traitement de la requete proprement dite
-                    try {
-                        answer = this.stopMonitoring.getStopMonitoringDeliveries(serviceRequestInfo, request, responseTimestamp);
-                        if (responseValidation && !answer.validate()) {
-                            answer = response.addNewAnswer();
-                            StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                            delivery.setVersion(wsdlVersion);
-                            setOtherError(delivery, SiriException.Code.INTERNAL_ERROR, "answer is not valid", responseTimestamp);
-                        } else {
-                            response.setAnswer(answer);
-                        }
-                    } catch (Exception e) {
-                        answer = response.addNewAnswer();
-                        StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                        delivery.setVersion(wsdlVersion);
-                        setOtherError(delivery, e, responseTimestamp);
-                    }
+                if (e instanceof SiriException) {
+                    logger.warn(e.getMessage());
+                    code = ((SiriException)e).getCode();
                 } else {
-                    requestMessageRef.setStringValue("missing MessageIdentifier");
-                    answer = response.addNewAnswer();
-                    StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                    delivery.setVersion(wsdlVersion);
-                    setOtherError(delivery, SiriException.Code.BAD_REQUEST, "missing argument: MessageIdentifier", responseTimestamp);
-                }
+                    logger.error(e.getMessage());
+                }                        
+                responseDoc = newFailureResponseDocument( responseTimestamp, code, e.getMessage());
             }
 
             return responseDoc;
@@ -166,88 +260,42 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         logger.debug("Appel GetMultipleStopMonitoring");
         long debut = System.currentTimeMillis();
         try {
-            // habillage de la réponse
-            GetMultipleStopMonitoringResponseDocument responseDoc = GetMultipleStopMonitoringResponseDocument.Factory.newInstance();
-            StopMonitoringAnswerType response = responseDoc.addNewGetMultipleStopMonitoringResponse();
-            ProducerResponseEndpointStructure serviceDeliveryInfo = response.addNewServiceDeliveryInfo();
-            ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
-            producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
-
-
-            StopMonitoringDeliveriesStructure answer = null;
-            response.addNewAnswerExtension(); // obligatoire bien que inutile !
-
-            // URL du Serveur : siri.serverURL
-            serviceDeliveryInfo.setAddress(url);
             Calendar responseTimestamp = Calendar.getInstance();
-            serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
-
-            MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
-            MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
-            responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.StopMonitoring));
-
-            // validation XSD de la requete
-            boolean validate = true;
-            if (requestValidation) {
-                validate = checkXmlSchema(requestDoc, logger);
-            } else {
-                validate = (requestDoc.getGetMultipleStopMonitoring() != null);
-                if (validate) {
-                    // controle moins restrictif limite aux elements necessaires a la requete
-                    ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo();
+            
+            MultipleStopMonitoringServiceValidity validity = new MultipleStopMonitoringServiceValidity(this, requestDoc);
+            if (!validity.isValid()) 
+                return newFailureMultipleResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage());
+            
+            GetMultipleStopMonitoringResponseDocument responseDoc = null;
+            
+            // traitement de la requete proprement dite
+            try 
+            {
+                StopMonitoringDeliveriesStructure answer;
+				if (this.stopMonitoring != null) 
+                {
+                    logger.debug("appel au service stopMonitoringService");
+                	ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo();
                     StopMonitoringMultipleRequestStructure request = requestDoc.getGetMultipleStopMonitoring().getRequest();
-
-                    boolean infoOk = checkXmlSchema(serviceRequestInfo, logger);
-                    boolean requestOk = checkXmlSchema(request, logger);
-
-                    validate = infoOk && requestOk;
-
-                }
-            }
-
-            if (!validate) {
-                requestMessageRef.setStringValue("Invalid Request Structure");
-                answer = response.addNewAnswer();
-                StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                delivery.setVersion(wsdlVersion);
-                setOtherError(delivery, SiriException.Code.BAD_REQUEST, "Invalid Request Structure", responseTimestamp);
+                    answer = this.stopMonitoring.getMultipleStopMonitoring(serviceRequestInfo, request, responseTimestamp);
+                    responseDoc = newMultipleResponseDocument( responseTimestamp, requestDoc, answer);
+                    
             } else {
-                ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo();
-                StopMonitoringMultipleRequestStructure request = requestDoc.getGetMultipleStopMonitoring().getRequest();
+                logger.debug("stopMonitoringService not available");
 
-                // traitement du serviceRequestInfo
-                ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
-                logger.info("GetMultipleStopMonitoring : requestorRef = " + requestorRef.getStringValue());
-
-
-                if (serviceRequestInfo.isSetMessageIdentifier() && request.isSetMessageIdentifier()) {
-                    requestMessageRef.setStringValue(serviceRequestInfo.getMessageIdentifier().getStringValue());
-                    // traitement de la requete proprement dite
-                    try {
-                        answer = this.stopMonitoring.getMultipleStopMonitoring(serviceRequestInfo, request, responseTimestamp);
-                        if (responseValidation && !answer.validate()) {
-                            answer = response.addNewAnswer();
-                            StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                            delivery.setVersion(wsdlVersion);
-                            setOtherError(delivery, SiriException.Code.INTERNAL_ERROR, "answer is not valid", responseTimestamp);
-                        } else {
-                            response.setAnswer(answer);
-                        }
-                    } catch (Exception e) {
-                        answer = response.addNewAnswer();
-                        StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                        delivery.setVersion(wsdlVersion);
-                        setOtherError(delivery, e, responseTimestamp);
-                    }
-                } else {
-                    requestMessageRef.setStringValue("missing MessageIdentifier");
-                    answer = response.addNewAnswer();
-                    StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
-                    delivery.setVersion(wsdlVersion);
-                    setOtherError(delivery, SiriException.Code.BAD_REQUEST, "missing argument: MessageIdentifier", responseTimestamp);
-                }
+                responseDoc = newNoMessageMultipleResponseDocument( responseTimestamp);
             }
-            // logger.debug("validation XSD de la réponse : "+answer.validate());
+            } catch (Exception e) {
+                SiriException.Code code = SiriException.Code.INTERNAL_ERROR;
+
+                if (e instanceof SiriException) {
+                    logger.warn(e.getMessage());
+                    code = ((SiriException)e).getCode();
+                } else {
+                    logger.error(e.getMessage());
+                }                        
+                responseDoc = newFailureMultipleResponseDocument( responseTimestamp, code, e.getMessage());
+            }
 
             return responseDoc;
         } catch (Exception e) {
