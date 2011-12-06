@@ -50,9 +50,6 @@
         <property name="version">
             <value>${siri.version}</value>
         </property>
-        <property name="requestIdentifierPrefix">
-            <value>${siri.requestIdentifierPrefix}</value>
-        </property>
         <!-- required if a proxy is present -->
         <property name="proxyName">
             <value>${proxy.name}</value>
@@ -78,9 +75,6 @@
         <property name="multipleStopMonitoredSupported">
             <value>${siri.isMultipleStopMonitoredSupported}</value>
         </property>
-        <property name="infoChannelEncoded">
-            <value>${siri.isInfoChannelEncoded}</value>
-        </property>
         <property name="requestCompressionRequired">
             <value>${siri.requestCompression}</value>
         </property>
@@ -91,10 +85,21 @@
     </bean>
 
     <bean id="checkStatusClient" parent="abstractClient" class="net.dryade.siri.client.ws.CheckStatusClient">
+        <property name="requestIdentifierPrefix">
+            <value>${siri.checkStatus.requestIdentifierPrefix}</value>
+        </property>
+    </bean>  
+        
+    <bean id="generalMessageClient" parent="abstractClient" class="net.dryade.siri.client.ws.GeneralMessageClient">
+        <property name="requestIdentifierPrefix">
+            <value>${siri.generalMessage.requestIdentifierPrefix}</value>
+        </property>
+        <property name="infoChannelEncoded">
+            <value>${siri.isInfoChannelEncoded}</value>
+        </property>
     </bean>
     
-    <bean id="timeProvider" class="net.dryade.siri.client.common.TimeProvider"/>
-
+    <bean id="timeProvider" class="net.dryade.siri.client.common.TimeProvider" />
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
 
 </beans>

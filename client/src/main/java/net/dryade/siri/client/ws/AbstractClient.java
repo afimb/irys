@@ -12,13 +12,13 @@
 package net.dryade.siri.client.ws;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import net.dryade.siri.client.common.SiriException;
 import net.dryade.siri.client.common.SiriTool;
 import net.dryade.siri.client.common.TimeProvider;
+import net.dryade.siri.client.common.TimeProviderInterface;
 import net.dryade.siri.client.message.DummyMessageTrace;
 import net.dryade.siri.client.message.MessageTraceInterface;
 
@@ -60,7 +60,6 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
     protected String authPassword;
     protected boolean isMultipleStopMonitoredSupported;
     protected boolean isRequestCompressionRequired;
-    protected boolean isInfoChannelEncoded;
     protected boolean isResponseCompressionAllowed;
     
     private static int requestNumber = 0;
@@ -68,7 +67,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
     private MessageTraceInterface trace;
     private long soapTimeOut = 90000;
     private boolean validation = false;
-    private TimeProvider timeProvider;    
+    private TimeProviderInterface timeProvider;    
 
     /**
      * basic constructor, initialize environment, must be called by all inherited classes 
@@ -103,7 +102,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
      * @throws SiriException unknown server id
      */
     public void populateServiceInfoStructure(ContextualisedRequestStructure serviceRequestInfo, String requestIdentifierPrefix, String serverId) throws SiriException {
-        serviceRequestInfo.setRequestTimestamp(Calendar.getInstance());
+        serviceRequestInfo.setRequestTimestamp(getTimeProvider().getCalendarInstance());
         ParticipantRefStructure requestorRef = serviceRequestInfo.addNewRequestorRef();
         requestorRef.setStringValue(requestorRefValue);
         MessageQualifierStructure id = serviceRequestInfo.addNewMessageIdentifier();
@@ -118,7 +117,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
      * @throws SiriException unknown server id
      */
     public void populateServiceInfoStructure(ContextualisedRequestStructure serviceRequestInfo, MessageQualifierStructure messageIdentfier, String serverId) throws SiriException {
-        serviceRequestInfo.setRequestTimestamp(Calendar.getInstance());
+        serviceRequestInfo.setRequestTimestamp(getTimeProvider().getCalendarInstance());
         ParticipantRefStructure requestorRef = serviceRequestInfo.addNewRequestorRef();
         requestorRef.setStringValue(requestorRefValue);
         serviceRequestInfo.setMessageIdentifier(messageIdentfier);
@@ -132,7 +131,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
      * @throws SiriException unknown server id
      */
     public void populateServiceInfoStructure(RequestStructure serviceRequestInfo, String requestIdentifierPrefix, String serverId) throws SiriException {
-        serviceRequestInfo.setRequestTimestamp(Calendar.getInstance());
+        serviceRequestInfo.setRequestTimestamp(getTimeProvider().getCalendarInstance());
         ParticipantRefStructure requestorRef = serviceRequestInfo.addNewRequestorRef();
         requestorRef.setStringValue(requestorRefValue);
         MessageQualifierStructure id = serviceRequestInfo.addNewMessageIdentifier();
@@ -162,10 +161,6 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
 
     public void setAuthUser(String authUser) {
         this.authUser = authUser;
-    }
-    
-    public void setInfoChannelEncoded(boolean isInfoChannelEncoded) {
-        this.isInfoChannelEncoded = isInfoChannelEncoded;
     }
 
     public void setMultipleStopMonitoredSupported(boolean isMultipleStopMonitoredSupported) {
@@ -261,6 +256,13 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
      */
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    /**
+     * get the SIRI API version (reserved for Spring initialization) 
+     */
+    public String getVersion() {
+        return this.version;
     }
 
     /**
@@ -370,11 +372,11 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
         this.trace = trace;
     }    
         
-    public TimeProvider getTimeProvider() {
+    public TimeProviderInterface getTimeProvider() {
         return timeProvider;
     }
 
-    public void setTimeProvider(TimeProvider timeProvider) {
+    public void setTimeProvider(TimeProviderInterface timeProvider) {
         this.timeProvider = timeProvider;
     }
 }

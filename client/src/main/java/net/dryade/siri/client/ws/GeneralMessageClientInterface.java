@@ -36,7 +36,7 @@ import uk.org.siri.siri.MessageQualifierStructure;
  * @author michel
  *
  */
-public interface GeneralMessageServiceInterface extends ServiceInterface
+public interface GeneralMessageClientInterface extends ServiceInterface
 {
 	/**
 	 * Allowed types for General Message affectation filtering

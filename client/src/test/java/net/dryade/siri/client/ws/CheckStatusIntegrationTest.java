@@ -1,14 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *   Siri Product - Produit SIRI
+ *  
+ *   a set of tools for easy application building with 
+ *   respect of the France Siri Local Agreement
+ *
+ *   un ensemble d'outils facilitant la realisation d'applications
+ *   respectant le profil France de la norme SIRI
+ * 
+ *   Copyright DRYADE 2009-2010
  */
-package net.dryade.siri.client;
+package net.dryade.siri.client.ws;
 
-import java.util.Date;
+import net.dryade.siri.client.features.TimeProviderMock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.log4j.Logger;
 import javax.xml.transform.Source;
-import net.dryade.siri.client.common.TimeProvider;
 import net.dryade.siri.client.ws.CheckStatusClient;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -18,7 +24,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertEquals;
 
 import org.springframework.ws.test.client.MockWebServiceServer;
 import uk.org.siri.siri.MessageQualifierStructure;
@@ -27,11 +32,10 @@ import static org.springframework.ws.test.client.RequestMatchers.*;
 import static org.springframework.ws.test.client.ResponseCreators.*;
 
 /**
- *
- * @author luc
+ * Integration test for check status
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("integration-test.xml")
+@ContextConfiguration("../integration-test.xml")
 public class CheckStatusIntegrationTest {
 
     @Autowired
@@ -46,7 +50,7 @@ public class CheckStatusIntegrationTest {
 
     @Test
     public void checkStatusClient() throws Exception {
-        TimeProvider timeProvider  = new TimeProvider(new Date());
+        TimeProviderMock timeProvider  = new TimeProviderMock();
         
         Source requestPayload = new StringSource(
                 "<wsdl:CheckStatus xmlns:wsdl='http://wsdl.siri.org.uk'>"

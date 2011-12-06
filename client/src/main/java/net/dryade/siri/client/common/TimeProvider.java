@@ -20,36 +20,20 @@ import javax.xml.bind.DatatypeConverter;
  * @author luc
  */
 public class TimeProvider implements TimeProviderInterface {
-
-    protected Date dateInstance = new Date();
     
     public TimeProvider() {
-    }
-    
-    public TimeProvider(Date date) {
-        if (date != null) {
-            this.dateInstance = date;
-        }
-    }
-        
-    public Date getDate() {
-        return dateInstance;
-    }
-
-    public void setDate(Date date) {
-        this.dateInstance = date;
-    }        
+    }       
 
     @Override
     public Calendar getCalendarInstance() {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dateInstance);
+        calendar.setTime(new Date());
         return calendar;
     }
 
     @Override
     public Date getDateInstance() {
-        return this.dateInstance;
+        return new Date();
     }
 
     @Override
