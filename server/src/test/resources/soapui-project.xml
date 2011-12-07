@@ -35364,7 +35364,7 @@ Rail transport, Roads and road transport</Category>
          </RequestExtension>
       </wsdl:CheckStatus>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="CheckStatus"/></con:call></con:operation><con:operation isOneWay="false" action="Subscribe" name="Subscribe" bindingOperationName="Subscribe" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk">
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="CheckStatus"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="Subscribe" name="Subscribe" bindingOperationName="Subscribe" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk">
    <soapenv:Header/>
    <soapenv:Body>
       <wsdl:Subscribe/>
@@ -38054,7 +38054,7 @@ Rail transport, Roads and road transport</Category>
 </soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="LinesDiscovery"/></con:call></con:operation></con:interface><con:testSuite name="SiriSOAPBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CheckStatus TestCase" searchProperties="true" id="5c611119-0676-4aaf-938a-570caf700bf1"><con:settings/><con:testStep type="request" name="CheckStatus"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>CheckStatus</con:operation><con:request name="CheckStatus" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
    <soapenv:Header/>
    <soapenv:Body>
-      <wsdl:CheckStatus>
+      <wsdl:CheckStatus xmlns:wsdl="http://wsdl.siri.org.uk">
          <Request>
            <siri:RequestTimestamp xmlns:siri="http://www.siri.org.uk/siri">2011-11-16T15:43:26.937+01:00</siri:RequestTimestamp>
            <siri:RequestorRef xmlns:siri="http://www.siri.org.uk/siri">siri-pom</siri:RequestorRef>
@@ -40505,4 +40505,87 @@ Rail transport, Roads and road transport</Category>
          </RequestExtension>
       </wsdl:LinesDiscovery>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>&lt;siri:Description>Erreur simulée&lt;/siri:Description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LinesDiscovery"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>&lt;siri:Description>Erreur simulée&lt;/siri:Description></token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="LinesDiscovery"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Copy of GetGeneralMessage TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="GetGeneralMessage"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SiriSOAPBinding</con:interface><con:operation>GetGeneralMessage</con:operation><con:request name="GetGeneralMessage" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/server</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://wsdl.siri.org.uk" xmlns:siri="http://www.siri.org.uk/siri">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:GetGeneralMessage>
+         <ServiceRequestInfo>
+            <!--Optional:-->
+            <siri:ServiceRequestContext>
+               <!--Optional:-->
+               <siri:CheckStatusAddress>?</siri:CheckStatusAddress>
+               <!--Optional:-->
+               <siri:SubscribeAddress>?</siri:SubscribeAddress>
+               <!--Optional:-->
+               <siri:ManageSubscriptionAddress>?</siri:ManageSubscriptionAddress>
+               <!--Optional:-->
+               <siri:GetDataAddress>?</siri:GetDataAddress>
+               <!--Optional:-->
+               <siri:StatusResponseAddress>?</siri:StatusResponseAddress>
+               <!--Optional:-->
+               <siri:SubscriberAddress>?</siri:SubscriberAddress>
+               <!--Optional:-->
+               <siri:NotifyAddress>?</siri:NotifyAddress>
+               <!--Optional:-->
+               <siri:ConsumerAddress>?</siri:ConsumerAddress>
+               <!--Optional:-->
+               <siri:DataNameSpaces>
+                  <!--Optional:-->
+                  <siri:StopPointNameSpace>?</siri:StopPointNameSpace>
+                  <!--Optional:-->
+                  <siri:LineNameSpace>?</siri:LineNameSpace>
+                  <!--Optional:-->
+                  <siri:ProductCategoryNameSpace>?</siri:ProductCategoryNameSpace>
+                  <!--Optional:-->
+                  <siri:ServiceFeatureNameSpace>?</siri:ServiceFeatureNameSpace>
+                  <!--Optional:-->
+                  <siri:VehicleFeatureNameSpace>?</siri:VehicleFeatureNameSpace>
+               </siri:DataNameSpaces>
+               <!--Optional:-->
+               <siri:Language>en</siri:Language>
+               <!--You have a CHOICE of the next 2 items at this level-->
+               <siri:WgsDecimalDegrees>?</siri:WgsDecimalDegrees>
+               <siri:GmlCoordinateFormat>?</siri:GmlCoordinateFormat>
+               <!--Optional:-->
+               <siri:DataHorizon>?</siri:DataHorizon>
+               <!--Optional:-->
+               <siri:RequestTimeout>?</siri:RequestTimeout>
+               <!--Optional:-->
+               <siri:DeliveryMethod>direct</siri:DeliveryMethod>
+               <!--Optional:-->
+               <siri:MultipartDespatch>?</siri:MultipartDespatch>
+               <!--Optional:-->
+               <siri:ConfirmDelivery>false</siri:ConfirmDelivery>
+               <!--Optional:-->
+               <siri:MaximimumNumberOfSubscriptions>?</siri:MaximimumNumberOfSubscriptions>
+               <!--Optional:-->
+               <siri:AllowedPredictors>anyone</siri:AllowedPredictors>
+               <!--Optional:-->
+               <siri:PredictionFunction>?</siri:PredictionFunction>
+            </siri:ServiceRequestContext>
+            <siri:RequestTimestamp>2011-04-13T16:27:45.843+02:00</siri:RequestTimestamp>
+            <!--Optional:-->
+            <siri:Address>?</siri:Address>
+            <siri:RequestorRef>tests</siri:RequestorRef>
+            <!--Optional:-->
+            <siri:MessageIdentifier>GeneralMessageClient:Test:0</siri:MessageIdentifier>
+         </ServiceRequestInfo>
+         <Request version="1.3">
+            <siri:RequestTimestamp>2011-04-13T16:27:45.843+02:00</siri:RequestTimestamp>
+            <!--Optional:-->
+            <siri:MessageIdentifier>GeneralMessageClient:Test:0</siri:MessageIdentifier>
+            <!--Zero or more repetitions:-->
+            <siri:InfoChannelRef>?</siri:InfoChannelRef>
+            <!--Optional:-->
+            <siri:Language>en</siri:Language>
+            <!--Optional:-->
+            <siri:Extensions>
+               <!--You may enter ANY elements at this point-->
+            </siri:Extensions>
+         </Request>
+         <RequestExtension>
+            <!--You may enter ANY elements at this point-->
+         </RequestExtension>
+      </wsdl:GetGeneralMessage>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="GetGeneralMessage"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

@@ -14,11 +14,6 @@
     <packaging>jar</packaging>
     <name>server</name>   
 
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <dependencies>
         <dependency>                    
             <groupId>net.dryade.siri</groupId>
@@ -111,10 +106,11 @@
                             <value>${project.build.directory}/soapui-logs/</value>
                         </property>
                     </soapuiProperties>
-                    <outputFolder>target/soapui</outputFolder>
-                    <coverage>target/soapui/coverage</coverage>
-                    <printReport>true</printReport>
+                    <outputFolder>${basedir}/target/soapui</outputFolder>
                     <host>0.0.0.0:8080/server</host>
+                    <junitReport>true</junitReport>
+                    <printReport>true</printReport>
+                    <exportwAll>true</exportwAll>
                     <tool>xmlbeans</tool>
                 </configuration>
                 <executions>
@@ -160,18 +156,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>    
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -180,31 +164,6 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>6.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
