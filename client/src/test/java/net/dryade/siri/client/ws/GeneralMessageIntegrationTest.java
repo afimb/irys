@@ -75,7 +75,7 @@ public class GeneralMessageIntegrationTest {
                 + "<siri:ProducerRef>DRYADE</siri:ProducerRef>"
                 + "<siri:Address >http://localhost:8080/server</siri:Address>"
                 + "<siri:ResponseMessageIdentifier>test</siri:ResponseMessageIdentifier>"
-                + "<siri:RequestMessageRef>GeneralMessageClient:Dryade:0</siri:RequestMessageRef>"
+                + "<siri:RequestMessageRef>GeneralMessage:Test:0</siri:RequestMessageRef>"
                 + "</ServiceDeliveryInfo>"
                 + "<Answer>"
                 + "<siri:GeneralMessageDelivery version='1.3'>"

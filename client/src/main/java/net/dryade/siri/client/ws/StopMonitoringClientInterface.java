@@ -42,7 +42,7 @@ import uk.org.siri.siri.StopMonitoringRequestStructure;
  * @author michel
  *
  */
-public interface StopMonitoringServiceInterface extends ServiceInterface
+public interface StopMonitoringClientInterface extends ServiceInterface
 {	
 	/**
 	 * prepare a StopMonitoringRequest for recurrent usage
@@ -241,14 +241,4 @@ public interface StopMonitoringServiceInterface extends ServiceInterface
 	 */
 	XmlObject getLastRequest();
 
-	/**
-	 * check if server accept GetMultipleStopMonitoring call 
-	 * <br/>
-	 * return the <i>isMultipleStopMonitoredSupported</i> server parameter in configuration files or <i>true</i> if not set
-	 * 
-	 * @param serverId the key used to fond the server's specific parameters in configuration files 
-	 * @return the <i>isMultipleStopMonitoredSupported</i> value
-	 * @throws SiriException unknown server id
-	 */
-	boolean isGetMultipleStopmonitoringSupported(String serverId) throws SiriException;
 }

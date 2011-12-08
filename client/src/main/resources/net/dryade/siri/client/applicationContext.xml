@@ -72,9 +72,6 @@
         <property name="authPassword">
             <value>${siri.authPass}</value>
         </property>
-        <property name="multipleStopMonitoredSupported">
-            <value>${siri.isMultipleStopMonitoredSupported}</value>
-        </property>
         <property name="requestCompressionRequired">
             <value>${siri.requestCompression}</value>
         </property>
@@ -98,6 +95,15 @@
             <value>${siri.isInfoChannelEncoded}</value>
         </property>
     </bean>
+    
+    <bean id="stopMonitoringClient" parent="abstractClient" class="net.dryade.siri.client.ws.StopMonitoringClient">
+        <property name="requestIdentifierPrefix">
+            <value>${siri.stopMonitoring.requestIdentifierPrefix}</value>
+        </property>
+        <property name="multipleStopMonitoredSupported">
+            <value>${siri.isMultipleStopMonitoredSupported}</value>
+        </property>
+    </bean>  
     
     <bean id="timeProvider" class="net.dryade.siri.client.common.TimeProvider" />
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>

@@ -58,7 +58,6 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
     protected String requestorRefValue;
     protected String authUser;
     protected String authPassword;
-    protected boolean isMultipleStopMonitoredSupported;
     protected boolean isRequestCompressionRequired;
     protected boolean isResponseCompressionAllowed;
     
@@ -161,10 +160,6 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
 
     public void setAuthUser(String authUser) {
         this.authUser = authUser;
-    }
-
-    public void setMultipleStopMonitoredSupported(boolean isMultipleStopMonitoredSupported) {
-        this.isMultipleStopMonitoredSupported = isMultipleStopMonitoredSupported;
     }
 
     public void setRequestCompressionRequired(boolean isRequestCompressionRequired) {
