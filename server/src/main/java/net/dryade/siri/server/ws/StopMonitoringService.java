@@ -55,7 +55,7 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         return callDurationSum / callCount;
     }
 
-    private GetStopMonitoringResponseDocument newBasicResponseDocument(Calendar timestamp)
+    private GetStopMonitoringResponseDocument newBasicResponseDocument(Calendar timestamp, String requestRef)
     {
         GetStopMonitoringResponseDocument responseDoc = GetStopMonitoringResponseDocument.Factory.newInstance();
         StopMonitoringAnswerType response = responseDoc.addNewGetStopMonitoringResponse();
@@ -71,18 +71,18 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         Calendar responseTimestamp = Calendar.getInstance();
         serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
 
-        serviceDeliveryInfo.addNewRequestMessageRef();
+        MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
+        requestMessageRef.setStringValue( requestRef);
+        
         MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
         responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.StopMonitoring));
 
         return responseDoc;
     }
     
-    private GetStopMonitoringResponseDocument newFailureResponseDocument( Calendar timestamp, SiriException.Code code, String message)
+    private GetStopMonitoringResponseDocument newFailureResponseDocument( Calendar timestamp, SiriException.Code code, String message, String requestRef)
     {
-    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp);
-        MessageRefStructure requestMessageRef = responseDoc.getGetStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
-        requestMessageRef.setStringValue( message);
+    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp,requestRef);
         
         StopMonitoringDeliveriesStructure answer = responseDoc.getGetStopMonitoringResponse().addNewAnswer();
         StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
@@ -92,13 +92,10 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         
         return responseDoc;
     }
-    private GetStopMonitoringResponseDocument newResponseDocument( Calendar timestamp, GetStopMonitoringDocument requestDoc, StopMonitoringDeliveriesStructure answer)
+    private GetStopMonitoringResponseDocument newResponseDocument( Calendar timestamp, GetStopMonitoringDocument requestDoc, StopMonitoringDeliveriesStructure answer, String requestRef)
     {
-    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp, requestRef);
         ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetStopMonitoring().getServiceRequestInfo();
-
-        MessageRefStructure requestMessageRef = responseDoc.getGetStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
-        requestMessageRef.setStringValue( requestDoc.getGetStopMonitoring().getServiceRequestInfo().getMessageIdentifier().getStringValue());
         
         // traitement du serviceRequestInfo
         ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
@@ -108,9 +105,9 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         
         return responseDoc;
     }
-    private GetStopMonitoringResponseDocument newNoMessageResponseDocument( Calendar timestamp)
+    private GetStopMonitoringResponseDocument newNoMessageResponseDocument( Calendar timestamp, String requestRef)
     {
-    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+    	GetStopMonitoringResponseDocument responseDoc = newBasicResponseDocument(timestamp, requestRef);
         
     	StopMonitoringDeliveriesStructure answer = responseDoc.getGetStopMonitoringResponse().addNewAnswer();
         
@@ -124,7 +121,7 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
     }
     
     private GetMultipleStopMonitoringResponseDocument newBasicMultipleResponseDocument(
-			Calendar timestamp) {
+			Calendar timestamp, String requestRef) {
     	GetMultipleStopMonitoringResponseDocument responseDoc = GetMultipleStopMonitoringResponseDocument.Factory.newInstance();
         StopMonitoringAnswerType response = responseDoc.addNewGetMultipleStopMonitoringResponse();
 
@@ -139,18 +136,18 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         Calendar responseTimestamp = Calendar.getInstance();
         serviceDeliveryInfo.setResponseTimestamp(responseTimestamp);
 
-        serviceDeliveryInfo.addNewRequestMessageRef();
+        MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
+        requestMessageRef.setStringValue( requestRef);
+        
         MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
         responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.StopMonitoring));
 
         return responseDoc;
 	}
 
-    private GetMultipleStopMonitoringResponseDocument newFailureMultipleResponseDocument( Calendar timestamp, SiriException.Code code, String message)
+    private GetMultipleStopMonitoringResponseDocument newFailureMultipleResponseDocument( Calendar timestamp, SiriException.Code code, String message, String requestRef)
     {
-    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp);
-        MessageRefStructure requestMessageRef = responseDoc.getGetMultipleStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
-        requestMessageRef.setStringValue( message);
+    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp, requestRef);
         
         StopMonitoringDeliveriesStructure answer = responseDoc.getGetMultipleStopMonitoringResponse().addNewAnswer();
         StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
@@ -160,13 +157,11 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         
         return responseDoc;
     }
-    private GetMultipleStopMonitoringResponseDocument newMultipleResponseDocument( Calendar timestamp, GetMultipleStopMonitoringDocument requestDoc, StopMonitoringDeliveriesStructure answer)
+    private GetMultipleStopMonitoringResponseDocument newMultipleResponseDocument( Calendar timestamp, GetMultipleStopMonitoringDocument requestDoc, StopMonitoringDeliveriesStructure answer, String requestRef)
     {
-    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp);
+    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp,  requestRef);
         ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo();
 
-        MessageRefStructure requestMessageRef = responseDoc.getGetMultipleStopMonitoringResponse().getServiceDeliveryInfo().getRequestMessageRef();
-        requestMessageRef.setStringValue( requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo().getMessageIdentifier().getStringValue());
         
         // traitement du serviceRequestInfo
         ParticipantRefStructure requestorRef = serviceRequestInfo.getRequestorRef();
@@ -177,9 +172,9 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
         return responseDoc;
     }
 
-    private GetMultipleStopMonitoringResponseDocument newNoMessageMultipleResponseDocument( Calendar timestamp)
+    private GetMultipleStopMonitoringResponseDocument newNoMessageMultipleResponseDocument( Calendar timestamp, String requestRef)
     {
-    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp);
+    	GetMultipleStopMonitoringResponseDocument responseDoc = newBasicMultipleResponseDocument(timestamp,  requestRef);
         
     	StopMonitoringDeliveriesStructure answer = responseDoc.getGetMultipleStopMonitoringResponse().addNewAnswer();
         
@@ -203,10 +198,11 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
             
             StopMonitoringServiceValidity validity = new StopMonitoringServiceValidity(this, requestDoc);
             if (!validity.isValid()) 
-                return newFailureResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage());
+                return newFailureResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage(),"Invalid Request Structure");
             
             GetStopMonitoringResponseDocument responseDoc = null;
-            
+            ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetStopMonitoring().getServiceRequestInfo();
+            String requestRef = serviceRequestInfo.getMessageIdentifier().getStringValue();
             // traitement de la requete proprement dite
             try 
             {
@@ -214,15 +210,14 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
 				if (this.stopMonitoring != null) 
                 {
                     logger.debug("appel au service stopMonitoringService");
-                	ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetStopMonitoring().getServiceRequestInfo();
                     StopMonitoringRequestStructure request = requestDoc.getGetStopMonitoring().getRequest();
                     answer = this.stopMonitoring.getStopMonitoringDeliveries(serviceRequestInfo, request, responseTimestamp);
-                    responseDoc = newResponseDocument( responseTimestamp, requestDoc, answer);
+                    responseDoc = newResponseDocument( responseTimestamp, requestDoc, answer,requestRef);
                     
             } else {
                 logger.debug("stopMonitoringService not available");
 
-                responseDoc = newNoMessageResponseDocument( responseTimestamp);
+                responseDoc = newNoMessageResponseDocument( responseTimestamp,requestRef);
             }
             } catch (Exception e) {
                 SiriException.Code code = SiriException.Code.INTERNAL_ERROR;
@@ -233,7 +228,8 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
                 } else {
                     logger.error(e.getMessage());
                 }                        
-                responseDoc = newFailureResponseDocument( responseTimestamp, code, e.getMessage());
+
+                responseDoc = newFailureResponseDocument( responseTimestamp, code, e.getMessage(),requestRef);
             }
 
             return responseDoc;
@@ -264,10 +260,12 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
             
             MultipleStopMonitoringServiceValidity validity = new MultipleStopMonitoringServiceValidity(this, requestDoc);
             if (!validity.isValid()) 
-                return newFailureMultipleResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage());
+                return newFailureMultipleResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage(),"Invalid Request Structure");
             
             GetMultipleStopMonitoringResponseDocument responseDoc = null;
             
+            ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo();
+            String requestRef = serviceRequestInfo.getMessageIdentifier().getStringValue();
             // traitement de la requete proprement dite
             try 
             {
@@ -275,15 +273,14 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
 				if (this.stopMonitoring != null) 
                 {
                     logger.debug("appel au service stopMonitoringService");
-                	ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetMultipleStopMonitoring().getServiceRequestInfo();
                     StopMonitoringMultipleRequestStructure request = requestDoc.getGetMultipleStopMonitoring().getRequest();
                     answer = this.stopMonitoring.getMultipleStopMonitoring(serviceRequestInfo, request, responseTimestamp);
-                    responseDoc = newMultipleResponseDocument( responseTimestamp, requestDoc, answer);
+                    responseDoc = newMultipleResponseDocument( responseTimestamp, requestDoc, answer,requestRef);
                     
             } else {
                 logger.debug("stopMonitoringService not available");
 
-                responseDoc = newNoMessageMultipleResponseDocument( responseTimestamp);
+                responseDoc = newNoMessageMultipleResponseDocument( responseTimestamp,requestRef);
             }
             } catch (Exception e) {
                 SiriException.Code code = SiriException.Code.INTERNAL_ERROR;
@@ -294,7 +291,7 @@ public class StopMonitoringService extends AbstractSiriServiceDelegate {
                 } else {
                     logger.error(e.getMessage());
                 }                        
-                responseDoc = newFailureMultipleResponseDocument( responseTimestamp, code, e.getMessage());
+                responseDoc = newFailureMultipleResponseDocument( responseTimestamp, code, e.getMessage(),requestRef);
             }
 
             return responseDoc;

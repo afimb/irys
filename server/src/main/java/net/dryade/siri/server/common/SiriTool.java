@@ -34,8 +34,6 @@ public class SiriTool {
 	private static final Logger logger = Logger.getLogger(SiriTool.class);
 
 
-	private static SiriTool instance = null;
-
 	/**
 	 * marker for journey pattern identifiers
 	 */
@@ -115,20 +113,6 @@ public class SiriTool {
 
 	private String types = "BP,SPOR,SP,QUAY";
 
-
-	public static synchronized SiriTool getInstance()
-	{
-		return instance;
-	}
-
-
-	/**
-	 *
-	 */
-	private SiriTool()
-	{
-		instance = this;
-	}
 
 
 	/**
