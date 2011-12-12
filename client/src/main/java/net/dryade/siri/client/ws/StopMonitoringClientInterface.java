@@ -13,7 +13,7 @@ package net.dryade.siri.client.ws;
 import java.util.Calendar;
 import java.util.List;
 
-import net.dryade.siri.client.common.SiriException;
+import net.dryade.siri.common.SiriException;
 
 import org.apache.xmlbeans.GDuration;
 import org.apache.xmlbeans.XmlObject;

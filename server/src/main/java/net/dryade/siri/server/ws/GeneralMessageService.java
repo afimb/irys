@@ -15,7 +15,7 @@ import net.dryade.siri.server.producer.GeneralMessageInterface;
 import java.util.Calendar;
 
 
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import org.apache.log4j.Logger;
 
 import org.springframework.ws.server.endpoint.annotation.Endpoint;

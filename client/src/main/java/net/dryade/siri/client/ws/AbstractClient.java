@@ -15,8 +15,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.dryade.siri.client.common.SiriException;
-import net.dryade.siri.client.common.SiriTool;
+import net.dryade.siri.common.SiriException;
+import net.dryade.siri.common.SiriTool;
 import net.dryade.siri.client.common.TimeProvider;
 import net.dryade.siri.client.common.TimeProviderInterface;
 import net.dryade.siri.client.message.DummyMessageTrace;

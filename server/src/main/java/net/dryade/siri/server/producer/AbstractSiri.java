@@ -3,7 +3,7 @@
  */
 package net.dryade.siri.server.producer;
 
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import uk.org.siri.siri.AbstractServiceDeliveryStructure;
 import uk.org.siri.siri.OtherErrorStructure;
 import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;

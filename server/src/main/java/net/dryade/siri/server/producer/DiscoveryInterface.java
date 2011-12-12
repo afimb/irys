@@ -13,7 +13,7 @@ package net.dryade.siri.server.producer;
 
 import java.util.Calendar;
 
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 
 import uk.org.siri.siri.LinesDeliveryStructure;
 import uk.org.siri.siri.LinesDiscoveryRequestStructure;

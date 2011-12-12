@@ -19,7 +19,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import net.dryade.siri.server.data.ServiceBean;
 import net.dryade.siri.server.data.SubscriberBean;
 import net.dryade.siri.server.producer.GeneralMessageInterface;

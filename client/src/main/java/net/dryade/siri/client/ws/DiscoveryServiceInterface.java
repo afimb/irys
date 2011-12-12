@@ -10,7 +10,7 @@
  *   Copyright DRYADE 2009-2010
  */
 package net.dryade.siri.client.ws;
-import net.dryade.siri.client.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import uk.org.siri.wsdl.LinesDiscoveryDocument;
 import uk.org.siri.wsdl.LinesDiscoveryResponseDocument;
 import uk.org.siri.wsdl.StopPointsDiscoveryDocument;

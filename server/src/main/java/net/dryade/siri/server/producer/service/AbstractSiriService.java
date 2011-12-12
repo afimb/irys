@@ -3,8 +3,8 @@
  */
 package net.dryade.siri.server.producer.service;
 
-import net.dryade.siri.server.common.SiriException;
-import net.dryade.siri.server.common.SiriTool;
+import net.dryade.siri.common.SiriException;
+import net.dryade.siri.common.SiriTool;
 import lombok.Getter;
 import lombok.Setter;
 import uk.org.siri.siri.AbstractServiceDeliveryStructure;

@@ -13,7 +13,7 @@ package net.dryade.siri.client.ws;
 
 import java.util.Map;
 
-import net.dryade.siri.client.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import uk.org.siri.siri.AbstractServiceDeliveryStructure;
 
 public interface ServiceInterface

@@ -14,7 +14,7 @@ package net.dryade.siri.server.ws;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 
 import org.apache.log4j.Logger;
 

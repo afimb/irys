@@ -12,7 +12,7 @@
 package net.dryade.siri.client.ws;
 
 
-import net.dryade.siri.client.common.SiriException;
+import net.dryade.siri.common.SiriException;
 
 import org.apache.log4j.Logger;
 
