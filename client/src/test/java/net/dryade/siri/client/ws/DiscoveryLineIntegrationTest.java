@@ -105,7 +105,7 @@ public class DiscoveryLineIntegrationTest {
         mockServer.expect(payload(requestPayload)).andRespond(withPayload(responsePayload));
 
         discoveryClient.setTimeProvider(timeProvider);
-        discoveryClient.setRequestNumber(0);
+        DiscoveryClient.setRequestNumber(0);
         MessageQualifierStructure messageQualifier = MessageQualifierStructure.Factory.newInstance();
         messageQualifier.setStringValue("Discovery:Test:0");
         LinesDiscoveryResponseDocument result = discoveryClient.getLinesDiscovery("test", messageQualifier);

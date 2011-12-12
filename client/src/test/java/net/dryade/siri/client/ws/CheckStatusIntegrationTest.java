@@ -79,7 +79,7 @@ public class CheckStatusIntegrationTest {
         mockServer.expect(payload(requestPayload)).andRespond(withPayload(responsePayload));
 
         checkStatusClient.setTimeProvider(timeProvider);
-        checkStatusClient.setRequestNumber(0);
+        CheckStatusClient.setRequestNumber(0);
         MessageQualifierStructure messageQualifier = MessageQualifierStructure.Factory.newInstance();
         messageQualifier.setStringValue("CheckStatus:Dryade:0");
         CheckStatusResponseDocument result = checkStatusClient.getResponseDocument("test", messageQualifier);

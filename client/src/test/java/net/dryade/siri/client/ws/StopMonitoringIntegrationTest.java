@@ -134,7 +134,7 @@ public class StopMonitoringIntegrationTest {
         mockServer.expect(payload(requestPayload)).andRespond(withPayload(responsePayload));
         
         stopMonitoringClient.setTimeProvider(timeProvider);
-        stopMonitoringClient.setRequestNumber(0);
+        StopMonitoringClient.setRequestNumber(0);
        
          GetStopMonitoringResponseDocument result = (GetStopMonitoringResponseDocument) stopMonitoringClient.getResponseDocument("", "", "NINOXE:Line:15568799:LOC", "", "",
                                                 timeProvider.getCalendarInstance() , new GDuration(), "", 0, 0, 0);

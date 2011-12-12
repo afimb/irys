@@ -103,7 +103,7 @@ public class GeneralMessageIntegrationTest {
         mockServer.expect(payload(requestPayload)).andRespond(withPayload(responsePayload));
 
         generalMessageClient.setTimeProvider(timeProvider);
-        generalMessageClient.setRequestNumber(0);
+        GeneralMessageClient.setRequestNumber(0);
         List<String> channels = new ArrayList<String>();
         channels.add("Commercial");
         GetGeneralMessageResponseDocument result = generalMessageClient.getResponseDocument("test", channels, "FR");
