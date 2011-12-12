@@ -11,6 +11,7 @@
  */
 package net.dryade.siri.client.common;
 
+import java.util.Date;
 import net.dryade.siri.client.ws.CheckStatusClient;
 import org.apache.log4j.Logger;
 import static org.junit.Assert.*;
@@ -33,9 +34,9 @@ public class TimeProviderTest {
     
     @Test
     public void timeProvider() throws Exception {
-        TimeProviderInterface timeProvider1 = checkStatusClient.getTimeProvider();
-        TimeProviderInterface timeProvider2 = checkStatusClient.getTimeProvider();
-        assertNotSame(timeProvider1.getDateInstance(), timeProvider2.getDateInstance());
+        Date date = checkStatusClient.getTimeProvider().getDateInstance();        
+        Date dateAfter = checkStatusClient.getTimeProvider().getDateInstance();        
+        assertFalse(dateAfter.after(date));
     }
     
 }
