@@ -23,7 +23,7 @@ import uk.org.siri.siri.MessageQualifierStructure;
  * @author michel
  *
  */
-public interface DiscoveryServiceInterface extends ServiceInterface
+public interface DiscoveryClientInterface extends ServiceInterface
 {
 	/**
 	 * invoke LinesDiscoveryService on a declared SIRI server

@@ -17,7 +17,6 @@ import java.util.Map;
 
 import net.dryade.siri.client.common.SiriException;
 import net.dryade.siri.client.common.SiriTool;
-import net.dryade.siri.client.common.TimeProvider;
 import net.dryade.siri.client.common.TimeProviderInterface;
 import net.dryade.siri.client.message.DummyMessageTrace;
 import net.dryade.siri.client.message.MessageTraceInterface;
@@ -61,7 +60,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
     protected boolean isRequestCompressionRequired;
     protected boolean isResponseCompressionAllowed;
     
-    private static int requestNumber = 0;
+    protected static int requestNumber = 0;
     protected SiriTool siriTool;
     private MessageTraceInterface trace;
     private long soapTimeOut = 90000;
@@ -91,6 +90,10 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
      */
     public static int getRequestNumber() {
         return requestNumber++;
+    }
+    
+    public static void setRequestNumber(int requestNumber) {
+        AbstractClient.requestNumber =  requestNumber;
     }
 
     /**
