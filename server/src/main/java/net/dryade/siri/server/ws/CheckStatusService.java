@@ -13,7 +13,7 @@ package net.dryade.siri.server.ws;
 
 import net.dryade.siri.server.producer.CheckStatusInterface;
 import java.util.Calendar;
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import org.apache.log4j.Logger;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

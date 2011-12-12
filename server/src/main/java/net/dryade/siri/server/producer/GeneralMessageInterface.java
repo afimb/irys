@@ -14,7 +14,7 @@ package net.dryade.siri.server.producer;
 import java.util.Calendar;
 import java.util.List;
 
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import net.dryade.siri.server.data.ServiceBean;
 import net.dryade.siri.server.data.SubscriberBean;
 import uk.org.siri.siri.ContextualisedRequestStructure;

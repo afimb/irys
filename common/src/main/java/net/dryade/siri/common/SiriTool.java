@@ -9,15 +9,13 @@
  *
  *   Copyright DRYADE 2009-2010
  */
-package net.dryade.siri.client.common;
+package net.dryade.siri.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -28,20 +26,6 @@ import org.apache.xmlbeans.XmlValidationError;
 /**
  * Some common functionalities
  *
- * This class may be overided by a specific class witch implements a static method init()
- * calling the init method with the name of the property file
- *
- * sample code :
- * <pre>
- * class SiriTool extends net.dryade.siri.common.SiriTool
- * {
- *    public static void init()
- *    {
- *       init("siri");
- *    }
- * }
- * </pre>
- *
  */
 public class SiriTool {
 	/**
@@ -49,8 +33,6 @@ public class SiriTool {
 	 */
 	private static final Logger logger = Logger.getLogger(SiriTool.class);
 
-
-	private static SiriTool instance = null;
 
 	/**
 	 * marker for journey pattern identifiers
@@ -98,10 +80,6 @@ public class SiriTool {
 	 * marker for network identifiers
 	 */
 	public static final String ID_NETWORK = "GroupOfLines";
-	/**
-	 * the property file reader
-	 */
-	private ResourceBundle props = null;
 
 	/**
 	 * indicate when Siri identifiers are suffixed by :LOC
@@ -136,83 +114,6 @@ public class SiriTool {
 	private String types = "BP,SPOR,SP,QUAY";
 
 
-	public static synchronized SiriTool getInstance(String resourceName)
-	{
-		if (instance == null)
-		{
-			instance = new SiriTool(resourceName);
-		}
-		return instance;
-	}
-
-	public static synchronized SiriTool getInstance()
-	{
-		if (instance == null)
-		{
-			instance = new SiriTool();
-		}
-		return instance;
-	}
-
-
-
-	/**
-	 *
-	 */
-	private SiriTool()
-	{
-		// instance = this;
-		logger.info("SiriTool without resources");
-	}
-
-	/**
-	 *
-	 */
-	private SiriTool(String resourceName)
-	{
-		// instance = this;
-		init(resourceName);
-		logger.info("SiriTool with resources "+resourceName);
-	}
-
-	/**
-	 * tool initialization : must be call by inherited class
-	 *
-	 * @param resourceName : the property file prefix; the file must be in a directory named 'resources' in the classpath
-	 */
-	private void init(String resourceName)
-	{
-		// security against multiple calls
-		if (props == null)
-		{
-			try
-			{
-				props = loadProperties(resourceName);
-				addLoc(ID_NETWORK);
-				addLoc(ID_JOURNEYPATTERN);
-				addLoc(ID_VEHICLEJOURNEY);
-				addLoc(ID_LINE);
-				addLoc(ID_COMPANY);
-				addLoc(ID_ROUTE);
-				addLoc(ID_STOPPOINT,ID_SP);
-				addLoc(ID_STOPPOINT,ID_SPOR);
-				addLoc(ID_STOPPOINT,ID_BP);
-				addLoc(ID_STOPPOINT,ID_QUAY);
-
-				stopPointTypes = new HashSet<String>();
-				String types = getSiriProperty("siri.stopPointTypes","BP,SPOR,SP,QUAY");
-				stopPointTypes.addAll(Arrays.asList(types.split(",")));
-
-			}
-			catch (SiriException e)
-			{
-				logger.error("initialization failed : "+e.getMessage());
-				throw new IllegalArgumentException("invalid syntax in "+resourceName+".properties");
-			}
-			logger.info("SiriTool intitialised" );
-		}
-
-	}
 
 	/**
 	 * initializations
@@ -235,37 +136,6 @@ public class SiriTool {
 
 	}
 
-	/**
-	 * @param type
-	 */
-	private  void addLoc(String type)
-	{
-		String loc = getSiriProperty("siri.idWithLoc."+type,"true");
-		if (loc.equalsIgnoreCase("false"))
-		{
-			withLoc.put(type, Boolean.FALSE);
-		}
-		else
-		{
-			withLoc.put(type, Boolean.TRUE);
-		}
-	}
-	/**
-	 * @param type
-	 * @param subtype
-	 */
-	private  void addLoc(String type,String subtype)
-	{
-		String loc = getSiriProperty("siri.idWithLoc."+type+"."+subtype,"true");
-		if (loc.equalsIgnoreCase("false"))
-		{
-			withLoc.put(type+":"+subtype, Boolean.FALSE);
-		}
-		else
-		{
-			withLoc.put(type+":"+subtype, Boolean.TRUE);
-		}
-	}
 
 	/**
 	 * @param type
@@ -277,6 +147,7 @@ public class SiriTool {
 		if (loc == null) return true;
 		return loc.booleanValue();
 	}
+	
 	/**
 	 * build a SIRI identifier
 	 * <p/>
@@ -330,7 +201,7 @@ public class SiriTool {
 	 * extract the technical id from a Siri identifier without provider check
 	 * <p/>
 	 * a Siri Identifier is composed as below :
-	 * <pre>[provider_id]:[type]:[subtype][technical id][:LOC]</pre>
+	 * <pre>[provider_id]:[type]:[subtype]:[technical id][:LOC]</pre>
 	 *
 	 * @param siriId : Siri identifier
 	 * @param type : identifier type
@@ -349,7 +220,7 @@ public class SiriTool {
 	 * extract the technical id from a Siri identifier with provider check
 	 * <p/>
 	 * a Siri Identifier is composed as below :
-	 * <pre>[provider_id]:[type]:[subtype][technical id][:LOC]</pre>
+	 * <pre>[provider_id]:[type]:[subtype]:[technical id][:LOC]</pre>
 	 *
 	 * @param siriId : Siri identifier
 	 * @param type : identifier type
@@ -424,67 +295,17 @@ public class SiriTool {
 			{
 				break;
 			}
-			id += ":"+items[i];
+			// bypass siriId with empty subtypes for other types than StopPoint
+			if (id.isEmpty()) 
+				id = items[i];
+			else
+			   id += ":"+items[i];
 		}
 
 		return id;
 	}
 
-	/**
-	 * load property file
-	 *
-	 * @param filename
-	 * @return property reader
-	 * @throws SiriException
-	 */
-	private ResourceBundle loadProperties(String filename) throws SiriException
-	{
-		ResourceBundle p = ResourceBundle.getBundle(filename);
-		return p;
-	}
 
-	/**
-	 * get a property value with blank string if not found
-	 *
-	 * @param key the property key
-	 * @return the property value
-	 */
-	public String getSiriProperty(String key)
-	{
-		return getSiriProperty(key,"");
-	}
-
-	/**
-	 * check if SiriTool manage the properties (false in Spring context f.e.)
-	 * <br/>
-	 * if false, the methods getSiriProperty and getObject will throw UnsupportedOperationException
-	 *
-	 * @return true if SiriTool manage the properties
-	 */
-	public boolean isSiriPropertySupported()
-	{
-		return (props != null);
-	}
-
-	/**
-	 * get a property value with default value if not found
-	 *
-	 * @param key the property key
-	 * @param defaultValue the default value if key not found
-	 * @return the property value
-	 */
-	public String getSiriProperty(String key, String defaultValue)
-	{
-		if (props == null) throw new UnsupportedOperationException("cannot use getSiriProperty in Spring Architecture");
-		try
-		{
-			return props.getString(key).trim();
-		}
-		catch (MissingResourceException e)
-		{
-			return defaultValue;
-		}
-	}
 
 	/**
 	 * convert a duration in millisecond to literal
@@ -520,45 +341,6 @@ public class SiriTool {
 		return res;
 	}
 
-	/**
-	 * load an object referenced by name in a property key
-	 *
-	 * the key contains the complete class name of the object
-	 * this object must have a constructor with no argument
-	 *
-	 * @param property the key referencing the class name
-	 * @return a new instance of the object
-	 * @throws IllegalArgumentException
-	 */
-	public Object getObject(String property) throws IllegalArgumentException
-	{
-		String classname = getSiriProperty(property);
-		try
-		{
-			Object object = null;
-			if (classname != null)
-			{
-				if (classname.length() > 0)
-				{
-					logger.info("loading "+classname);
-					Class<?> classe = Class.forName(classname);
-					object = classe.getConstructors()[0].newInstance(new Object[0]);
-				}
-			}
-			return object;
-		}
-		catch (Exception e)
-		{
-			logger.error("fail to load "+classname + " :"+e.getMessage(),e);
-			throw new IllegalArgumentException(property);
-		}
-		catch (Error e)
-		{
-			logger.fatal("error when loading "+classname + " :"+e.getMessage());
-			throw e;
-		}
-
-	}
 
 	/**
 	 * check an object xml validity, add error details in log

@@ -15,7 +15,7 @@ import net.dryade.siri.server.producer.GeneralMessageInterface;
 import java.util.Calendar;
 
 
-import net.dryade.siri.server.common.SiriException;
+import net.dryade.siri.common.SiriException;
 import org.apache.log4j.Logger;
 
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -48,7 +48,7 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
 
     //
     //
-    private GetGeneralMessageResponseDocument newBasicResponseDocument(Calendar timestamp)
+    private GetGeneralMessageResponseDocument newBasicResponseDocument(Calendar timestamp,String requestRef)
     {
         GetGeneralMessageResponseDocument responseDoc = GetGeneralMessageResponseDocument.Factory.newInstance();
         GeneralMessageAnswerType response = responseDoc.addNewGetGeneralMessageResponse();
@@ -57,24 +57,22 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
         ParticipantRefStructure producerRef = serviceDeliveryInfo.addNewProducerRef();
         producerRef.setStringValue(producerRefValue); // parametre de conf : siri.producerRef
 
-//        GeneralMessageDeliveriesStructure answer = null;
         response.addNewAnswerExtension(); // obligatoire bien que inutile !
 
         // URL du Serveur : siri.serverURL
         serviceDeliveryInfo.setAddress(url);
         serviceDeliveryInfo.setResponseTimestamp(timestamp);
 
-        serviceDeliveryInfo.addNewRequestMessageRef();
+        MessageRefStructure requestMessageRef = serviceDeliveryInfo.addNewRequestMessageRef();
+        requestMessageRef.setStringValue(requestRef);
         MessageQualifierStructure responseMessageIdentifier = serviceDeliveryInfo.addNewResponseMessageIdentifier();
         responseMessageIdentifier.setStringValue(identifierGenerator.getNewIdentifier(IdentifierGeneratorInterface.ServiceEnum.GeneralMessage));
 
         return responseDoc;
     }
-    private GetGeneralMessageResponseDocument newFailureResponseDocument( Calendar timestamp, SiriException.Code code, String message)
+    private GetGeneralMessageResponseDocument newFailureResponseDocument( Calendar timestamp, SiriException.Code code, String message,String requestRef)
     {
-        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp);
-        MessageRefStructure requestMessageRef = responseDoc.getGetGeneralMessageResponse().getServiceDeliveryInfo().getRequestMessageRef();
-        requestMessageRef.setStringValue( message);
+        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp, requestRef);
         
         GeneralMessageDeliveriesStructure answer = responseDoc.getGetGeneralMessageResponse().addNewAnswer();
         GeneralMessageDeliveryStructure delivery = answer.addNewGeneralMessageDelivery();
@@ -84,9 +82,9 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
         
         return responseDoc;
     }
-    private GetGeneralMessageResponseDocument newResponseDocument( Calendar timestamp, GetGeneralMessageDocument requestDoc, GeneralMessageDeliveriesStructure answer)
+    private GetGeneralMessageResponseDocument newResponseDocument( Calendar timestamp, GetGeneralMessageDocument requestDoc, GeneralMessageDeliveriesStructure answer,String requestRef)
     {
-        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp, requestRef);
         ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetGeneralMessage().getServiceRequestInfo();
 
         MessageRefStructure requestMessageRef = responseDoc.getGetGeneralMessageResponse().getServiceDeliveryInfo().getRequestMessageRef();
@@ -100,9 +98,9 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
         
         return responseDoc;
     }
-    private GetGeneralMessageResponseDocument newNoMessageResponseDocument( Calendar timestamp)
+    private GetGeneralMessageResponseDocument newNoMessageResponseDocument( Calendar timestamp,String requestRef)
     {
-        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp);
+        GetGeneralMessageResponseDocument responseDoc = newBasicResponseDocument(timestamp, requestRef);
         
         GeneralMessageDeliveriesStructure answer = responseDoc.getGetGeneralMessageResponse().addNewAnswer();
         
@@ -119,14 +117,14 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
     public GetGeneralMessageResponseDocument getGeneralMessage(GetGeneralMessageDocument requestDoc) //throws GeneralMessageError 
     {
         logger.debug("Appel GetGeneralMessage");
-        long debut = System.currentTimeMillis();
+        // long debut = System.currentTimeMillis();
         try {
             Calendar responseTimestamp = Calendar.getInstance();
             
             GeneralMessageServiceValidity validity = new GeneralMessageServiceValidity( this, requestDoc);
             if (!validity.isValid()) 
-                return newFailureResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage());
-            
+                return newFailureResponseDocument( responseTimestamp, SiriException.Code.BAD_REQUEST, validity.errorMessage(),"Invalid Request Structure");
+            String requestRef = requestDoc.getGetGeneralMessage().getServiceRequestInfo().getMessageIdentifier().getStringValue();
             GetGeneralMessageResponseDocument responseDoc = null;
             // traitement de la requete proprement dite
             try {
@@ -135,11 +133,11 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
                     ContextualisedRequestStructure serviceRequestInfo = requestDoc.getGetGeneralMessage().getServiceRequestInfo();
                     GeneralMessageRequestStructure request = requestDoc.getGetGeneralMessage().getRequest();
                     GeneralMessageDeliveriesStructure answer = this.generalMessage.getGeneralMessage(serviceRequestInfo, request, responseTimestamp);
-                    responseDoc = newResponseDocument( responseTimestamp, requestDoc, answer);
+                    responseDoc = newResponseDocument( responseTimestamp, requestDoc, answer,requestRef);
                 } else {
                     logger.debug("generalMessageService not available");
 
-                    responseDoc = newNoMessageResponseDocument( responseTimestamp);
+                    responseDoc = newNoMessageResponseDocument( responseTimestamp,requestRef);
                 }
             } catch (Exception e) {
                 SiriException.Code code = SiriException.Code.INTERNAL_ERROR;
@@ -150,7 +148,7 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
                 } else {
                     logger.error(e.getMessage());
                 }                        
-                responseDoc = newFailureResponseDocument( responseTimestamp, code, e.getMessage());
+                responseDoc = newFailureResponseDocument( responseTimestamp, code, e.getMessage(),requestRef);
             }
 
             return responseDoc;
@@ -161,7 +159,7 @@ public class GeneralMessageService extends AbstractSiriServiceDelegate {
             logger.error(e.getMessage(), e);
             //throw new GeneralMessageError(e.getMessage());
         } finally {
-            long fin = System.currentTimeMillis();
+            // long fin = System.currentTimeMillis();
             // logger.debug("fin GetGeneralMessage : durée = " + siriTool.getTimeAsString(fin - debut));
         }
         return null; 

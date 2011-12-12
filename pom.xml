@@ -22,6 +22,7 @@
     <modules>
         <module>server</module>
         <module>client</module>        
+        <module>common</module>
     </modules> 
               
     <properties>
@@ -50,6 +51,13 @@
                 <artifactId>siri-api</artifactId>
                 <version>1.0-SNAPSHOT</version>                
             </dependency>
+         <!-- Property annotation (only for compile use) -->
+         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>0.10.0</version>
+            <scope>provided</scope>
+         </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

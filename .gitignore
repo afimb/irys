@@ -5,3 +5,11 @@ nbproject/*
 dist/
 tmp/*
 target/
+
+/.settings
+/.project
+/server/soapui-project.xml
+/server/.settings
+/server/.classpath
+/server/.project
+/server/global-groovy.log

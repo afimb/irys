@@ -15,8 +15,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.dryade.siri.client.common.SiriException;
-import net.dryade.siri.client.common.SiriTool;
+import net.dryade.siri.common.SiriException;
+import net.dryade.siri.common.SiriTool;
 import net.dryade.siri.client.common.TimeProviderInterface;
 import net.dryade.siri.client.message.DummyMessageTrace;
 import net.dryade.siri.client.message.MessageTraceInterface;
@@ -44,35 +44,31 @@ import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
  *
  */
 public abstract class AbstractClient extends WebServiceGatewaySupport implements ServiceInterface {
-    
+
     protected String version;
     protected String requestIdentifierPrefix;
-    
     protected String proxyName = "";
     protected int proxyPort = 80;
     protected String proxyDomain = "anonymous";
     protected String proxyUser = "anonymous";
     protected String proxyPassword = "anonymous";
-   
     protected String requestorRefValue;
     protected String authUser;
     protected String authPassword;
     protected boolean isRequestCompressionRequired;
     protected boolean isResponseCompressionAllowed;
-    
     protected static int requestNumber = 0;
     protected SiriTool siriTool;
     private MessageTraceInterface trace;
     private long soapTimeOut = 90000;
     private boolean validation = false;
-    private TimeProviderInterface timeProvider;    
+    private TimeProviderInterface timeProvider;
 
     /**
      * basic constructor, initialize environment, must be called by all inherited classes 
      */
     public AbstractClient(WebServiceMessageFactory messageFactory) {
         super(messageFactory);
-        siriTool = SiriTool.getInstance();
     }
 
     /**
@@ -81,8 +77,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
      * @return the logger of the inherited Class
      */
     public abstract Logger getLogger();
-    
-    
+
     /**
      * get a request number
      * 
@@ -91,9 +86,9 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
     public static int getRequestNumber() {
         return requestNumber++;
     }
-    
+
     public static void setRequestNumber(int requestNumber) {
-        AbstractClient.requestNumber =  requestNumber;
+        AbstractClient.requestNumber = requestNumber;
     }
 
     /**
@@ -139,24 +134,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
         MessageQualifierStructure id = serviceRequestInfo.addNewMessageIdentifier();
         id.setStringValue(requestIdentifierPrefix + getRequestNumber());
     }
-    
-    /**
-     * get the SOAP timeout setting (shared between all servers) 
-     * 
-     * @param serverId the key used to fond the server's specific parameters in configuration files (unused)
-     * @return the timeout in milliseconds
-     */
-    protected long getTimeout(String serverId) {
 
-        if (siriTool.isSiriPropertySupported()) {
-            String s = siriTool.getSiriProperty("soap.timeOut", "90000");
-            return Long.parseLong(s);
-        } else {
-            return soapTimeOut;
-        }
-
-    }
-    
     public void setAuthPassword(String authPassword) throws SiriException {
         this.authPassword = authPassword;
     }
@@ -368,13 +346,20 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
      */
     public void setTrace(MessageTraceInterface trace) {
         this.trace = trace;
-    }    
-        
+    }
+
     public TimeProviderInterface getTimeProvider() {
         return timeProvider;
     }
 
     public void setTimeProvider(TimeProviderInterface timeProvider) {
         this.timeProvider = timeProvider;
+    }
+
+    /**
+     * @param siriTool the siriTool to set
+     */
+    public void setSiriTool(SiriTool siriTool) {
+        this.siriTool = siriTool;
     }
 }

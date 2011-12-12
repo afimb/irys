@@ -9,7 +9,7 @@
  * 
  *   Copyright DRYADE 2009-2010
  */
-package net.dryade.siri.server.common;
+package net.dryade.siri.common;
 
 
 /**
