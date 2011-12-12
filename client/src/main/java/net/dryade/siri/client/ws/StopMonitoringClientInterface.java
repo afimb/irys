@@ -240,5 +240,11 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @return the SIRI request in SIRI XSD XMLBeans mapping format 
 	 */
 	XmlObject getLastRequest();
+	
+	/**
+	 * indicate if service can process MultipleStopMonitoring request
+	 * @return
+	 */
+	boolean isMultipleStopMonitoredSupported();
 
 }

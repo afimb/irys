@@ -15,19 +15,18 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.dryade.siri.common.SiriException;
-import net.dryade.siri.common.SiriTool;
-import net.dryade.siri.client.common.TimeProvider;
 import net.dryade.siri.client.common.TimeProviderInterface;
 import net.dryade.siri.client.message.DummyMessageTrace;
 import net.dryade.siri.client.message.MessageTraceInterface;
+import net.dryade.siri.common.SiriException;
+import net.dryade.siri.common.SiriTool;
 
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.GDuration;
 import org.apache.xmlbeans.XmlObject;
-
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+
 import uk.org.siri.siri.AbstractServiceDeliveryStructure;
 import uk.org.siri.siri.AccessNotAllowedErrorStructure;
 import uk.org.siri.siri.CapabilityNotSupportedErrorStructure;

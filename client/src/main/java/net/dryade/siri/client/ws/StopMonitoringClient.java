@@ -427,4 +427,12 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
         this.isMultipleStopMonitoredSupported = isMultipleStopMonitoredSupported;
     }
 
+
+	/**
+	 * @return the isMultipleStopMonitoredSupported
+	 */
+	public boolean isMultipleStopMonitoredSupported() {
+		return isMultipleStopMonitoredSupported;
+	}
+
 }
