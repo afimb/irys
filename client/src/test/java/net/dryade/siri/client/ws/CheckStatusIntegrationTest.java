@@ -15,7 +15,6 @@ import net.dryade.siri.client.features.TimeProviderMock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.log4j.Logger;
 import javax.xml.transform.Source;
-import net.dryade.siri.client.ws.CheckStatusClient;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.xml.transform.StringSource;
@@ -80,6 +79,7 @@ public class CheckStatusIntegrationTest {
         mockServer.expect(payload(requestPayload)).andRespond(withPayload(responsePayload));
 
         checkStatusClient.setTimeProvider(timeProvider);
+        CheckStatusClient.setRequestNumber(0);
         MessageQualifierStructure messageQualifier = MessageQualifierStructure.Factory.newInstance();
         messageQualifier.setStringValue("CheckStatus:Dryade:0");
         CheckStatusResponseDocument result = checkStatusClient.getResponseDocument("test", messageQualifier);

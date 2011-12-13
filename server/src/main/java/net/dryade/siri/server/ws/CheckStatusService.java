@@ -136,7 +136,6 @@ public class CheckStatusService extends AbstractSiriServiceDelegate{
         } finally {
             long fin = System.currentTimeMillis();
             //logger.debug("fin CheckStatus : duree = "+siriTool.getTimeAsString(fin - debut));
-            return responseDoc; // en attendant de voir la gestion du CheckStatusError
         }
     }
 

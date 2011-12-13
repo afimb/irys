@@ -105,6 +105,12 @@
         </property>
     </bean>  
     
+    <bean id="discoveryClient" parent="abstractClient" class="net.dryade.siri.client.ws.DiscoveryClient">
+        <property name="requestIdentifierPrefix">
+            <value>${siri.discovery.requestIdentifierPrefix}</value>
+        </property>
+    </bean>  
+    
     <bean id="timeProvider" class="net.dryade.siri.client.common.TimeProvider" />
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
 

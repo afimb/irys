@@ -7,7 +7,6 @@ package net.dryade.siri.server.ws;
 import uk.org.siri.siri.ContextualisedRequestStructure;
 import uk.org.siri.siri.GeneralMessageRequestStructure;
 import uk.org.siri.siri.ParticipantRefStructure;
-import uk.org.siri.siri.RequestStructure;
 import uk.org.siri.wsdl.GetGeneralMessageDocument;
 
 /**

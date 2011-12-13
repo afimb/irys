@@ -57,11 +57,11 @@ public class StopMonitoringIntegrationTest {
                 + "<ServiceRequestInfo>"
                 + "<siri:RequestTimestamp>" + timeProvider.getXmlDate() + "</siri:RequestTimestamp>"
                 + "<siri:RequestorRef>siri-pom</siri:RequestorRef>"
-                + "<siri:MessageIdentifier>StopMonitoring:Test:1</siri:MessageIdentifier>"
+                + "<siri:MessageIdentifier>StopMonitoring:Test:0</siri:MessageIdentifier>"
                 + "</ServiceRequestInfo>"
                 + "<Request version='1.3'>"
                 + "<siri:RequestTimestamp>" + timeProvider.getXmlDate() + "</siri:RequestTimestamp>"
-                + "<siri:MessageIdentifier>StopMonitoring:Test:1</siri:MessageIdentifier>"
+                + "<siri:MessageIdentifier>StopMonitoring:Test:0</siri:MessageIdentifier>"
                 + "<siri:PreviewInterval>PT0S</siri:PreviewInterval>"
                 + "<siri:StartTime>" + timeProvider.getXmlDate() + "</siri:StartTime>"
                 + "<siri:MonitoringRef />"
@@ -81,7 +81,7 @@ public class StopMonitoringIntegrationTest {
                 + "<siri:ProducerRef>DRYADE</siri:ProducerRef>"
                 + "<siri:Address >http://localhost:8080/server</siri:Address>"
                 + "<siri:ResponseMessageIdentifier>test</siri:ResponseMessageIdentifier>"
-                + "<siri:RequestMessageRef>StopMonitoring:Test:1</siri:RequestMessageRef>"
+                + "<siri:RequestMessageRef>StopMonitoring:Test:0</siri:RequestMessageRef>"
                 + "</ServiceDeliveryInfo>"
                 + "<Answer>"
                 + "<siri:StopMonitoringDelivery version='1.3'>"
@@ -132,7 +132,9 @@ public class StopMonitoringIntegrationTest {
                 + "</wsdl:GetStopMonitoringResponse>");
 
         mockServer.expect(payload(requestPayload)).andRespond(withPayload(responsePayload));
+        
         stopMonitoringClient.setTimeProvider(timeProvider);
+        StopMonitoringClient.setRequestNumber(0);
        
          GetStopMonitoringResponseDocument result = (GetStopMonitoringResponseDocument) stopMonitoringClient.getResponseDocument("", "", "NINOXE:Line:15568799:LOC", "", "",
                                                 timeProvider.getCalendarInstance() , new GDuration(), "", 0, 0, 0);
