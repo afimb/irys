@@ -34,7 +34,7 @@ import static org.springframework.ws.test.client.ResponseCreators.*;
  * Integration test for general message
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("../integration-test.xml")
+@ContextConfiguration("classpath:irysClientTestContext.xml")
 public class DiscoveryLineIntegrationTest {
 
     @Autowired

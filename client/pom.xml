@@ -38,6 +38,11 @@
             <version>4.10</version>
         </dependency>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
             <version>2.0.2.RELEASE</version>
@@ -59,6 +64,25 @@
         </dependency>
     </dependencies>
     <build>  
+        <resources>      
+            <resource>
+                <directory>config/dev</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>                
+                <directory>config/test</directory>
+            </testResource>
+            <testResource>
+                <directory>src/main/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>         
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

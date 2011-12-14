@@ -124,4 +124,5 @@ public class CheckStatusClient extends AbstractClient implements CheckStatusClie
     public Logger getLogger() {
         return logger;
     }
+
 }

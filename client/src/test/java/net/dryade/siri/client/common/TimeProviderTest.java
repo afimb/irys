@@ -25,7 +25,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Integration test for check status
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("../integration-test.xml")
+@ContextConfiguration("classpath:irysClientTestContext.xml")
 public class TimeProviderTest {
 
     @Autowired
