@@ -109,7 +109,7 @@ AbstractNotificationResponse
 	/**
 	 * @param monitoredVisits the monitoredVisits to set
 	 */
-	protected void addMonitoredVisit(MonitoredVisit visit) 
+	public void addMonitoredVisit(MonitoredVisit visit) 
 	{
 		this.monitoredVisits.add(visit);
 	}
