@@ -9,6 +9,8 @@ public class Section
 	private String lastStopPointId;
 	private String lineId;
 
+	public Section() {}
+        
 	public Section(IDFLineSectionStructure item) 
 	{
 		this.firstStopPointId = item.getFirstStop().getStringValue();
