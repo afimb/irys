@@ -6,7 +6,7 @@
 
    <context-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath*:siriContext.xml,classpath*:chouetteContext.xml</param-value>
+      <param-value>classpath*:irysContext.xml,classpath*:chouetteContext.xml</param-value>
    </context-param>
 
    <!-- take especial notice of the name of this servlet -->
