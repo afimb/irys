@@ -3,11 +3,11 @@
    <parent>
       <artifactId>siri</artifactId>
       <groupId>net.dryade</groupId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0</version>
    </parent>
    <groupId>net.dryade.siri</groupId>
    <artifactId>common</artifactId>
-   <version>1.0-SNAPSHOT</version>
+   <version>1.0</version>
    <name>common</name>
    <description>common objects for irys server and client</description>
    <dependencies>

@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import net.dryade.siri.client.ws.ServiceInterface;
 import net.dryade.siri.sequencer.model.AbstractNotificationResponse;
 import net.dryade.siri.sequencer.model.AbstractSubscriptionRequest;
@@ -30,11 +33,11 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 
 	private SiriServer server ;
 
-	private NotificationManagerInterface notifyManager ; 
+	@Getter @Setter private NotificationManagerInterface notifyManager ; 
 	
 	private ServiceInterface.Service service;
 
-	private long timeOffset;
+	@Getter @Setter private long timeOffset;
 
 	private Thread scrutinizer ;
 
@@ -42,11 +45,11 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 
 	private boolean stopped = true;
 
-	private long period; 
+	@Getter @Setter private long period; 
 	
-	private int packetCount;
+	@Getter @Setter private int packetCount;
 	
-	private int optimalPacketSize;
+	@Getter @Setter private int optimalPacketSize;
 
 
 	protected Map<String,SiriSubscription<S>> subscriptionMap;
@@ -360,33 +363,6 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 	}
 
 
-	/**
-	 * @return the timeOffset
-	 */
-	public long getTimeOffset() {
-		return timeOffset;
-	}
-
-	/**
-	 * @param timeOffset the timeOffset to set
-	 */
-	public void setTimeOffset(long timeOffset) {
-		this.timeOffset = timeOffset;
-	}
-
-	/**
-	 * @return the period
-	 */
-	public long getPeriod() {
-		return period;
-	}
-
-	/**
-	 * @param period the period to set
-	 */
-	public void setPeriod(long period) {
-		this.period = period;
-	}
 
 	/**
 	 * @return the scrutinizer
@@ -409,47 +385,6 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 		return stopped;
 	}
 
-	/**
-	 * @return the packetCount
-	 */
-	public int getPacketCount() {
-		return packetCount;
-	}
-
-	/**
-	 * @param packetCount the packetCount to set
-	 */
-	public void setPacketCount(int packetCount) {
-		this.packetCount = packetCount;
-	}
-
-	/**
-	 * @return the optimalPacketSize
-	 */
-	public int getOptimalPacketSize() {
-		return optimalPacketSize;
-	}
-
-	/**
-	 * @param optimalPacketSize the optimalPacketSize to set
-	 */
-	public void setOptimalPacketSize(int optimalPacketSize) {
-		this.optimalPacketSize = optimalPacketSize;
-	}
-
-	/**
-	 * @param notifyManager the notifyManager to set
-	 */
-	public void setNotifyManager(NotificationManagerInterface notifyManager) {
-		this.notifyManager = notifyManager;
-	}
-
-	/**
-	 * @return the notifyManager
-	 */
-	public NotificationManagerInterface getNotifyManager() {
-		return notifyManager;
-	}
 
 
 }

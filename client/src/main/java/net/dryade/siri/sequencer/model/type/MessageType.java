@@ -22,13 +22,10 @@ public enum MessageType
     private MessageType(String value) {
         this.value = value;
     }
-    /**
-     * Récupère la couleur selon sa valeur.
-     * @param value
-     * @return
-     */
-    public static InfoChannel fromValue(final String label) {
-        for (InfoChannel c : InfoChannel.values()) {
+
+    
+    public static MessageType fromValue(final String label) {
+        for (MessageType c : MessageType.values()) {
             if (c.getValue().equals(label)) {
                 return c;
             }

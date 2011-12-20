@@ -3,6 +3,8 @@
  */
 package net.dryade.siri.sequencer.impl;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.dryade.siri.common.SiriException;
 import net.dryade.siri.client.ws.CheckStatusClientInterface;
 import net.dryade.siri.client.ws.ServiceInterface;
@@ -34,11 +36,11 @@ public class CheckStatusRequestProcessManager extends RequestProcessManager<Chec
 	private static final Logger logger = Logger.getLogger(CheckStatusRequestProcessManager.class); 
 
 
-	private CheckStatusClientInterface checkStatusClient;
+	@Setter private CheckStatusClientInterface checkStatusClient;
 
-	private long normalModePeriod;
+	@Getter @Setter private long normalModePeriod;
 
-	private long failureModePeriod;
+	@Getter @Setter private long failureModePeriod;
 
 	private long successModeCount;
 
@@ -281,30 +283,6 @@ public class CheckStatusRequestProcessManager extends RequestProcessManager<Chec
 	public synchronized void removeAllSubscriptions() {
 		// TODO Auto-generated method stub
 
-	}
-	/**
-	 * @return the normalModePeriod
-	 */
-	public long getNormalModePeriod() {
-		return normalModePeriod;
-	}
-	/**
-	 * @param normalModePeriod the normalModePeriod to set
-	 */
-	public void setNormalModePeriod(long normalModePeriod) {
-		this.normalModePeriod = normalModePeriod;
-	}
-	/**
-	 * @return the failureModePeriod
-	 */
-	public long getFailureModePeriod() {
-		return failureModePeriod;
-	}
-	/**
-	 * @param failureModePeriod the failureModePeriod to set
-	 */
-	public void setFailureModePeriod(long failureModePeriod) {
-		this.failureModePeriod = failureModePeriod;
 	}
 
 	protected int getCount(int packetRank)

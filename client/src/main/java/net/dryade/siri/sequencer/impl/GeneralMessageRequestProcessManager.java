@@ -1,5 +1,6 @@
 package net.dryade.siri.sequencer.impl;
 
+import lombok.Setter;
 import net.dryade.siri.common.SiriException;
 import net.dryade.siri.client.ws.GeneralMessageClientInterface;
 import net.dryade.siri.client.ws.ServiceInterface;
@@ -26,7 +27,7 @@ public class GeneralMessageRequestProcessManager
 
 	private static final Logger logger = Logger.getLogger(GeneralMessageRequestProcessManager.class); 
 
-	private GeneralMessageClientInterface generalMessageClient;
+	@Setter private GeneralMessageClientInterface generalMessageClient;
 	
 	public void init()
 	{
@@ -226,11 +227,4 @@ public class GeneralMessageRequestProcessManager
 
 	}
 
-	/**
-	 * @param generalMessageClient the generalMessageClient to set
-	 */
-	public void setGeneralMessageClient(
-			GeneralMessageClientInterface generalMessageClient) {
-		this.generalMessageClient = generalMessageClient;
-	}
 }

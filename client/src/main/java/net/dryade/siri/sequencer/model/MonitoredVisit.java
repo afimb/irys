@@ -2,11 +2,15 @@ package net.dryade.siri.sequencer.model;
 
 import java.util.Calendar;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import net.dryade.siri.sequencer.model.type.DetailLevel;
 import net.dryade.siri.sequencer.model.type.VisitStatus;
 
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.GDuration;
+import org.hamcrest.core.IsSame;
 
 import uk.org.siri.siri.MonitoredCallStructure;
 import uk.org.siri.siri.MonitoredStopVisitStructure;
@@ -15,59 +19,62 @@ import uk.org.siri.siri.MonitoredVehicleJourneyStructure;
 public class MonitoredVisit 
 {
 	// minimal level attributes
-	private Calendar recordedAtTime;
-	private String monitoringRef;
-	private String dataFrameRef;
-	private String datedVehicleJourneyRef;
-	private boolean monitored;
-	private Calendar aimedDepartureTime;
-	private Calendar expectedDepartureTime;
-	private VisitStatus departureStatus;
-	private Calendar aimedArrivalTime;
-	private Calendar expectedArrivalTime;
-	private VisitStatus arrivalStatus;
-	private String journeyPatternRef;
+	@Getter @Setter private Calendar recordedAtTime;
+	@Getter @Setter private String monitoringRef;
+	@Getter @Setter private String dataFrameRef;
+	@Getter @Setter private String datedVehicleJourneyRef;
+	@Getter @Setter private boolean monitored;
+	@Getter @Setter private Calendar aimedDepartureTime;
+	@Getter @Setter private Calendar expectedDepartureTime;
+	@Getter @Setter private VisitStatus departureStatus;
+	@Getter @Setter private Calendar aimedArrivalTime;
+	@Getter @Setter private Calendar expectedArrivalTime;
+	@Getter @Setter private VisitStatus arrivalStatus;
+	@Getter @Setter private String journeyPatternRef;
+	@Getter @Setter private Calendar originAimedDepartureTime;
+	@Getter @Setter private Calendar destinationAimedArrivalTime;
+
 
 	// light level attributes
-	private String lineRef;
-	private String stopPointRef;
-	private int order;
-	private String destinationRef;
+	@Getter @Setter private String lineRef;
+	@Getter @Setter private String stopPointRef;
+	@Getter @Setter private int order;
+	@Getter @Setter private String destinationRef;
 
 	// complete level attributes
-	private String lineName;
-	private String stopPointName;
-	private String destinationDisplay;
+	@Getter @Setter private String lineName;
+	@Getter @Setter private String stopPointName;
+	@Getter @Setter private String destinationDisplay;
 
 	// unique key to compare visit on same passing time 
-	private String key;
-	private VehiclePosition vehicle;
+	@Getter private String key;
+	@Getter @Setter private VehiclePosition vehicle;
 
-        public MonitoredVisit() {};
-        public MonitoredVisit(
-            String lineRef,
-            String datedVehicleJourneyRef,
-            String journeyPatternRef,
-            String stopPointRef,
-            int order,
-            Calendar expectedDepartureTime,
-            Calendar expectedArrivalTime,
-            VisitStatus arrivalStatus,
-            VisitStatus departureStatus) 
-        {
-            this.lineRef = lineRef;
-            this.datedVehicleJourneyRef = datedVehicleJourneyRef;
-            this.journeyPatternRef = journeyPatternRef;
-            this.stopPointRef = stopPointRef;
-            this.order = order;
+	public MonitoredVisit() {};
+	public MonitoredVisit(
+			String lineRef,
+			String datedVehicleJourneyRef,
+			String journeyPatternRef,
+			String stopPointRef,
+			int order,
+			Calendar expectedDepartureTime,
+			Calendar expectedArrivalTime,
+			VisitStatus arrivalStatus,
+			VisitStatus departureStatus) 
+	{
+		this.lineRef = lineRef;
+		this.datedVehicleJourneyRef = datedVehicleJourneyRef;
+		this.journeyPatternRef = journeyPatternRef;
+		this.stopPointRef = stopPointRef;
+		this.order = order;
 
-            this.expectedDepartureTime = expectedDepartureTime;
-            this.expectedArrivalTime = expectedArrivalTime;
+		this.expectedDepartureTime = expectedDepartureTime;
+		this.expectedArrivalTime = expectedArrivalTime;
 
-            this.arrivalStatus = arrivalStatus;
-            this.departureStatus = departureStatus;
-        }
-        
+		this.arrivalStatus = arrivalStatus;
+		this.departureStatus = departureStatus;
+	}
+
 	public MonitoredVisit(MonitoredStopVisitStructure siriVisit,DetailLevel level) 
 	{
 		String timeKey = null;
@@ -85,6 +92,15 @@ public class MonitoredVisit
 		{
 			this.monitored = true;
 		}
+		if (monitoredVehicleJourney.isSetDestinationAimedArrivalTime())
+		{
+			this.destinationAimedArrivalTime = monitoredVehicleJourney.getDestinationAimedArrivalTime();
+		}
+		if (monitoredVehicleJourney.isSetOriginAimedDepartureTime())
+		{
+			this.originAimedDepartureTime = monitoredVehicleJourney.getOriginAimedDepartureTime();
+		}
+		
 		MonitoredCallStructure monitoredCall = monitoredVehicleJourney.getMonitoredCall();
 		if (monitoredCall.isSetAimedDepartureTime())
 		{
@@ -137,7 +153,7 @@ public class MonitoredVisit
 			this.stopPointName = monitoredCall.getStopPointName().getStringValue();
 		if (monitoredCall.isSetDestinationDisplay())
 			this.destinationDisplay = monitoredCall.getDestinationDisplay().getStringValue();
-		
+
 		if (monitoredVehicleJourney.isSetVehicleLocation())
 		{
 			vehicle = new VehiclePosition(monitoredVehicleJourney.getVehicleLocation());
@@ -145,234 +161,6 @@ public class MonitoredVisit
 				vehicle = null;
 		}
 
-	}
-	/**
-	 * @return the recordedAtTime
-	 */
-	public Calendar getRecordedAtTime() {
-		return recordedAtTime;
-	}
-	/**
-	 * @param recordedAtTime the recordedAtTime to set
-	 */
-	public void setRecordedAtTime(Calendar recordedAtTime) {
-		this.recordedAtTime = recordedAtTime;
-	}
-	/**
-	 * @return the monitoringRef
-	 */
-	public String getMonitoringRef() {
-		return monitoringRef;
-	}
-	/**
-	 * @param monitoringRef the monitoringRef to set
-	 */
-	public void setMonitoringRef(String monitoringRef) {
-		this.monitoringRef = monitoringRef;
-	}
-	/**
-	 * @return the lineRef
-	 */
-	public String getLineRef() {
-		return lineRef;
-	}
-	/**
-	 * @param lineRef the lineRef to set
-	 */
-	public void setLineRef(String lineRef) {
-		this.lineRef = lineRef;
-	}
-	/**
-	 * @return the lineName
-	 */
-	public String getLineName() {
-		return lineName;
-	}
-	/**
-	 * @param lineName the lineName to set
-	 */
-	public void setLineName(String lineName) {
-		this.lineName = lineName;
-	}
-	/**
-	 * @return the dataFrameRef
-	 */
-	public String getDataFrameRef() {
-		return dataFrameRef;
-	}
-	/**
-	 * @param dataFrameRef the dataFrameRef to set
-	 */
-	public void setDataFrameRef(String dataFrameRef) {
-		this.dataFrameRef = dataFrameRef;
-	}
-	/**
-	 * @return the datedVehicleJourneyRef
-	 */
-	public String getDatedVehicleJourneyRef() {
-		return datedVehicleJourneyRef;
-	}
-	/**
-	 * @param datedVehicleJourneyRef the datedVehicleJourneyRef to set
-	 */
-	public void setDatedVehicleJourneyRef(String datedVehicleJourneyRef) {
-		this.datedVehicleJourneyRef = datedVehicleJourneyRef;
-	}
-	/**
-	 * @return the journeyPatternRef
-	 */
-	public String getJourneyPatternRef() {
-		return journeyPatternRef;
-	}
-	/**
-	 * @param journeyPatternRef the journeyPatternRef to set
-	 */
-	public void setJourneyPatternRef(String journeyPatternRef) {
-		this.journeyPatternRef = journeyPatternRef;
-	}
-	/**
-	 * @return the monitored
-	 */
-	public boolean isMonitored() {
-		return monitored;
-	}
-	/**
-	 * @param monitored the monitored to set
-	 */
-	public void setMonitored(boolean monitored) {
-		this.monitored = monitored;
-	}
-	/**
-	 * @return the stopPointRef
-	 */
-	public String getStopPointRef() {
-		return stopPointRef;
-	}
-	/**
-	 * @param stopPointRef the stopPointRef to set
-	 */
-	public void setStopPointRef(String stopPointRef) {
-		this.stopPointRef = stopPointRef;
-	}
-	/**
-	 * @return the stopPointName
-	 */
-	public String getStopPointName() {
-		return stopPointName;
-	}
-	/**
-	 * @param stopPointName the stopPointName to set
-	 */
-	public void setStopPointName(String stopPointName) {
-		this.stopPointName = stopPointName;
-	}
-	/**
-	 * @return the order
-	 */
-	public int getOrder() {
-		return order;
-	}
-	/**
-	 * @param order the order to set
-	 */
-	public void setOrder(int order) {
-		this.order = order;
-	}
-	/**
-	 * @return the destinationRef
-	 */
-	public String getDestinationRef() {
-		return destinationRef;
-	}
-	/**
-	 * @param destinationRef the destinationRef to set
-	 */
-	public void setDestinationRef(String destinationRef) {
-		this.destinationRef = destinationRef;
-	}
-	/**
-	 * @return the destinationDisplay
-	 */
-	public String getDestinationDisplay() {
-		return destinationDisplay;
-	}
-	/**
-	 * @param destinationDisplay the destinationDisplay to set
-	 */
-	public void setDestinationDisplay(String destinationDisplay) {
-		this.destinationDisplay = destinationDisplay;
-	}
-	/**
-	 * @return the aimedDepartureTime
-	 */
-	public Calendar getAimedDepartureTime() {
-		return aimedDepartureTime;
-	}
-	/**
-	 * @param aimedDepartureTime the aimedDepartureTime to set
-	 */
-	public void setAimedDepartureTime(Calendar aimedDepartureTime) {
-		this.aimedDepartureTime = aimedDepartureTime;
-	}
-	/**
-	 * @return the expectedDepartureTime
-	 */
-	public Calendar getExpectedDepartureTime() {
-		return expectedDepartureTime;
-	}
-	/**
-	 * @param expectedDepartureTime the expectedDepartureTime to set
-	 */
-	public void setExpectedDepartureTime(Calendar expectedDepartureTime) {
-		this.expectedDepartureTime = expectedDepartureTime;
-	}
-	/**
-	 * @return the departureStatus
-	 */
-	public VisitStatus getDepartureStatus() {
-		return departureStatus;
-	}
-	/**
-	 * @param departureStatus the departureStatus to set
-	 */
-	public void setDepartureStatus(VisitStatus departureStatus) {
-		this.departureStatus = departureStatus;
-	}
-	/**
-	 * @return the aimedArrivalTime
-	 */
-	public Calendar getAimedArrivalTime() {
-		return aimedArrivalTime;
-	}
-	/**
-	 * @param aimedArrivalTime the aimedArrivalTime to set
-	 */
-	public void setAimedArrivalTime(Calendar aimedArrivalTime) {
-		this.aimedArrivalTime = aimedArrivalTime;
-	}
-	/**
-	 * @return the expectedArrivalTime
-	 */
-	public Calendar getExpectedArrivalTime() {
-		return expectedArrivalTime;
-	}
-	/**
-	 * @param expectedArrivalTime the expectedArrivalTime to set
-	 */
-	public void setExpectedArrivalTime(Calendar expectedArrivalTime) {
-		this.expectedArrivalTime = expectedArrivalTime;
-	}
-	/**
-	 * @return the arrivalStatus
-	 */
-	public VisitStatus getArrivalStatus() {
-		return arrivalStatus;
-	}
-	/**
-	 * @param arrivalStatus the arrivalStatus to set
-	 */
-	public void setArrivalStatus(VisitStatus arrivalStatus) {
-		this.arrivalStatus = arrivalStatus;
 	}
 	public boolean compare(MonitoredVisit visitUpdate, GDuration changeBeforeUpdate, Logger logger) 
 	{
@@ -417,12 +205,6 @@ public class MonitoredVisit
 		long change = changeBeforeUpdate.getSecond() + changeBeforeUpdate.getMinute() * 60 ; // Nonsense if more than a few minutes
 
 		return change > delta;
-	}
-	/**
-	 * @return the key
-	 */
-	public String getKey() {
-		return key;
 	}
 
 }

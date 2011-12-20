@@ -6,6 +6,8 @@ package net.dryade.siri.sequencer.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Setter;
+
 import net.dryade.siri.common.SiriException;
 import net.dryade.siri.client.ws.ServiceInterface;
 import net.dryade.siri.client.ws.StopMonitoringClientInterface;
@@ -41,7 +43,7 @@ public class StopMonitoringRequestProcessManager extends RequestProcessManager<S
 	private static final Logger logger = Logger.getLogger(StopMonitoringRequestProcessManager.class); 
 
 
-	private StopMonitoringClientInterface stopMonitoringClient;
+	@Setter private StopMonitoringClientInterface stopMonitoringClient;
 
 
 	/**
