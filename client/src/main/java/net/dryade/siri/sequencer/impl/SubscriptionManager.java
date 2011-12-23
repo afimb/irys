@@ -82,7 +82,7 @@ public class SubscriptionManager implements SubscriptionServiceInterface, Notifi
 			for (RequestProcessManager<AbstractSubscriptionRequest, AbstractNotificationResponse> manager : managers.values()) 
 			{
 				logger.info("ask request process to stop");
-				manager.close();
+				if (manager != null) manager.close();
 			}
 		}
 
@@ -277,7 +277,7 @@ public class SubscriptionManager implements SubscriptionServiceInterface, Notifi
 				}
 				catch (Exception ex)
 				{
-					logger.error("notify failed "+ex.getMessage());
+					logger.error("notify failed "+ex.getMessage(),ex);
 				}
 			}
 		}

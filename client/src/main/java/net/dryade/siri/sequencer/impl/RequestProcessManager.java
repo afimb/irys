@@ -34,7 +34,7 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 	private SiriServer server ;
 
 	@Getter @Setter private NotificationManagerInterface notifyManager ; 
-	
+
 	private ServiceInterface.Service service;
 
 	@Getter @Setter private long timeOffset;
@@ -46,9 +46,9 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 	private boolean stopped = true;
 
 	@Getter @Setter private long period; 
-	
+
 	@Getter @Setter private int packetCount;
-	
+
 	@Getter @Setter private int optimalPacketSize;
 
 
@@ -59,16 +59,16 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 	protected Vector<ManagedRequest<S,N>> requestList;
 
 	protected List<ManagedRequest<S,N>> pendingRequestList;
-	
+
 	protected Map<String,SiriNotification> preparedNotificationMap;
-	
+
 	protected int nextPacketRank;
 
 	protected int repeatCount[] ;
 
 	protected List<List<ManagedRequest<S,N>>> requestPackets;
 
-	
+
 	public RequestProcessManager()
 	{
 
@@ -143,7 +143,7 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 
 	public void run()
 	{
-		
+
 		active = true;
 		stopped = false;
 
@@ -160,7 +160,7 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 					Thread.sleep(waitTime);
 				}
 			}
-			
+
 			// loop and process 
 			while (active) 
 			{
@@ -186,7 +186,7 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 				}
 				Thread.sleep(residualTimeInPeriod);
 			}
-			
+
 		} 
 		catch (InterruptedException e) 
 		{
@@ -199,7 +199,7 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 		}
 	}
 
-	
+
 	protected synchronized boolean cleanExpiredRequests() 
 	{
 		// prepare expired request list to be purged
@@ -300,7 +300,7 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 		boolean reorganize = false;
 		try
 		{
-			
+
 			// process each requests
 			for (ManagedRequest<S,N> request : requestToProcess) 
 			{
@@ -309,11 +309,11 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 				if (!isActive()) return false;
 
 				N response = processRequestSubscription(request);
-				
+
 				if (prepareNotification(request,response)) reorganize = true;
 
 			}
-			
+
 		}
 		finally
 		{
@@ -324,18 +324,19 @@ public abstract class RequestProcessManager<S extends AbstractSubscriptionReques
 	}
 
 
-	
+
 	protected abstract boolean prepareNotification(ManagedRequest<S, N> request, N response) ;
 
 	protected abstract N processRequestSubscription(ManagedRequest<S, N> request);
-	
-	
+
+
 
 	public void close()
 	{
 		getLogger().info("close RequestProcessManager");
 		active=false;
-		scrutinizer.interrupt();
+		if (scrutinizer != null)
+			scrutinizer.interrupt();
 	}
 
 
