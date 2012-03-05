@@ -1,0 +1,42 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:sws="http://www.springframework.org/schema/web-services"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd" default-init-method="init" xmlns:aop="http://www.springframework.org/schema/aop">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="location" value="classpath:/spring.properties"/>
+    </bean>
+
+    <context:component-scan base-package="net.dryade.siri.webtopo.server"/>
+
+    <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+        <constructor-arg ref="marshaller"/>
+    </bean>
+    
+    <sws:interceptors>
+        <bean id="validatingInterceptor"
+            class="net.dryade.siri.webtopo.server.ws.ValidationInterceptor">
+            <property name="schema" value="classpath:/wsdl/webtopo.xsd"/>
+            <property name="validateRequest" value="false"/>
+            <property name="validateResponse" value="true"/>
+        </bean>
+    </sws:interceptors>
+    
+    <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
+    
+    <bean id="getTopologyVersion" name="getTopologyVersion" class="net.dryade.siri.webtopo.server.producer.GetTopologyVersion">
+       <property name="topologyDirectory" value="${webtopo.topologyDirectory}"/>
+       <property name="topologyWorkingVersion" value="${webtopo.topologyWorkingVersion}"/>
+    </bean>
+
+    <bean id="getTopology" name="getTopology" class="net.dryade.siri.webtopo.server.producer.GetTopology">
+       <property name="topologyDirectory" value="${webtopo.topologyDirectory}"/>
+       <property name="topologyWorkingVersion" value="${webtopo.topologyWorkingVersion}"/>
+       <property name="encoding" value="${webtopo.encoding}"/>
+    </bean>
+
+</beans>

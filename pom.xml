@@ -23,6 +23,8 @@
         <module>server</module>
         <module>client</module>        
         <module>common</module>
+        <module>webtopo-server</module>
+        <!--<module>webtopo-client</module>-->
     </modules> 
               
     <properties>
@@ -49,6 +51,11 @@
             <dependency>                    
                 <groupId>net.dryade.siri</groupId>
                 <artifactId>siri-api</artifactId>
+                <version>1.0</version>                
+            </dependency>
+            <dependency>                    
+                <groupId>net.dryade.siri</groupId>
+                <artifactId>webtopo-api</artifactId>
                 <version>1.0</version>                
             </dependency>
          <!-- Property annotation (only for compile use) -->
