@@ -40,7 +40,7 @@ public class SubscriptionManager implements SubscriptionServiceInterface, Notifi
 
 	private List<SiriAcknowledge> pendingAcknowledges;
 
-	private Thread notifier ;
+	// private Thread notifier ;
 
 	private boolean active = false;
 
@@ -72,28 +72,35 @@ public class SubscriptionManager implements SubscriptionServiceInterface, Notifi
 	 */
 	public void close()
 	{
-		logger.info("close SubscriptionManager");
-		active = false;
-		unsubscribe(null);
-		notifier.interrupt();
-		if (siriRequestManagers == null) return;
-		for (Map<String, RequestProcessManager<AbstractSubscriptionRequest, AbstractNotificationResponse>> managers : siriRequestManagers.values()) 
+		try
 		{
-			for (RequestProcessManager<AbstractSubscriptionRequest, AbstractNotificationResponse> manager : managers.values()) 
+			logger.info("close SubscriptionManager");
+			active = false;
+			if (siriRequestManagers == null) return;
+			unsubscribe(null);
+			// notifier.interrupt();
+			for (Map<String, RequestProcessManager<AbstractSubscriptionRequest, AbstractNotificationResponse>> managers : siriRequestManagers.values()) 
 			{
-				logger.info("ask request process to stop");
-				if (manager != null) manager.close();
+				for (RequestProcessManager<AbstractSubscriptionRequest, AbstractNotificationResponse> manager : managers.values()) 
+				{
+					logger.info("ask request process to stop");
+					if (manager != null) manager.close();
+				}
+			}
+			try 
+			{
+				Thread.sleep(scanForNotificationPeriod);
+			} 
+			catch (InterruptedException e) 
+			{
+				// let continue
 			}
 		}
-
-		try 
+		catch (Exception e) 
 		{
-			Thread.sleep(scanForNotificationPeriod);
-		} 
-		catch (InterruptedException e) 
-		{
-			// let continue
+			logger.error("problem on close",e);
 		}
+
 	}
 
 	/* (non-Javadoc)

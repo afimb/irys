@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import lombok.Setter;
 import net.dryade.siri.common.SiriException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -33,9 +35,9 @@ import webtopo.xsd.TopologyType;
  */
 public class GetTopology implements GetTopologyInterface {
 
-    private String topologyDirectory;
-    private String topologyWorkingVersion;
-    private String encoding = "ISO-8859-1";
+    @Setter private String topologyDirectory;
+    @Setter private String topologyWorkingVersion;
+    @Setter private String encoding = "ISO-8859-1";
 
     public GetTopology() throws SiriException {
         super();
@@ -50,10 +52,11 @@ public class GetTopology implements GetTopologyInterface {
         if (requestDoc.getGetTopology().sizeOfRequestedLineListArray() > 0) {
             lineList.addAll(Arrays.asList(requestDoc.getGetTopology().getRequestedLineListArray()));
         }
-        String producerRef = "";
+        String producerRef = null;
         if (requestDoc.getGetTopology().isSetProducerRef()) {
             producerRef = requestDoc.getGetTopology().getProducerRef();
         }
+        if (producerRef == null) producerRef = "";
 
         File dir = new File(topologyDirectory);
         if (dir.exists()) {
@@ -92,15 +95,4 @@ public class GetTopology implements GetTopologyInterface {
         return responseDoc;
     }
 
-    public void setEncoding(String encoding) {
-        this.encoding = encoding;
-    }
-
-    public void setTopologyDirectory(String topologyDirectory) {
-        this.topologyDirectory = topologyDirectory;
-    }
-
-    public void setTopologyWorkingVersion(String topologyWorkingVersion) {
-        this.topologyWorkingVersion = topologyWorkingVersion;
-    }
 }

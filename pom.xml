@@ -24,7 +24,7 @@
         <module>client</module>        
         <module>common</module>
         <module>webtopo-server</module>
-        <!--<module>webtopo-client</module>-->
+        <module>webtopo-client</module>
     </modules> 
               
     <properties>

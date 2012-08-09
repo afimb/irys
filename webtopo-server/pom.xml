@@ -22,7 +22,7 @@
       <dependency>
          <groupId>net.dryade.siri</groupId>
          <artifactId>common</artifactId>
-            <version>1.0</version>
+         <version>1.0</version>
       </dependency>
       <dependency>
          <groupId>log4j</groupId>
@@ -74,6 +74,11 @@
    </dependencies>
 
    <build>
+      <resources>
+         <resource>
+            <directory>src/main/resources</directory>
+         </resource>
+      </resources>
       <plugins>
          <plugin>
             <groupId>org.mortbay.jetty</groupId>
@@ -168,7 +173,7 @@
                </execution>
             </executions>
          </plugin>
-         
+
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-war-plugin</artifactId>
@@ -176,30 +181,20 @@
             <configuration>
                <failOnMissingWebXml>false</failOnMissingWebXml>
                <attachClasses>true</attachClasses>
+               <warName>dist/webtopo_server</warName>
+               <manifest>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+               </manifest>
+               <archive>
+                  <manifestEntries>
+                     <Specification-Title>${project.name}</Specification-Title>
+                     <Specification-Version>${project.version}</Specification-Version>
+                     <Implementation-Version>${project.version}</Implementation-Version>
+                  </manifestEntries>
+               </archive>
             </configuration>
          </plugin>
 
-         <!--plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-deploy-plugin</artifactId>
-            <executions>
-               <execution>
-                  <phase>deploy</phase>
-                  <goals>
-                     <goal>deploy-file</goal>
-                  </goals>
-                  <configuration>
-                     <packaging>jar</packaging>
-                     <generatePom>true</generatePom>
-                     <url>${project.distributionManagement.repository.url}</url>
-                     <artifactId>${project.artifactId}</artifactId>
-                     <groupId>${project.groupId}</groupId>
-                     <version>${project.version}</version>
-                     <file>${project.build.directory}/${project.artifactId}-${project.version}-classes.jar</file>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin-->
       </plugins>
    </build>
 

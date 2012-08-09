@@ -21,7 +21,7 @@
    <dependencies>
       <dependency>
          <groupId>net.dryade.siri</groupId>
-         <artifactId>siri-api</artifactId>
+         <artifactId>webtopo-api</artifactId>
       </dependency>
       <dependency>
          <groupId>net.dryade.siri</groupId>

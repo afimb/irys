@@ -1,2 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project name="webtopo-server" soapui-version="4.0.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:properties/><con:wssContainer/></con:soapui-project>
+<con:soapui-project name="webtopo-server" resourceRoot="" soapui-version="4.0.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="&lt;all>"/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="soapui-setings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value=""/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="webTopoSOAPBinding" type="wsdl" bindingName="{http://soap.webtopo}webTopoSOAPBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/Users/Michel/Eclipse/siri/webtopo_api/src/main/resources/wsdl/webtopo.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/Users/Michel/Eclipse/siri/webtopo_api/src/main/resources/wsdl/webtopo.wsdl"><con:part><con:url>file:/D:/Users/Michel/Eclipse/siri/webtopo_api/src/main/resources/wsdl/webtopo.wsdl</con:url><con:content><![CDATA[<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Christophe Duquesne (DRYADE SA)-->
+<definitions targetNamespace="http://soap.webtopo" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:webTopo="http://soap.webtopo" xmlns:topo="http://xsd.webtopo/">
+  <import namespace="http://xsd.webtopo/" location="webtopo.xsd"/>
+  <message name="GetTopologyVersionRequestMessage">
+    <part name="parameters" element="topo:GetTopologyVersion"/>
+  </message>
+  <message name="GetTopologyRequestMessage">
+    <part name="parameters" element="topo:GetTopology"/>
+  </message>
+  <message name="GetTopologyVersionResponseMessage">
+    <part name="parameters" element="topo:GetTopologyVersionResponse"/>
+  </message>
+  <message name="GetTopologyResponseMessage">
+    <part name="parameters" element="topo:GetTopologyResponse"/>
+  </message>
+  <portType name="SOAP-Port">
+    <operation name="GetTopologyVersion">
+      <input message="webTopo:GetTopologyVersionRequestMessage"/>
+      <output message="webTopo:GetTopologyVersionResponseMessage"/>
+    </operation>
+    <operation name="GetTopology">
+      <input message="webTopo:GetTopologyRequestMessage"/>
+      <output message="webTopo:GetTopologyResponseMessage"/>
+    </operation>
+  </portType>
+  <binding name="webTopoSOAPBinding" type="webTopo:SOAP-Port">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <!--==== Test  services =====-->
+    <operation name="GetTopologyVersion">
+      <soap:operation soapAction="GetTopologyVersion"/>
+      <input>
+        <soap:body use="literal" namespace="http://soap.webtopo"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://soap.webtopo"/>
+      </output>
+    </operation>
+    <operation name="GetTopology">
+      <soap:operation soapAction="getTopology"/>
+      <input>
+        <soap:body use="literal" namespace="http://soap.webtopo"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://soap.webtopo"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="WebTopo">
+    <port name="WebTopoPort" binding="webTopo:webTopoSOAPBinding">
+      <soap:address location="http://www.webtopo-location.com"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\D:\Users\Michel\Eclipse\siri\webtopo_api\src\main\resources\wsdl\webtopo.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2006 sp2 U (http://www.altova.com) by christophe duquesne (Dryade SARL)-->
+<xsd:schema targetNamespace="http://xsd.webtopo/" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0" id="topo" xmlns:topo="http://xsd.webtopo/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="TopologyVersionRequestType">
+    <xsd:sequence>
+      <xsd:element name="requestorRef" type="xsd:NMTOKEN"/>
+      <xsd:element name="lineNameList" type="xsd:boolean" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TopologyRequestType">
+    <xsd:sequence>
+      <xsd:element name="requestorRef" type="xsd:NMTOKEN"/>
+      <xsd:element name="producerRef" type="xsd:NMTOKEN" minOccurs="0"/>
+      <xsd:element name="requestedLineList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TopologyVersionType">
+    <xsd:sequence>
+      <xsd:element name="topologyAvailable" type="xsd:boolean"/>
+      <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="availableLineList" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="LineDefinitionType">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="neptuneData" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="TopologyType">
+    <xsd:sequence>
+      <xsd:element name="topologyAvailable" type="xsd:boolean"/>
+      <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="lineDefinition" type="topo:LineDefinitionType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="GetTopologyVersion" type="topo:TopologyVersionRequestType"/>
+  <xsd:element name="GetTopology" type="topo:TopologyRequestType"/>
+  <xsd:element name="GetTopologyVersionResponse" type="topo:TopologyVersionType"/>
+  <xsd:element name="GetTopologyResponse" type="topo:TopologyType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getTopology" name="GetTopology" bindingOperationName="GetTopology" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://xsd.webtopo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:GetTopology>
+         <requestorRef>?</requestorRef>
+         <!--Optional:-->
+         <producerRef>?</producerRef>
+         <!--Zero or more repetitions:-->
+         <requestedLineList>?</requestedLineList>
+      </xsd:GetTopology>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getTopology"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="GetTopologyVersion" name="GetTopologyVersion" bindingOperationName="GetTopologyVersion" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://xsd.webtopo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:GetTopologyVersion>
+         <requestorRef>?</requestorRef>
+         <!--Optional:-->
+         <lineNameList>?</lineNameList>
+      </xsd:GetTopologyVersion>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="GetTopologyVersion"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="webTopoSOAPBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetTopology TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="GetTopology"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>webTopoSOAPBinding</con:interface><con:operation>GetTopology</con:operation><con:request name="GetTopology" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://xsd.webtopo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:GetTopology>
+         <requestorRef>WebTopoTest</requestorRef>
+         <!--Optional:
+         <producerRef>?</producerRef> -->
+         <!--Zero or more repetitions:
+         <requestedLineList>?</requestedLineList> -->
+      </xsd:GetTopology>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="getTopology"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetTopologyVersion TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="GetTopologyVersion"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>webTopoSOAPBinding</con:interface><con:operation>GetTopologyVersion</con:operation><con:request name="GetTopologyVersion" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://xsd.webtopo/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:GetTopologyVersion>
+         <requestorRef>WebTopoTest</requestorRef>
+         <!--Optional:-->
+         <lineNameList>false</lineNameList>
+      </xsd:GetTopologyVersion>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="GetTopologyVersion"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

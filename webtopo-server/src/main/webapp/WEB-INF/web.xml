@@ -2,11 +2,11 @@
    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
              http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 
-   <display-name>MyCompany HR Holiday Service</display-name>
+   <display-name>Webtopo services</display-name>
 
    <context-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath*:webtopoContext.xml</param-value>
+      <param-value>classpath*:irysContext.xml</param-value>
    </context-param>
 
    <!-- take especial notice of the name of this servlet -->
@@ -17,6 +17,7 @@
          <param-name>transformWsdlLocations</param-name>
          <param-value>true</param-value>
       </init-param>
+      <load-on-startup>1</load-on-startup>
    </servlet>
 
    <servlet-mapping>

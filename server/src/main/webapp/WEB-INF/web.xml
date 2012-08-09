@@ -2,7 +2,7 @@
    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
              http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
 
-   <display-name>MyCompany HR Holiday Service</display-name>
+   <display-name>Siri Services</display-name>
 
    <context-param>
       <param-name>contextConfigLocation</param-name>

@@ -14,6 +14,8 @@ package net.dryade.siri.webtopo.server.producer;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+
+import lombok.Setter;
 import net.dryade.siri.common.SiriException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -27,8 +29,8 @@ import webtopo.xsd.TopologyVersionType;
  */
 public class GetTopologyVersion implements GetTopologyVersionInterface {
 
-    private String topologyDirectory;
-    private String topologyWorkingVersion;
+    @Setter private String topologyDirectory;
+    @Setter private String topologyWorkingVersion;
 
     public GetTopologyVersion() throws SiriException {
         super();
