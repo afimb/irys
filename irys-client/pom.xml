@@ -9,9 +9,9 @@
    </parent>
 
    <groupId>irys</groupId>
-   <artifactId>webtopo-client</artifactId>
+   <artifactId>irys-client</artifactId>
    <version>2.0</version>
-   <name>Irys webtopo client</name>
+   <name>Irys client</name>
    <url>http://maven.apache.org</url>
 
    <properties>
@@ -21,7 +21,7 @@
    <dependencies>
       <dependency>
          <groupId>net.dryade.siri</groupId>
-         <artifactId>webtopo-api</artifactId>
+         <artifactId>siri-api</artifactId>
       </dependency>
       <dependency>
          <groupId>irys</groupId>

@@ -14,15 +14,15 @@
     </pluginRepositories>       
     
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.dryade</groupId>
-    <artifactId>siri</artifactId>
-    <version>1.0</version>
+    <groupId>irys</groupId>
+    <artifactId>irys</artifactId>
+    <version>2.0</version>
     <packaging>pom</packaging>
-    <name>siri</name>
+    <name>Irys generic services for SIRI</name>
     <modules>
-        <module>server</module>
-        <module>client</module>        
-        <module>common</module>
+        <module>irys-server</module>
+        <module>irys-client</module>        
+        <module>irys-common</module>
         <module>webtopo-server</module>
         <module>webtopo-client</module>
     </modules> 
@@ -47,6 +47,11 @@
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>1.2.16</version>                
+            </dependency>
+            <dependency>                    
+                <groupId>irys</groupId>
+                <artifactId>irys-common</artifactId>
+                <version>2.0</version>                
             </dependency>
             <dependency>                    
                 <groupId>net.dryade.siri</groupId>

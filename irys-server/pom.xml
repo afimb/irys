@@ -9,15 +9,15 @@
    </parent>
 
    <groupId>irys</groupId>
-   <artifactId>webtopo-server</artifactId>
+   <artifactId>irys-server</artifactId>
    <version>2.0</version>
    <packaging>war</packaging>
-   <name>Irys webtopo server</name>
+   <name>Irys siri server</name>
 
    <dependencies>
       <dependency>
          <groupId>net.dryade.siri</groupId>
-         <artifactId>webtopo-api</artifactId>
+         <artifactId>siri-api</artifactId>
       </dependency>
       <dependency>
          <groupId>irys</groupId>
@@ -73,11 +73,6 @@
    </dependencies>
 
    <build>
-      <resources>
-         <resource>
-            <directory>src/main/resources</directory>
-         </resource>
-      </resources>
       <plugins>
          <plugin>
             <groupId>org.mortbay.jetty</groupId>
@@ -122,7 +117,7 @@
                   </property>
                </soapuiProperties>
                <outputFolder>${basedir}/target/soapui</outputFolder>
-               <host>0.0.0.0:8080/server</host>
+               <host>0.0.0.0:8080/irys-server</host>
                <junitReport>true</junitReport>
                <printReport>true</printReport>
                <exportwAll>true</exportwAll>
@@ -172,7 +167,7 @@
                </execution>
             </executions>
          </plugin>
-
+         
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-war-plugin</artifactId>
@@ -180,20 +175,30 @@
             <configuration>
                <failOnMissingWebXml>false</failOnMissingWebXml>
                <attachClasses>true</attachClasses>
-               <warName>dist/webtopo_server</warName>
-               <manifest>
-                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-               </manifest>
-               <archive>
-                  <manifestEntries>
-                     <Specification-Title>${project.name}</Specification-Title>
-                     <Specification-Version>${project.version}</Specification-Version>
-                     <Implementation-Version>${project.version}</Implementation-Version>
-                  </manifestEntries>
-               </archive>
             </configuration>
          </plugin>
 
+         <!--plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <executions>
+               <execution>
+                  <phase>deploy</phase>
+                  <goals>
+                     <goal>deploy-file</goal>
+                  </goals>
+                  <configuration>
+                     <packaging>jar</packaging>
+                     <generatePom>true</generatePom>
+                     <url>${project.distributionManagement.repository.url}</url>
+                     <artifactId>${project.artifactId}</artifactId>
+                     <groupId>${project.groupId}</groupId>
+                     <version>${project.version}</version>
+                     <file>${project.build.directory}/${project.artifactId}-${project.version}-classes.jar</file>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin-->
       </plugins>
    </build>
 
