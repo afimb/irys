@@ -12,14 +12,14 @@
       <property name="location" value="classpath:/spring.properties" />
    </bean>
 
-   <context:component-scan base-package="net.dryade.siri.webtopo.server" />
+   <context:component-scan base-package="irys.siri.webtopo.server" />
 
    <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
       <constructor-arg ref="marshaller" />
    </bean>
 
    <sws:interceptors>
-      <bean id="validatingInterceptor" class="net.dryade.siri.webtopo.server.ws.ValidationInterceptor">
+      <bean id="validatingInterceptor" class="irys.siri.webtopo.server.ws.ValidationInterceptor">
          <property name="schema" value="classpath:/wsdl/webtopo.xsd" />
          <property name="validateRequest" value="false" />
          <property name="validateResponse" value="true" />
@@ -28,12 +28,12 @@
 
    <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
 
-   <bean id="abstractWebtopoServiceDelegate" class="net.dryade.siri.webtopo.server.ws.AbstractWebtopoServiceDelegate" abstract="true">
+   <bean id="abstractWebtopoServiceDelegate" class="irys.siri.webtopo.server.ws.AbstractWebtopoServiceDelegate" abstract="true">
       <property name="responseValidation" value="${webtopo.validation.response}" />
       <property name="requestValidation" value="${webtopo.validation.request}" />
    </bean>
 
-   <bean id="webtopoService" name="webtopoService" class="net.dryade.siri.webtopo.server.ws.WebtopoService" parent="abstractWebtopoServiceDelegate">
+   <bean id="webtopoService" name="webtopoService" class="irys.siri.webtopo.server.ws.WebtopoService" parent="abstractWebtopoServiceDelegate">
       <property name="getTopology" ref="getTopology" />
       <property name="getTopologyVersion" ref="getTopologyVersion" />
    </bean>

@@ -4,7 +4,7 @@
    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
    default-init-method="init" default-destroy-method="close">
 
-   <bean id="WebtopoClient" class="net.dryade.webtopo.client.ws.WebtopoClient">
+   <bean id="WebtopoClient" class="irys.webtopo.client.ws.WebtopoClient">
       <constructor-arg ref="messageFactory" />
       <property name="defaultUri">
          <value>${webtopo.server}</value>

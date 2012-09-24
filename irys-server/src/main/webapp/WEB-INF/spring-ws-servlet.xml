@@ -11,7 +11,7 @@
       <property name="location" value="classpath:/spring.properties"/>
     </bean>
 
-    <context:component-scan base-package="net.dryade.siri.server"/>
+    <context:component-scan base-package="irys.siri.server"/>
 
     <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
         <constructor-arg ref="marshaller"/>
@@ -19,28 +19,28 @@
     
     <sws:interceptors>
         <bean id="validatingInterceptor"
-            class="net.dryade.siri.server.ws.ValidationInterceptor">
+            class="irys.siri.server.ws.ValidationInterceptor">
             <property name="schema" value="classpath:/wsdl/siri_wsProducer-IDF.xsd"/>
             <property name="validateRequest" value="true"/>
             <property name="validateResponse" value="false"/>
         </bean>
     </sws:interceptors>
     
-    <bean id="exceptionResolver" class="net.dryade.siri.server.ws.EndpointExceptionResolver">
+    <bean id="exceptionResolver" class="irys.siri.server.ws.EndpointExceptionResolver">
         <property name="defaultFault" value="SERVER" />
         <property name="exceptionMappings">
             <props>
                 <prop key="org.springframework.oxm.ValidationFailureException">CLIENT,Invalid request</prop>
-                <prop key="net.dryade.siri.server.ws.CheckStatusFaultException">SERVER</prop>
+                <prop key="irys.siri.server.ws.CheckStatusFaultException">SERVER</prop>
             </props>
         </property>
     </bean>
     
     <bean id="marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
     
-    <bean id="identifierGenerator" class="net.dryade.siri.server.ws.DefaultIdentifierGenerator"/>
+    <bean id="identifierGenerator" class="irys.siri.server.ws.DefaultIdentifierGenerator"/>
     
-    <bean id="abstractSiriServiceDelegate" class="net.dryade.siri.server.ws.AbstractSiriServiceDelegate" abstract="true">
+    <bean id="abstractSiriServiceDelegate" class="irys.siri.server.ws.AbstractSiriServiceDelegate" abstract="true">
        <property name="responseValidation" value="${siri.validation.response}"/>
        <property name="requestValidation" value="${siri.validation.request}"/>
        <property name="producerRefValue" value="${siri.producerRef}"/>
@@ -49,23 +49,23 @@
        <property name="identifierGenerator" ref="identifierGenerator"/>                
     </bean>
     
-    <bean id="checkStatus" name="checkStatus" class="net.dryade.siri.server.producer.CheckStatus"/>    
-    <bean id="checkStatusService" class="net.dryade.siri.server.ws.CheckStatusService" parent="abstractSiriServiceDelegate">
+    <bean id="checkStatus" name="checkStatus" class="irys.siri.server.producer.CheckStatus"/>    
+    <bean id="checkStatusService" class="irys.siri.server.ws.CheckStatusService" parent="abstractSiriServiceDelegate">
        <property name="checkStatus" ref="checkStatus"/>       
     </bean>
     
-    <bean id="generalMessage" name="generalMessage" class="net.dryade.siri.server.producer.GeneralMessage"/>
-    <bean id="generalMessageService" class="net.dryade.siri.server.ws.GeneralMessageService" parent="abstractSiriServiceDelegate">
+    <bean id="generalMessage" name="generalMessage" class="irys.siri.server.producer.GeneralMessage"/>
+    <bean id="generalMessageService" class="irys.siri.server.ws.GeneralMessageService" parent="abstractSiriServiceDelegate">
        <property name="generalMessage" ref="generalMessage"/>       
     </bean>
 
-    <bean id="discovery" name="discovery" class="net.dryade.siri.server.producer.Discovery"/>
-    <bean id="discoveryService" class="net.dryade.siri.server.ws.DiscoveryService" parent="abstractSiriServiceDelegate">
+    <bean id="discovery" name="discovery" class="irys.siri.server.producer.Discovery"/>
+    <bean id="discoveryService" class="irys.siri.server.ws.DiscoveryService" parent="abstractSiriServiceDelegate">
        <property name="discovery" ref="discovery"/>       
     </bean>
     
-    <bean id="stopMonitoring" name="stopMonitoring" class="net.dryade.siri.server.producer.StopMonitoring"/>
-    <bean id="stopMonitoringService" class="net.dryade.siri.server.ws.StopMonitoringService" parent="abstractSiriServiceDelegate">
+    <bean id="stopMonitoring" name="stopMonitoring" class="irys.siri.server.producer.StopMonitoring"/>
+    <bean id="stopMonitoringService" class="irys.siri.server.ws.StopMonitoringService" parent="abstractSiriServiceDelegate">
        <property name="stopMonitoring" ref="stopMonitoring"/>       
     </bean>
 

@@ -4,23 +4,23 @@
    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
    default-init-method="init" default-destroy-method="close">
 
-    <bean id="getTopologyVersion" name="getTopologyVersion" class="net.dryade.siri.webtopo.server.producer.GetTopologyVersion">
+    <bean id="getTopologyVersion" name="getTopologyVersion" class="irys.siri.webtopo.server.producer.GetTopologyVersion">
        <property name="topologyDirectory" value="${webtopo.topologyDirectory}"/>
        <property name="topologyWorkingVersion" value="${webtopo.topologyWorkingVersion}"/>
     </bean>
 
-    <bean id="getTopology" name="getTopology" class="net.dryade.siri.webtopo.server.producer.GetTopology">
+    <bean id="getTopology" name="getTopology" class="irys.siri.webtopo.server.producer.GetTopology">
        <property name="topologyDirectory" value="${webtopo.topologyDirectory}"/>
        <property name="topologyWorkingVersion" value="${webtopo.topologyWorkingVersion}"/>
        <property name="encoding" value="${webtopo.encoding}"/>
     </bean>
     
-<!--     <bean id="abstractWebtopoServiceDelegate" class="net.dryade.siri.webtopo.server.ws.AbstractWebtopoServiceDelegate" abstract="true">
+<!--     <bean id="abstractWebtopoServiceDelegate" class="irys.siri.webtopo.server.ws.AbstractWebtopoServiceDelegate" abstract="true">
        <property name="responseValidation" value="${webtopo.validation.response}"/>
        <property name="requestValidation" value="${webtopo.validation.request}"/>
     </bean>
    
-    <bean id="webtopoService" name="webtopoService" class="net.dryade.siri.webtopo.server.ws.WebtopoService" parent="abstractWebtopoServiceDelegate">
+    <bean id="webtopoService" name="webtopoService" class="irys.siri.webtopo.server.ws.WebtopoService" parent="abstractWebtopoServiceDelegate">
        <property name="getTopology" ref="getTopology"/>
        <property name="getTopologyVersion" ref="getTopologyVersion"/>
     </bean>
