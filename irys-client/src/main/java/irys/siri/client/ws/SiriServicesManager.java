@@ -10,11 +10,11 @@ package irys.siri.client.ws;
 // * 
 // *   Copyright DRYADE 2009-2010
 // */
-//package net.dryade.siri.client.ws;
+//package irys.siri.client.ws;
 //import java.util.HashMap;
 //import java.util.Map;
 //
-//import net.dryade.siri.common.SiriTool;
+//import irys.siri.common.SiriTool;
 //
 //import org.apache.log4j.Logger;
 //

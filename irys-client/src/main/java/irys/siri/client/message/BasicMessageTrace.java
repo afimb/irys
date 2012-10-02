@@ -103,7 +103,7 @@ public class BasicMessageTrace implements MessageTraceInterface,Runnable
 
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.message.MessageTraceInterface#addMessage(org.apache.xmlbeans.XmlObject)
+	 * @see irys.siri.message.MessageTraceInterface#addMessage(org.apache.xmlbeans.XmlObject)
 	 */
 	@Override
 	public synchronized void addMessage(XmlObject message) 

@@ -10,12 +10,12 @@ package irys.siri.client.ws;
 // * 
 // *   Copyright DRYADE 2009-2010
 // */
-//package net.dryade.siri.client.ws;
+//package irys.siri.client.ws;
 //import java.rmi.RemoteException;
 //import java.util.Calendar;
 //
-//import net.dryade.siri.common.SiriException;
-//import net.dryade.siri.client.ws.EstimatedTimetableServiceInterface;
+//import irys.siri.common.SiriException;
+//import irys.siri.client.ws.EstimatedTimetableServiceInterface;
 //
 //import org.apache.log4j.Logger;
 //import org.apache.xmlbeans.GDuration;
@@ -60,7 +60,7 @@ package irys.siri.client.ws;
 //
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, org.apache.xmlbeans.GDuration)
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, org.apache.xmlbeans.GDuration)
 //	 */
 //	@Override
 //	public EstimatedTimetableRequestStructure getRequestStructure( String[] lineIdArray, String timetableVersionId,String operatorId, GDuration preview)
@@ -69,7 +69,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, org.apache.xmlbeans.GDuration, java.util.Calendar, uk.org.siri.www.siri.MessageQualifierStructure)
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, org.apache.xmlbeans.GDuration, java.util.Calendar, uk.org.siri.www.siri.MessageQualifierStructure)
 //	 */
 //	@Override
 //	public EstimatedTimetableRequestStructure getRequestStructure(String[] lineIdArray, String timetableVersionId,String operatorId, GDuration preview, Calendar timestamp, MessageQualifierStructure messageIdentifier)
@@ -141,7 +141,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getResponseDocument(java.lang.String, java.lang.String[], java.lang.String, java.lang.String, org.apache.xmlbeans.GDuration)
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getResponseDocument(java.lang.String, java.lang.String[], java.lang.String, java.lang.String, org.apache.xmlbeans.GDuration)
 //	 */
 //	@Override
 //	public GetEstimatedTimetableResponseDocument getResponseDocument(String serverId,String[] lineIdArray, String timetableVersionId,String operatorId, GDuration preview) 
@@ -172,7 +172,7 @@ package irys.siri.client.ws;
 //
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getLastRequest()
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getLastRequest()
 //	 */
 //	@Override
 //	public XmlObject getLastRequest()
@@ -181,7 +181,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.model.AbstractService#getLogger()
+//	 * @see irys.siri.requestor.model.AbstractService#getLogger()
 //	 */
 //	@Override
 //	public Logger getLogger()
@@ -191,7 +191,7 @@ package irys.siri.client.ws;
 //
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getResponseDocument(java.lang.String, uk.org.siri.www.siri.EstimatedTimetableRequestStructure)
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getResponseDocument(java.lang.String, uk.org.siri.www.siri.EstimatedTimetableRequestStructure)
 //	 */
 //	@Override
 //	public GetEstimatedTimetableResponseDocument getResponseDocument(String serverId, EstimatedTimetableRequestStructure request) throws SiriException 
@@ -250,7 +250,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, int, java.util.Calendar, uk.org.siri.www.siri.MessageQualifierStructure)
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, int, java.util.Calendar, uk.org.siri.www.siri.MessageQualifierStructure)
 //	 */
 //	@Override
 //	public EstimatedTimetableRequestStructure getRequestStructure(String[] lineIdArray, String timetableVersionId,String operatorId, int preview, Calendar timestamp, MessageQualifierStructure messageIdentifier) 
@@ -259,7 +259,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, int)
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getRequestStructure(java.lang.String[], java.lang.String, java.lang.String, int)
 //	 */
 //	@Override
 //	public EstimatedTimetableRequestStructure getRequestStructure(String[] lineIdArray, String timetableVersionId,String operatorId, int preview) 
@@ -268,7 +268,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.EstimatedTimetableServiceInterface#getResponseDocument(java.lang.String, java.lang.String[], java.lang.String, java.lang.String, int)
+//	 * @see irys.siri.requestor.EstimatedTimetableServiceInterface#getResponseDocument(java.lang.String, java.lang.String[], java.lang.String, java.lang.String, int)
 //	 */
 //	@Override
 //	public GetEstimatedTimetableResponseDocument getResponseDocument(String serverId, String[] lineIdArray, String timetableVersionId,String operatorId, int preview) throws SiriException 

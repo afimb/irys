@@ -10,13 +10,13 @@ package irys.siri.client.ws;
 // * 
 // *   Copyright DRYADE 2009-2010
 // */
-//package net.dryade.siri.client.ws;
+//package .siri.client.ws;
 //
 //import java.rmi.RemoteException;
 //import java.util.Calendar;
 //
-//import net.dryade.siri.common.SiriException;
-//import net.dryade.siri.client.ws.SubscriptionServiceInterface;
+//import .siri.common.SiriException;
+//import .siri.client.ws.SubscriptionServiceInterface;
 //
 //import org.apache.log4j.Logger;
 //import org.apache.xmlbeans.GDuration;
@@ -87,7 +87,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar, boolean, org.apache.xmlbeans.GDuration)
+//	 * @see .siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar, boolean, org.apache.xmlbeans.GDuration)
 //	 */
 //	@Override
 //	public SubscriptionQualifierStructure addRequestStructure(SubscribeDocument subscriptionRequest, AbstractServiceRequestStructure structure, Calendar initialTerminationTime, boolean incrementalUpdates, GDuration changeBeforeUpdates)
@@ -96,7 +96,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar, boolean, org.apache.xmlbeans.GDuration)
+//	 * @see .siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar, boolean, org.apache.xmlbeans.GDuration)
 //	 */
 //	@Override
 //	public SubscriptionQualifierStructure addRequestStructure(SubscribeDocument subscriptionRequest, AbstractServiceRequestStructure structure, Calendar initialTerminationTime, boolean incrementalUpdates, GDuration changeBeforeUpdates,int subscriptionId)
@@ -210,7 +210,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar, boolean)
+//	 * @see .siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar, boolean)
 //	 */
 //	@Override
 //	public SubscriptionQualifierStructure addRequestStructure(SubscribeDocument subscriptionRequest, AbstractServiceRequestStructure structure,
@@ -221,7 +221,7 @@ package irys.siri.client.ws;
 //
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar)
+//	 * @see .siri.requestor.SubscriptionServiceInterface#addRequestStructure(uk.org.siri.wsdl.SubscribeDocument, uk.org.siri.www.siri.AbstractServiceRequestStructure, java.util.Calendar)
 //	 */
 //	@Override
 //	public SubscriptionQualifierStructure addRequestStructure(SubscribeDocument subscriptionRequest, AbstractServiceRequestStructure structure,
@@ -232,7 +232,7 @@ package irys.siri.client.ws;
 //
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.SubscriptionServiceInterface#getNewSubscriptionRequest(java.lang.String)
+//	 * @see .siri.requestor.SubscriptionServiceInterface#getNewSubscriptionRequest(java.lang.String)
 //	 */
 //	@Override
 //	public SubscribeDocument getNewSubscriptionRequest(String consumerAddress, String serverId) throws SiriException
@@ -253,7 +253,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.SubscriptionServiceInterface#getResponseDocument(uk.org.siri.wsdl.SubscribeDocument)
+//	 * @see .siri.requestor.SubscriptionServiceInterface#getResponseDocument(uk.org.siri.wsdl.SubscribeDocument)
 //	 */
 //	@Override
 //	public SubscribeResponseDocument getResponseDocument(String serverId,SubscribeDocument subscriptionRequest) throws SiriException
@@ -282,7 +282,7 @@ package irys.siri.client.ws;
 //
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.SubscriptionServiceInterface#getResponseDocument(uk.org.siri.www.siri.SubscriptionQualifierStructure[])
+//	 * @see .siri.requestor.SubscriptionServiceInterface#getResponseDocument(uk.org.siri.www.siri.SubscriptionQualifierStructure[])
 //	 */
 //	@Override
 //	public DeleteSubscriptionResponseDocument getResponseDocument(String serverId,SubscriptionQualifierStructure[] subscriptionRefArray) throws SiriException
@@ -315,7 +315,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.model.AbstractService#getLogger()
+//	 * @see .siri.requestor.model.AbstractService#getLogger()
 //	 */
 //	@Override
 //	public Logger getLogger()

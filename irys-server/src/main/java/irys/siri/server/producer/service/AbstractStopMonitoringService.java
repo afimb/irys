@@ -142,7 +142,7 @@ public abstract class AbstractStopMonitoringService extends AbstractSiriService 
 
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.server.StopMonitoringServiceInterface#addSubscription(java.util.Calendar, uk.org.siri.www.siri.SubscriptionResponseBodyStructure, net.dryade.siri.data.subscription.server.Service, uk.org.siri.www.siri.StopMonitoringSubscriptionStructure[], net.dryade.siri.data.subscription.server.Subscriptor, uk.org.siri.www.siri.MessageQualifierStructure, java.lang.String)
+	 * @see irys.siri.server.StopMonitoringServiceInterface#addSubscription(java.util.Calendar, uk.org.siri.www.siri.SubscriptionResponseBodyStructure, irys.siri.data.subscription.server.Service, uk.org.siri.www.siri.StopMonitoringSubscriptionStructure[], irys.siri.data.subscription.server.Subscriptor, uk.org.siri.www.siri.MessageQualifierStructure, java.lang.String)
 	 */
 	@Override
 	public void addSubscription(Calendar responseTimestamp, SubscriptionResponseBodyStructure answer, ServiceBean service,

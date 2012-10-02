@@ -71,7 +71,7 @@ public class CheckStatusClient extends AbstractClient implements CheckStatusClie
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.CheckStatusServiceInterface#getLastRequest()
+     * @see irys.siri.requestor.CheckStatusServiceInterface#getLastRequest()
      */
     @Override
     public CheckStatusDocument getLastRequest() {
@@ -79,7 +79,7 @@ public class CheckStatusClient extends AbstractClient implements CheckStatusClie
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.CheckStatusServiceInterface#getResponseDocument()
+     * @see irys.siri.requestor.CheckStatusServiceInterface#getResponseDocument()
      */
     @Override
     public CheckStatusResponseDocument getResponseDocument(String serverId) throws SiriException {
@@ -118,7 +118,7 @@ public class CheckStatusClient extends AbstractClient implements CheckStatusClie
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.model.AbstractService#getLogger()
+     * @see irys.siri.requestor.model.AbstractService#getLogger()
      */
     @Override
     public Logger getLogger() {

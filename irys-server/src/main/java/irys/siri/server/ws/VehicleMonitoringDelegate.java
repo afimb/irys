@@ -10,11 +10,11 @@ package irys.siri.server.ws;
 // * 
 // *   Copyright DRYADE 2009-2010
 // */
-//package net.dryade.siri.server.ws;
+//package irys.siri.server.ws;
 //
 //import java.util.Calendar;
 //
-//import net.dryade.siri.server.common.SiriException;
+//import irys.siri.server.common.SiriException;
 //
 //import org.apache.log4j.Logger;
 //
@@ -184,7 +184,7 @@ package irys.siri.server.ws;
 //
 //   }
 //   /* (non-Javadoc)
-//    * @see net.dryade.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
+//    * @see irys.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
 //    */
 //   @Override
 //   protected Logger getLogger()

@@ -105,7 +105,7 @@ public class SubscriptionManager implements SubscriptionServiceInterface, Notifi
 	}
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.sequencer.subscription.SubscriptionServiceInterface#subscribe(net.dryade.siri.sequencer.model.SiriSubscription)
+	 * @see irys.siri.sequencer.subscription.SubscriptionServiceInterface#subscribe(irys.siri.sequencer.model.SiriSubscription)
 	 */
 	@Override
 	public void subscribe(SiriSubscription<? extends AbstractSubscriptionRequest> subscription)
@@ -119,7 +119,7 @@ public class SubscriptionManager implements SubscriptionServiceInterface, Notifi
 	}
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.sequencer.subscription.SubscriptionServiceInterface#unsubscribe(java.util.List)
+	 * @see irys.siri.sequencer.subscription.SubscriptionServiceInterface#unsubscribe(java.util.List)
 	 */
 	@Override
 	public void unsubscribe(List<String> subscriptionIds) 

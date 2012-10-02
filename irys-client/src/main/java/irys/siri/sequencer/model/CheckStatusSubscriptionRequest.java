@@ -28,7 +28,7 @@ public class CheckStatusSubscriptionRequest extends AbstractSubscriptionRequest 
 	
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.sequencer.model.AbstractSubscriptionRequest#validate()
+	 * @see irys.siri.sequencer.model.AbstractSubscriptionRequest#validate()
 	 */
 	@Override
 	public void validate() throws SequencerException 

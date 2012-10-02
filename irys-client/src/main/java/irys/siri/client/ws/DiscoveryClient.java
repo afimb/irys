@@ -51,7 +51,7 @@ public class DiscoveryClient extends AbstractClient implements DiscoveryClientIn
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.DiscoveryClientInterface#getLastLineRequest()
+     * @see irys.siri.requestor.DiscoveryClientInterface#getLastLineRequest()
      */
     @Override
     public LinesDiscoveryDocument getLastLineRequest() {
@@ -59,7 +59,7 @@ public class DiscoveryClient extends AbstractClient implements DiscoveryClientIn
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.DiscoveryClientInterface#getLastStopPointRequest()
+     * @see irys.siri.requestor.DiscoveryClientInterface#getLastStopPointRequest()
      */
     @Override
     public StopPointsDiscoveryDocument getLastStopPointRequest() {
@@ -67,7 +67,7 @@ public class DiscoveryClient extends AbstractClient implements DiscoveryClientIn
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.DiscoveryClientInterface#getLinesDiscovery(java.lang.String, uk.org.siri.www.siri.MessageQualifierStructure)
+     * @see irys.siri.requestor.DiscoveryClientInterface#getLinesDiscovery(java.lang.String, uk.org.siri.www.siri.MessageQualifierStructure)
      */
     @Override
     public LinesDiscoveryResponseDocument getLinesDiscovery(String serverId, MessageQualifierStructure messageIdentifier) throws SiriException {
@@ -76,7 +76,7 @@ public class DiscoveryClient extends AbstractClient implements DiscoveryClientIn
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.DiscoveryClientInterface#getLinesDiscovery()
+     * @see irys.siri.requestor.DiscoveryClientInterface#getLinesDiscovery()
      */
     @Override
     public LinesDiscoveryResponseDocument getLinesDiscovery(String serverId) throws SiriException {
@@ -132,7 +132,7 @@ public class DiscoveryClient extends AbstractClient implements DiscoveryClientIn
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.DiscoveryClientInterface#getStopPointsDiscovery(java.lang.String, uk.org.siri.www.siri.MessageQualifierStructure)
+     * @see irys.siri.requestor.DiscoveryClientInterface#getStopPointsDiscovery(java.lang.String, uk.org.siri.www.siri.MessageQualifierStructure)
      */
     @Override
     public StopPointsDiscoveryResponseDocument getStopPointsDiscovery(String serverId, MessageQualifierStructure messageIdentifier) throws SiriException {
@@ -141,7 +141,7 @@ public class DiscoveryClient extends AbstractClient implements DiscoveryClientIn
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.DiscoveryClientInterface#getStopPointsDiscovery()
+     * @see irys.siri.requestor.DiscoveryClientInterface#getStopPointsDiscovery()
      */
     @Override
     public StopPointsDiscoveryResponseDocument getStopPointsDiscovery(String serverId) throws SiriException {
@@ -199,7 +199,7 @@ public class DiscoveryClient extends AbstractClient implements DiscoveryClientIn
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.model.AbstractService#getLogger()
+     * @see irys.siri.requestor.model.AbstractService#getLogger()
      */
     @Override
     public Logger getLogger() {

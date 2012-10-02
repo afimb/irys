@@ -1,5 +1,5 @@
 package irys.siri.server.ws;
-//package net.dryade.siri.server.ws;
+//package irys.siri.server.ws;
 //
 //import org.springframework.ws.server.endpoint.annotation.Endpoint;
 //import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

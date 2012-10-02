@@ -92,7 +92,7 @@ public class GeneralMessageClient extends AbstractClient implements GeneralMessa
     }
     
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.GeneralMessageClientInterface#getResponseDocument(java.lang.String, uk.org.siri.www.siri.GeneralMessageRequestStructure)
+     * @see irys.siri.requestor.GeneralMessageClientInterface#getResponseDocument(java.lang.String, uk.org.siri.www.siri.GeneralMessageRequestStructure)
      */
     @Override
     public GetGeneralMessageResponseDocument getResponseDocument(String serverId, GeneralMessageRequestStructure request) throws SiriException {
@@ -117,7 +117,7 @@ public class GeneralMessageClient extends AbstractClient implements GeneralMessa
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.GeneralMessageClientInterface#getRequestStructure(java.util.List, java.lang.String)
+     * @see irys.siri.requestor.GeneralMessageClientInterface#getRequestStructure(java.util.List, java.lang.String)
      */
     @Override
     public GeneralMessageRequestStructure getRequestStructure(String serverId, List<String> infoChannels, String language) throws SiriException {
@@ -125,7 +125,7 @@ public class GeneralMessageClient extends AbstractClient implements GeneralMessa
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.GeneralMessageClientInterface#getRequestStructure(java.util.List, java.lang.String, net.dryade.siri.requestor.GeneralMessageClientInterface.IDFItemRefFilterType, java.util.List)
+     * @see irys.siri.requestor.GeneralMessageClientInterface#getRequestStructure(java.util.List, java.lang.String, irys.siri.requestor.GeneralMessageClientInterface.IDFItemRefFilterType, java.util.List)
      */
     @Override
     public GeneralMessageRequestStructure getRequestStructure(String serverId, List<String> infoChannels, String language, 
@@ -135,7 +135,7 @@ public class GeneralMessageClient extends AbstractClient implements GeneralMessa
 
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.GeneralMessageClientInterface#getRequestStructure(java.util.List, java.lang.String, java.util.Calendar, uk.org.siri.www.siri.MessageQualifierStructure)
+     * @see irys.siri.requestor.GeneralMessageClientInterface#getRequestStructure(java.util.List, java.lang.String, java.util.Calendar, uk.org.siri.www.siri.MessageQualifierStructure)
      */
     @Override
     public GeneralMessageRequestStructure getRequestStructure(String serverId, List<String> infoChannels, String language, 
@@ -353,7 +353,7 @@ public class GeneralMessageClient extends AbstractClient implements GeneralMessa
     }
     
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.GeneralMessageClientInterface#getLastRequest()
+     * @see irys.siri.requestor.GeneralMessageClientInterface#getLastRequest()
      */
     @Override
     public GetGeneralMessageDocument getLastRequest() {
@@ -361,7 +361,7 @@ public class GeneralMessageClient extends AbstractClient implements GeneralMessa
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.model.AbstractService#getLogger()
+     * @see irys.siri.requestor.model.AbstractService#getLogger()
      */
     @Override
     public Logger getLogger() {

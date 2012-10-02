@@ -245,7 +245,7 @@ public class CheckStatusRequestProcessManager extends RequestProcessManager<Chec
 
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.sequencer.impl.RequestProcessManager#addSubscription(net.dryade.siri.sequencer.model.SiriSubscription)
+	 * @see irys.siri.sequencer.impl.RequestProcessManager#addSubscription(irys.siri.sequencer.model.SiriSubscription)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -268,7 +268,7 @@ public class CheckStatusRequestProcessManager extends RequestProcessManager<Chec
 	}
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.sequencer.impl.RequestProcessManager#removeSubscription(java.lang.String)
+	 * @see irys.siri.sequencer.impl.RequestProcessManager#removeSubscription(java.lang.String)
 	 */
 	@Override
 	public synchronized void removeSubscription(String id) 
@@ -277,7 +277,7 @@ public class CheckStatusRequestProcessManager extends RequestProcessManager<Chec
 	}
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.sequencer.impl.RequestProcessManager#removeAllSubscriptions()
+	 * @see irys.siri.sequencer.impl.RequestProcessManager#removeAllSubscriptions()
 	 */
 	@Override
 	public synchronized void removeAllSubscriptions() {

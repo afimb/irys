@@ -22,7 +22,7 @@ public class DummyMessageTrace implements MessageTraceInterface
 	}
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.message.MessageTraceInterface#addMessage(org.apache.xmlbeans.XmlObject)
+	 * @see irys.siri.message.MessageTraceInterface#addMessage(org.apache.xmlbeans.XmlObject)
 	 */
 	@Override
 	public void addMessage(XmlObject message) 
@@ -32,7 +32,7 @@ public class DummyMessageTrace implements MessageTraceInterface
 	}
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.message.MessageTraceInterface#close()
+	 * @see irys.siri.message.MessageTraceInterface#close()
 	 */
 	@Override
 	public void close() 

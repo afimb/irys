@@ -2,7 +2,7 @@ package irys.siri.server.ws;
 ///**
 // * 
 // */
-//package net.dryade.siri.server.ws;
+//package irys.siri.server.ws;
 //
 //import java.util.Calendar;
 //
@@ -111,7 +111,7 @@ package irys.siri.server.ws;
 //		}
 //	}
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
+//	 * @see irys.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
 //	 */
 //	@Override
 //	protected Logger getLogger()

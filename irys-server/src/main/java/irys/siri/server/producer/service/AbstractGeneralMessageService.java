@@ -157,7 +157,7 @@ public abstract class AbstractGeneralMessageService extends AbstractSiriService 
 
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.server.GeneralMessageServiceInterface#addSubscription(java.util.Calendar, uk.org.siri.www.siri.SubscriptionResponseBodyStructure, net.dryade.siri.data.subscription.server.Service, uk.org.siri.www.siri.GeneralMessageSubscriptionStructure[], net.dryade.siri.data.subscription.server.Subscriptor, uk.org.siri.www.siri.MessageQualifierStructure, java.lang.String)
+	 * @see irys.siri.server.GeneralMessageServiceInterface#addSubscription(java.util.Calendar, uk.org.siri.www.siri.SubscriptionResponseBodyStructure, irys.siri.data.subscription.server.Service, uk.org.siri.www.siri.GeneralMessageSubscriptionStructure[], irys.siri.data.subscription.server.Subscriptor, uk.org.siri.www.siri.MessageQualifierStructure, java.lang.String)
 	 */
 	@Override
 	public void addSubscription(Calendar responseTimestamp, SubscriptionResponseBodyStructure answer, ServiceBean service,
@@ -171,7 +171,7 @@ public abstract class AbstractGeneralMessageService extends AbstractSiriService 
 	}
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.producer.GeneralMessageServiceInterface#getNewMessages(uk.org.siri.www.siri.GeneralMessageRequestStructure, java.util.Date)
+	 * @see irys.siri.producer.GeneralMessageServiceInterface#getNewMessages(uk.org.siri.www.siri.GeneralMessageRequestStructure, java.util.Date)
 	 */
 	@Override
 	public List<InfoMessageStructure> getGeneralMessages(GeneralMessageRequestStructure request) throws SiriException
@@ -182,7 +182,7 @@ public abstract class AbstractGeneralMessageService extends AbstractSiriService 
 
 
 	/* (non-Javadoc)
-	 * @see net.dryade.siri.producer.GeneralMessageServiceInterface#getGeneralMessageCancellations(uk.org.siri.www.siri.GeneralMessageRequestStructure)
+	 * @see irys.siri.producer.GeneralMessageServiceInterface#getGeneralMessageCancellations(uk.org.siri.www.siri.GeneralMessageRequestStructure)
 	 */
 	@Override
 	public List<InfoMessageCancellationStructure> getGeneralMessageCancellations(GeneralMessageRequestStructure request)

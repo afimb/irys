@@ -237,7 +237,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
+     * @see irys.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
      */
     @Override
     protected Logger getLogger() {

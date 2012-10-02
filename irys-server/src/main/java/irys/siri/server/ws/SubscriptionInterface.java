@@ -10,11 +10,11 @@ package irys.siri.server.ws;
 // * 
 // *   Copyright DRYADE 2009-2010
 // */
-//package net.dryade.siri.server.ws;
+//package irys.siri.server.ws;
 //
 //import java.util.Calendar;
 //
-//import net.dryade.siri.server.common.SiriException;
+//import irys.siri.server.common.SiriException;
 //
 //import uk.org.siri.wsdl.DeleteSubscriptionDocument;
 //import uk.org.siri.wsdl.SubscribeDocument.Subscribe;

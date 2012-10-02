@@ -2,14 +2,14 @@ package irys.siri.server.ws;
 ///**
 // * 
 // */
-//package net.dryade.siri.server.ws;
+//package irys.siri.server.ws;
 //
 //import java.util.Calendar;
 //
-//import net.dryade.siri.common.SiriException;
-//import net.dryade.siri.producer.IdentifierGeneratorInterface;
-//import net.dryade.siri.producer.SiriServices;
-//import net.dryade.siri.producer.SubscriptionInterface;
+//import irys.siri.common.SiriException;
+//import irys.siri.producer.IdentifierGeneratorInterface;
+//import irys.siri.producer.SiriServices;
+//import irys.siri.producer.SubscriptionInterface;
 //
 //import org.apache.log4j.Logger;
 //
@@ -356,7 +356,7 @@ package irys.siri.server.ws;
 //   }
 //
 //   /* (non-Javadoc)
-//    * @see net.dryade.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
+//    * @see irys.siri.producer.delegation.AbstractSiriServiceDelegate#getLogger()
 //    */
 //   @Override
 //   protected Logger getLogger()

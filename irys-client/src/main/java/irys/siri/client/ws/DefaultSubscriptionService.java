@@ -1,6 +1,6 @@
 package irys.siri.client.ws;
 ///**
-// *   Siri Product - Produit SIRI
+// *   Irys
 // *  
 // *   a set of tools for easy application building with 
 // *   respect of the France Siri Local Agreement
@@ -8,20 +8,19 @@ package irys.siri.client.ws;
 // *   un ensemble d'outils facilitant la realisation d'applications
 // *   respectant le profil France de la norme SIRI
 // * 
-// *   Copyright DRYADE 2009-2010
 // */
-//package net.dryade.siri.client.ws;
+//package irys.siri.client.ws;
 //
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import net.dryade.siri.common.SiriException;
-//import net.dryade.siri.dao.Criteria;
-//import net.dryade.siri.dao.DaoException;
-//import net.dryade.siri.dao.DaoManager;
-//import net.dryade.siri.client.data.subscription.client.ServerBean;
-//import net.dryade.siri.client.data.subscription.client.ServiceBean;
-//import net.dryade.siri.client.data.subscription.client.SubscriptionBean;
+//import irys.siri.common.SiriException;
+//import irys.siri.dao.Criteria;
+//import irys.siri.dao.DaoException;
+//import irys.siri.dao.DaoManager;
+//import irys.siri.client.data.subscription.client.ServerBean;
+//import irys.siri.client.data.subscription.client.ServiceBean;
+//import irys.siri.client.data.subscription.client.SubscriptionBean;
 //
 //import org.apache.log4j.Logger;
 //
@@ -97,7 +96,7 @@ package irys.siri.client.ws;
 //	}
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.model.SubscriptionService#getResponseDocument(uk.org.siri.wsdl.SubscribeDocument)
+//	 * @see irys.siri.requestor.model.SubscriptionService#getResponseDocument(uk.org.siri.wsdl.SubscribeDocument)
 //	 */
 //	@Override
 //	public SubscribeResponseDocument getResponseDocument(String serverId,SubscribeDocument subscriptionRequest) throws SiriException
@@ -266,7 +265,7 @@ package irys.siri.client.ws;
 //
 //
 //	/* (non-Javadoc)
-//	 * @see net.dryade.siri.requestor.model.SubscriptionService#getResponseDocument(uk.org.siri.www.siri.SubscriptionQualifierStructure[])
+//	 * @see irys.siri.requestor.model.SubscriptionService#getResponseDocument(uk.org.siri.www.siri.SubscriptionQualifierStructure[])
 //	 */
 //	@Override
 //	public DeleteSubscriptionResponseDocument getResponseDocument(String serverId,SubscriptionQualifierStructure[] subscriptionRefArray)

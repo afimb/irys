@@ -181,7 +181,7 @@ public abstract class AbstractClient extends WebServiceGatewaySupport implements
 
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.requestor.ServiceInterface#convertToException(uk.org.siri.www.siri.ServiceDeliveryErrorConditionStructure)
+     * @see irys.siri.requestor.ServiceInterface#convertToException(uk.org.siri.www.siri.ServiceDeliveryErrorConditionStructure)
      */
     public Map<Integer, SiriException> convertToException(AbstractServiceDeliveryStructure[] deliveries) {
         Map<Integer, SiriException> exceptions = new HashMap<Integer, SiriException>();
