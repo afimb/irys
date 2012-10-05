@@ -13,3 +13,11 @@ target/
 /server/.classpath
 /server/.project
 /server/global-groovy.log
+/webtopo-server/.settings
+/webtopo-server/soapui-project.xml
+/webtopo-server/.classpath
+/webtopo-server/.project
+/webtopo-server/global-groovy.log
+/webtopo-client/.project
+/webtopo-client/.settings
+/webtopo-client/.classpath
