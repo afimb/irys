@@ -48,7 +48,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
     public LinesDiscoveryResponseDocument linesDiscovery(LinesDiscoveryDocument requestDoc) //throws LinesDiscoveryError
     {
         logger.debug("Appel LinesDiscovery");
-        long debut = System.currentTimeMillis();
+        // long debut = System.currentTimeMillis();
         try {
             // habillage de la reponse
             LinesDiscoveryResponseDocument responseDoc = LinesDiscoveryResponseDocument.Factory.newInstance();
@@ -133,7 +133,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
             logger.error(e.getMessage(), e);
             //throw new LinesDiscoveryError(e.getMessage());
         } finally {
-            long fin = System.currentTimeMillis();
+            // long fin = System.currentTimeMillis();
             //logger.debug("fin LinesDiscovery : durée = "+siriTool.getTimeAsString(fin - debut));
         }
         return null;
@@ -143,7 +143,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
     public StopPointsDiscoveryResponseDocument stopPointsDiscovery(StopPointsDiscoveryDocument requestDoc) //throws StopPointsDiscoveryError
     {
         logger.debug("Appel StopPointsDiscovery");
-        long debut = System.currentTimeMillis();
+        // long debut = System.currentTimeMillis();
         try {
             // habillage de la réponse
             StopPointsDiscoveryResponseDocument responseDoc = StopPointsDiscoveryResponseDocument.Factory.newInstance();
@@ -230,7 +230,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
             logger.error(e.getMessage(), e);
             //throw new StopPointsDiscoveryError(e.getMessage());
         } finally {
-            long fin = System.currentTimeMillis();
+            // long fin = System.currentTimeMillis();
             //logger.debug("fin StopPointsDiscovery : durée = "+siriTool.getTimeAsString(fin - debut));
         }
         return null;

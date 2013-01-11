@@ -11,25 +11,24 @@
  */
 package irys.siri.client.ws;
 
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.ws.test.client.RequestMatchers.payload;
+import static org.springframework.ws.test.client.ResponseCreators.withPayload;
 import irys.siri.client.features.TimeProviderMock;
-import irys.siri.client.ws.CheckStatusClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.apache.log4j.Logger;
+
 import javax.xml.transform.Source;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.xml.transform.StringSource;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.client.MockWebServiceServer;
+import org.springframework.xml.transform.StringSource;
+
 import uk.org.siri.siri.MessageQualifierStructure;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
-import static org.springframework.ws.test.client.RequestMatchers.*;
-import static org.springframework.ws.test.client.ResponseCreators.*;
 
 /**
  * Integration test for check status
@@ -41,7 +40,6 @@ public class CheckStatusIntegrationTest {
     @Autowired
     private CheckStatusClient checkStatusClient;
     private MockWebServiceServer mockServer;    
-    private static final Logger logger = Logger.getLogger(CheckStatusIntegrationTest.class);
     
     @Before
     public void createServer() throws Exception {
@@ -84,7 +82,7 @@ public class CheckStatusIntegrationTest {
         MessageQualifierStructure messageQualifier = MessageQualifierStructure.Factory.newInstance();
         messageQualifier.setStringValue("CheckStatus:Dryade:0");
         CheckStatusResponseDocument result = checkStatusClient.getResponseDocument("test", messageQualifier);
-        //assertEquals(10, result);
+        assertNotNull(result);
 
         mockServer.verify();
     }

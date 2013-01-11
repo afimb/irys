@@ -201,6 +201,7 @@ public class SubscriptionManager implements SubscriptionServiceInterface, Notifi
 	 * @param serverId
 	 * @return
 	 */
+	@SuppressWarnings("incomplete-switch")
 	private RequestProcessManager<AbstractSubscriptionRequest, AbstractNotificationResponse> getRequestProcessManager(Service requestedService, String serverId) 
 	{
 		if (siriRequestManagers == null) siriRequestManagers = new HashMap<ServiceInterface.Service, Map<String,RequestProcessManager<AbstractSubscriptionRequest, AbstractNotificationResponse>>>();

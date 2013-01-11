@@ -11,25 +11,24 @@
  */
 package irys.siri.client.ws;
 
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.ws.test.client.RequestMatchers.payload;
+import static org.springframework.ws.test.client.ResponseCreators.withPayload;
 import irys.siri.client.features.TimeProviderMock;
-import irys.siri.client.ws.DiscoveryClient;
-import uk.org.siri.wsdl.StopPointsDiscoveryResponseDocument;
-import uk.org.siri.siri.MessageQualifierStructure;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.apache.log4j.Logger;
+
 import javax.xml.transform.Source;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.xml.transform.StringSource;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.client.MockWebServiceServer;
-import static org.springframework.ws.test.client.RequestMatchers.*;
-import static org.springframework.ws.test.client.ResponseCreators.*;
+import org.springframework.xml.transform.StringSource;
+
+import uk.org.siri.siri.MessageQualifierStructure;
+import uk.org.siri.wsdl.StopPointsDiscoveryResponseDocument;
 
 /**
  * Integration test for general message
@@ -41,7 +40,6 @@ public class DiscoveryStopPointIntegrationTest {
     @Autowired
     private DiscoveryClient discoveryClient;
     private MockWebServiceServer mockServer;
-    private static final Logger logger = Logger.getLogger(DiscoveryStopPointIntegrationTest.class);
 
     @Before
     public void createServer() throws Exception {
@@ -93,7 +91,7 @@ public class DiscoveryStopPointIntegrationTest {
         MessageQualifierStructure messageQualifier = MessageQualifierStructure.Factory.newInstance();
         messageQualifier.setStringValue("Discovery:Test:0");
         StopPointsDiscoveryResponseDocument result = discoveryClient.getStopPointsDiscovery("test", messageQualifier);
-        //assertEquals(10, result);
+        assertNotNull(result);
 
         mockServer.verify();
     }

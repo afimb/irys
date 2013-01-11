@@ -11,27 +11,26 @@
  */
 package irys.siri.client.ws;
 
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.ws.test.client.RequestMatchers.payload;
+import static org.springframework.ws.test.client.ResponseCreators.withPayload;
 import irys.siri.client.features.TimeProviderMock;
-import irys.siri.client.ws.GeneralMessageClient;
 
-import java.util.List;
 import java.util.ArrayList;
-import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.apache.log4j.Logger;
+import java.util.List;
+
 import javax.xml.transform.Source;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.xml.transform.StringSource;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.client.MockWebServiceServer;
-import static org.springframework.ws.test.client.RequestMatchers.*;
-import static org.springframework.ws.test.client.ResponseCreators.*;
+import org.springframework.xml.transform.StringSource;
+
+import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
 
 /**
  * Integration test for general message
@@ -43,7 +42,6 @@ public class GeneralMessageIntegrationTest {
     @Autowired
     private GeneralMessageClient generalMessageClient;
     private MockWebServiceServer mockServer;    
-    private static final Logger logger = Logger.getLogger(GeneralMessageIntegrationTest.class);
     
     @Before
     public void createServer() throws Exception {
@@ -109,7 +107,7 @@ public class GeneralMessageIntegrationTest {
         List<String> channels = new ArrayList<String>();
         channels.add("Commercial");
         GetGeneralMessageResponseDocument result = generalMessageClient.getResponseDocument("test", channels, "FR");
-        //assertEquals(10, result);
+        assertNotNull(result);
 
         mockServer.verify();
     }
