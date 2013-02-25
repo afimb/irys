@@ -101,7 +101,7 @@ public class CheckStatusService extends AbstractSiriServiceDelegate{
     public CheckStatusResponseDocument checkStatus(CheckStatusDocument requestDoc) throws CheckStatusFaultException
     {
         logger.debug("Appel CheckStatus");
-        long debut = System.currentTimeMillis();
+        // long debut = System.currentTimeMillis();
         CheckStatusResponseDocument responseDoc = null;
         try {
             
@@ -135,7 +135,7 @@ public class CheckStatusService extends AbstractSiriServiceDelegate{
             
             throw new CheckStatusFaultException();
         } finally {
-            long fin = System.currentTimeMillis();
+            // long fin = System.currentTimeMillis();
             //logger.debug("fin CheckStatus : duree = "+siriTool.getTimeAsString(fin - debut));
         }
     }

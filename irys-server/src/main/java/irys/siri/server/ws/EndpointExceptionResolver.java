@@ -4,24 +4,24 @@
  */
 package irys.siri.server.ws;
 
-import javax.xml.namespace.QName;
-import org.springframework.ws.soap.SoapFault;
-import org.springframework.ws.soap.SoapFaultDetail;
-import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;
-
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
+
+import org.springframework.ws.soap.SoapFault;
+import org.springframework.ws.soap.SoapFaultDetail;
+import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;
 import org.springframework.xml.transform.StringSource;
+
 import uk.org.siri.siri.ErrorConditionElementDocument;
 import uk.org.siri.siri.ErrorConditionStructure;
 import uk.org.siri.siri.ErrorDescriptionStructure;
 
  public class EndpointExceptionResolver extends SoapFaultMappingExceptionResolver {
-	private static final QName CODE = new QName("code");
-	private static final QName SUB_CODE = new QName("sub-code");
+	// private static final QName CODE = new QName("code");
+	// private static final QName SUB_CODE = new QName("sub-code");
 
      @Override
      protected void customizeFault(Object endpoint, Exception ex, SoapFault fault) {

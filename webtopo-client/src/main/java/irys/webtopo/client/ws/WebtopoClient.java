@@ -13,9 +13,6 @@ package irys.webtopo.client.ws;
 
 import java.util.Collection;
 
-import lombok.Setter;
-
-import org.apache.log4j.Logger;
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 

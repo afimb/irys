@@ -38,7 +38,8 @@ public class GetTopologyVersion implements GetTopologyVersionInterface {
         // initialiser ici les ressources
     }
 
-    public GetTopologyVersionResponseDocument getTopologyVersion(GetTopologyVersionDocument requestDoc) {
+    @SuppressWarnings("unchecked")
+	public GetTopologyVersionResponseDocument getTopologyVersion(GetTopologyVersionDocument requestDoc) {
         GetTopologyVersionResponseDocument responseDoc = GetTopologyVersionResponseDocument.Factory.newInstance();
         TopologyVersionType response = responseDoc.addNewGetTopologyVersionResponse();
         File dir = new File(topologyDirectory);

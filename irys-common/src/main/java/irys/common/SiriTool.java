@@ -31,7 +31,7 @@ public class SiriTool {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(SiriTool.class);
+	//private static final Logger logger = Logger.getLogger(SiriTool.class);
 
 
 	/**

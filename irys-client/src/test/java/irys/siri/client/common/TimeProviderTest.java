@@ -11,11 +11,11 @@
  */
 package irys.siri.client.common;
 
+import static org.junit.Assert.assertFalse;
 import irys.siri.client.ws.CheckStatusClient;
 
 import java.util.Date;
-import org.apache.log4j.Logger;
-import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,6 @@ public class TimeProviderTest {
 
     @Autowired
     private CheckStatusClient checkStatusClient;
-    private static final Logger logger = Logger.getLogger(TimeProviderTest.class);
     
     @Test
     public void timeProvider() throws Exception {

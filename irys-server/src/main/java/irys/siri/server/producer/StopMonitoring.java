@@ -43,7 +43,7 @@ public class StopMonitoring extends AbstractSiri implements StopMonitoringInterf
         StopMonitoringDeliveryStructure delivery = answer.addNewStopMonitoringDelivery();
         delivery.setResponseTimestamp(responseTimestamp);
         delivery.setVersion(request.getVersion());
-        ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewStopMonitoringDelivery().addNewErrorCondition();
+        ServiceDeliveryErrorConditionStructure errorCondition = delivery.addNewErrorCondition();
         ErrorDescriptionStructure description = errorCondition.addNewDescription();
         description.setStringValue("Erreur simulée");
 

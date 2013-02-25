@@ -11,25 +11,24 @@
  */
 package irys.siri.client.ws;
 
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.ws.test.client.RequestMatchers.payload;
+import static org.springframework.ws.test.client.ResponseCreators.withPayload;
 import irys.siri.client.features.TimeProviderMock;
-import irys.siri.client.ws.StopMonitoringClient;
-import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.apache.log4j.Logger;
-import javax.xml.transform.Source;
-import org.apache.xmlbeans.GDuration;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.xml.transform.StringSource;
 
+import javax.xml.transform.Source;
+
+import org.apache.xmlbeans.GDuration;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.client.MockWebServiceServer;
-import static org.springframework.ws.test.client.RequestMatchers.*;
-import static org.springframework.ws.test.client.ResponseCreators.*;
+import org.springframework.xml.transform.StringSource;
+
+import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
 
 /**
  * Integration test for general message
@@ -41,7 +40,6 @@ public class StopMonitoringIntegrationTest {
     @Autowired
     private StopMonitoringClient stopMonitoringClient;
     private MockWebServiceServer mockServer;
-    private static final Logger logger = Logger.getLogger(StopMonitoringIntegrationTest.class);
 
     @Before
     public void createServer() throws Exception {
@@ -139,7 +137,7 @@ public class StopMonitoringIntegrationTest {
        
          GetStopMonitoringResponseDocument result = (GetStopMonitoringResponseDocument) stopMonitoringClient.getResponseDocument("", "", "NINOXE:Line:15568799:LOC", "", "",
                                                 timeProvider.getCalendarInstance() , new GDuration(), "", 0, 0, 0);
-        //assertEquals(10, result);
+         assertNotNull(result);
          
 
         mockServer.verify();
