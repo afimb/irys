@@ -760,12 +760,18 @@ public class SMCommand extends AbstractCommand
 				bDetailLevel = true;
 				if ((i + 1) < args.length) 
 				{
-					detailLevel = args[++i].substring(0, 1).toUpperCase();
+					String dl = args[++i];
+					detailLevel = dl.substring(0, 1).toLowerCase();
 					if (detailLevel.equals("m")) detailLevel = "minimum";
-					if (detailLevel.equals("b")) detailLevel = "basic";
-					if (detailLevel.equals("n")) detailLevel = "normal";
-					if (detailLevel.equals("c")) detailLevel = "calls";
-					if (detailLevel.equals("f")) detailLevel = "full";
+					else if (detailLevel.equals("b")) detailLevel = "basic";
+					else if (detailLevel.equals("n")) detailLevel = "normal";
+					else if (detailLevel.equals("c")) detailLevel = "calls";
+					else if (detailLevel.equals("f")) detailLevel = "full";
+					else 
+					{
+						printHelp("argument inconnu pour '-DetailLevel' "+dl);
+						System.exit(2);
+					}
 				} 
 				else 
 				{
