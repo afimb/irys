@@ -57,7 +57,7 @@ public class GeneralMessageIntegrationTest {
                 "<wsdl:GetGeneralMessage xmlns:wsdl='http://wsdl.siri.org.uk' xmlns:siri='http://www.siri.org.uk/siri'>"
                 + "<ServiceRequestInfo>"
                 + "<siri:RequestTimestamp>" + timeProvider.getXmlDate() + "</siri:RequestTimestamp>"
-                + "<siri:RequestorRef>siri-pom</siri:RequestorRef>"
+                + "<siri:RequestorRef>siri-client</siri:RequestorRef>"
                 + "<siri:MessageIdentifier>GeneralMessage:Test:0</siri:MessageIdentifier>"
                 + "</ServiceRequestInfo>"
                 + "<Request version='1.3'>"

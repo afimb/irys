@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="fileinfo" class="org.apache.log4j.RollingFileAppender">
+	    <param name="file" value="log/siri_info.log"/>
+	    <param name="maxFileSize" value="10MB"/>
+	    <param name="maxBackupIndex" value="4"/>
+	    <layout class="org.apache.log4j.PatternLayout"> 
+      	<!--	<param name="ConversionPattern" value="%d [%9t] %5p %25c{1} - %m%n"/> --> 
+      		<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p [%c] [%X{sessionid}] [%X{utilisateur}] [%x] %m%n"/> 
+    	</layout> 
+	    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+	        <param name="levelMin" value="INFO"/>
+	        <param name="levelMax" value="FATAL"/>
+	    </filter>
+	</appender>
+	<!-- Second Appender, ne journalise que les messages DEBUG à FATAL -->
+	<appender name="filedebug" class="org.apache.log4j.RollingFileAppender">
+	    <param name="file" value="log/siri_debug.log"/>
+	    <param name="maxFileSize" value="10MB"/>
+	    <param name="maxBackupIndex" value="4"/>
+	<layout class="org.apache.log4j.PatternLayout"> 
+      	<param name="ConversionPattern" value="%d [%9t] %5p %25c{1} - %m%n"/>
+    	</layout> 
+	    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+	        <param name="levelMin" value="DEBUG"/>
+	        <param name="levelMax" value="FATAL"/>
+	    </filter>
+	</appender>
+
+	<logger name="net.dryade.siri"  additivity="true">
+	    <level value="debug"/> 
+	</logger>
+	
+	<root>
+	    <priority value ="error" /> 
+	    <appender-ref ref="filedebug"/>
+	    <appender-ref ref="fileinfo"/>
+	</root>
+</log4j:configuration>

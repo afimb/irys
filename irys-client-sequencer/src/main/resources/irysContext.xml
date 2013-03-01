@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+   default-init-method="init" default-destroy-method="close">
+
+   <!-- CLIENT -->
+   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="ignoreUnresolvablePlaceholders" value="false" />
+      <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+      <property name="ignoreResourceNotFound" value="true" />
+      <property name="locations" value="classpath:irys-client.properties" />
+   </bean>
+
+    <!-- SEQUENCER -->
+   <bean name="RequestProcessManager" class="irys.siri.sequencer.impl.RequestProcessManager" abstract="true">
+      <!-- <property name="siriManager" ref="SiriServicesManagerBean" /> -->
+      <property name="notifyManager" ref="SubscriptionManager" />
+      <property name="period" value="60000" />
+   </bean>
+
+   <bean name="CheckStatusRequestProcessManager" class="irys.siri.sequencer.impl.CheckStatusRequestProcessManager" scope="prototype"
+      parent="RequestProcessManager">
+      <property name="normalModePeriod" value="${siri.sequencer.CheckStatus.normalModePeriod}" />
+      <property name="failureModePeriod" value="${siri.sequencer.CheckStatus.failureModePeriod}" />
+      <property name="timeOffset" value="${siri.sequencer.CheckStatus.timeOffset}" />
+      <property name="period" value="${siri.sequencer.CheckStatus.failureModePeriod}" />
+      <property name="packetCount" value="1" />
+      <property name="optimalPacketSize" value="10" />
+      <property name="checkStatusClient" ref="checkStatusClient" />
+      
+   </bean>
+
+   <bean name="GeneralMessageRequestProcessManager" class="irys.siri.sequencer.impl.GeneralMessageRequestProcessManager" scope="prototype"
+      parent="RequestProcessManager">
+      <property name="timeOffset" value="${siri.sequencer.GeneralMessage.timeOffset}" />
+      <property name="period" value="${siri.sequencer.GeneralMessage.period}" />
+      <property name="packetCount" value="1" />
+      <property name="optimalPacketSize" value="10" />
+      <property name="generalMessageClient" ref="generalMessageClient" />
+   </bean>
+
+   <bean name="StopMonitoringRequestProcessManager" class="irys.siri.sequencer.impl.StopMonitoringRequestProcessManager" scope="prototype"
+      parent="RequestProcessManager">
+      <property name="timeOffset" value="${siri.sequencer.StopMonitoring.timeOffset}" />
+      <property name="period" value="${siri.sequencer.StopMonitoring.period}" />
+      <property name="packetCount" value="${siri.sequencer.StopMonitoring.packetCount}" />
+      <property name="optimalPacketSize" value="${siri.sequencer.StopMonitoring.optimalPacketSize}" />
+      <property name="stopMonitoringClient" ref="stopMonitoringClient" />
+
+   </bean>
+
+   <bean name="Server1" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint1.key}" />
+      <property name="requestorRef" value="${siri.endPoint1.requestorRef}" />
+   </bean>
+   <bean name="Server2" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint2.key}" />
+      <property name="requestorRef" value="${siri.endPoint2.requestorRef}" />
+   </bean>
+   <bean name="Server3" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint3.key}" />
+      <property name="requestorRef" value="${siri.endPoint3.requestorRef}" />
+   </bean>
+   <bean name="Server4" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint4.key}" />
+      <property name="requestorRef" value="${siri.endPoint4.requestorRef}" />
+   </bean>
+   <bean name="Server5" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint5.key}" />
+      <property name="requestorRef" value="${siri.endPoint5.requestorRef}" />
+   </bean>
+   <bean name="Server6" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint6.key}" />
+      <property name="requestorRef" value="${siri.endPoint6.requestorRef}" />
+   </bean>
+   <bean name="Server7" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint7.key}" />
+      <property name="requestorRef" value="${siri.endPoint7.requestorRef}" />
+   </bean>
+   <bean name="Server8" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint8.key}" />
+      <property name="requestorRef" value="${siri.endPoint8.requestorRef}" />
+   </bean>
+   <bean name="Server9" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint9.key}" />
+      <property name="requestorRef" value="${siri.endPoint9.requestorRef}" />
+   </bean>
+   <bean name="Server10" class="irys.siri.sequencer.impl.SiriServer">
+      <property name="id" value="${siri.endPoint10.key}" />
+      <property name="requestorRef" value="${siri.endPoint10.requestorRef}" />
+   </bean>
+
+   <bean name="SubscriptionManager" class="irys.siri.sequencer.impl.SubscriptionManager" lazy-init="true">
+      <lookup-method name="getNewCSRequestProcessManager" bean="CheckStatusRequestProcessManager" />
+      <lookup-method name="getNewGMRequestProcessManager" bean="GeneralMessageRequestProcessManager" />
+      <lookup-method name="getNewSMRequestProcessManager" bean="StopMonitoringRequestProcessManager" />
+      <property name="scanForNotificationPeriod" value="${siri.sequencer.notificationPeriod}" />
+      <property name="managedServers">
+         <map>
+            <entry key="${siri.endPoint1.key}" value-ref="Server1" />
+            <entry key="${siri.endPoint2.key}" value-ref="Server2" />
+            <entry key="${siri.endPoint3.key}" value-ref="Server3" />
+            <entry key="${siri.endPoint4.key}" value-ref="Server4" />
+            <entry key="${siri.endPoint5.key}" value-ref="Server5" />
+            <entry key="${siri.endPoint6.key}" value-ref="Server6" />
+            <entry key="${siri.endPoint7.key}" value-ref="Server7" />
+            <entry key="${siri.endPoint8.key}" value-ref="Server8" />
+            <entry key="${siri.endPoint9.key}" value-ref="Server9" />
+            <entry key="${siri.endPoint10.key}" value-ref="Server10" />
+         </map>
+      </property>
+      <property name="managedServices">
+         <list>
+            <value>CheckStatusService</value>
+            <value>StopMonitoringService</value>
+            <value>GeneralMessageService</value>
+         </list>
+      </property>
+   </bean>
+
+</beans>

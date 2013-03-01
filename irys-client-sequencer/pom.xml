@@ -1,19 +1,15 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-   <modelVersion>4.0.0</modelVersion>
-   <parent>
-      <artifactId>irys</artifactId>
-      <groupId>irys</groupId>
-      <version>2.0.1</version>
-   </parent>
-
-   <groupId>irys</groupId>
-   <artifactId>webtopo-client</artifactId>
-   <version>2.0.1</version>
-   <name>Irys webtopo client</name>
-   <url>http://maven.apache.org</url>
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>irys</groupId>
+    <artifactId>irys</artifactId>
+    <version>2.0.1</version>
+  </parent>
+  <groupId>irys-client-sequencer</groupId>
+  <artifactId>irys-client-sequencer</artifactId>
+  <name>Irys client generating sequences of request</name>
+  <description>client used to simulate subscription when server does not provide it</description>
+  
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    </properties>
@@ -21,11 +17,15 @@
    <dependencies>
       <dependency>
          <groupId>net.dryade.siri</groupId>
-         <artifactId>webtopo-api</artifactId>
+         <artifactId>siri-api</artifactId>
       </dependency>
       <dependency>
          <groupId>irys</groupId>
          <artifactId>irys-common</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>irys</groupId>
+         <artifactId>irys-client</artifactId>
       </dependency>
       <dependency>
          <groupId>log4j</groupId>
@@ -34,32 +34,27 @@
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
-         <version>4.10</version>
+         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>javax.servlet</groupId>
          <artifactId>javax.servlet-api</artifactId>
-         <version>3.0.1</version>
       </dependency>
       <dependency>
          <groupId>org.springframework.ws</groupId>
          <artifactId>spring-ws-core</artifactId>
-         <version>2.0.2.RELEASE</version>
       </dependency>
       <dependency>
          <groupId>org.springframework.ws</groupId>
          <artifactId>spring-ws-test</artifactId>
-         <version>2.0.2.RELEASE</version>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-test</artifactId>
-         <version>3.0.6.RELEASE</version>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-beans</artifactId>
-         <version>3.0.6.RELEASE</version>
       </dependency>
 
       <!-- Property annotation (only for compile use) -->
@@ -95,12 +90,10 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-deploy-plugin</artifactId>
-            <version>2.7</version>
          </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
-            <version>2.3.2</version>
             <configuration>
                <excludes>
                   <exclude>**/irys.properties</exclude>
@@ -110,4 +103,5 @@
          </plugin>
       </plugins>
    </build>
+  
 </project>

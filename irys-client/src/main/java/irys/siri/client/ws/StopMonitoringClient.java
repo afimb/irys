@@ -29,6 +29,7 @@ import uk.org.siri.wsdl.GetStopMonitoringDocument;
 import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
 import uk.org.siri.siri.ContextualisedRequestStructure;
 import uk.org.siri.siri.MessageQualifierStructure;
+import uk.org.siri.siri.StopMonitoringDetailEnumeration;
 import uk.org.siri.siri.StopMonitoringFilterStructure;
 import uk.org.siri.siri.StopMonitoringMultipleRequestStructure;
 import uk.org.siri.siri.StopMonitoringRequestStructure;
@@ -65,8 +66,8 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     @Override
     public StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId, String lineId, String destId,
             String operatorId, Calendar start, GDuration preview,
-            String typeVisit, int maxStop, int minStLine, int onWard) throws SiriException {
-        return getRequestStructure(serverId, stopId, lineId, destId, operatorId, start, preview, typeVisit, maxStop, minStLine, onWard, null, null);
+            String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel) throws SiriException {
+        return getRequestStructure(serverId, stopId, lineId, destId, operatorId, start, preview, typeVisit, maxStop, minStLine, onWard, detailLevel, null, null);
     }
 
     /* (non-Javadoc)
@@ -75,7 +76,7 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     @Override
     public StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId, String lineId, String destId,
             String operatorId, Calendar start, GDuration preview,
-            String typeVisit, int maxStop, int minStLine, int onWard, Calendar timestamp, MessageQualifierStructure messageIdentifier) throws SiriException {
+            String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel, Calendar timestamp, MessageQualifierStructure messageIdentifier) throws SiriException {
         StopMonitoringRequestStructure request = StopMonitoringRequestStructure.Factory.newInstance();
         request.setVersion(getVersion());
         if (timestamp == null) {
@@ -119,6 +120,9 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
             request.setStopVisitTypes(StopVisitTypeEnumeration.Enum.forString(typeVisit));
         }
 
+        if (detailLevel != null && !detailLevel.equals("")) {
+            request.setStopMonitoringDetailLevel(StopMonitoringDetailEnumeration.Enum.forString(detailLevel.toLowerCase()));
+        }
         return request;
     }
 
@@ -168,7 +172,7 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
      */
     private GetStopMonitoringDocument getRequestDocument(String serverId, String stopId, String lineId, String destId, String operatorId,
             Calendar start, GDuration preview, String typeVisit, int maxStop,
-            int minStLine, int onWard) throws SiriException {
+            int minStLine, int onWard, String detailLevel) throws SiriException {
         GetStopMonitoringDocument requestDoc = GetStopMonitoringDocument.Factory.newInstance();
         StopMonitoringType getStopMonitoring = requestDoc.addNewGetStopMonitoring();
         ContextualisedRequestStructure serviceRequestInfo = getStopMonitoring.addNewServiceRequestInfo();
@@ -176,7 +180,7 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
         Calendar requestTimestamp = serviceRequestInfo.getRequestTimestamp();
         MessageQualifierStructure messageIdentifier = serviceRequestInfo.getMessageIdentifier();
 
-        StopMonitoringRequestStructure request = this.getRequestStructure(serverId, stopId, lineId, destId, operatorId, start, preview, typeVisit, maxStop, minStLine, onWard, requestTimestamp, messageIdentifier);
+        StopMonitoringRequestStructure request = this.getRequestStructure(serverId, stopId, lineId, destId, operatorId, start, preview, typeVisit, maxStop, minStLine, onWard, detailLevel, requestTimestamp, messageIdentifier);
         getStopMonitoring.setRequest(request);
         getStopMonitoring.addNewRequestExtension(); // mandatory by wsdl specification but useless
         return requestDoc;
@@ -188,9 +192,9 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     @Override
     public GetStopMonitoringResponseDocument getResponseDocument(String serverId, String stopId, String lineId, String destId, String operatorId,
             Calendar start, GDuration preview, String typeVisit, int maxStop,
-            int minStLine, int onWard)
+            int minStLine, int onWard, String detailLevel)
             throws SiriException {
-        GetStopMonitoringDocument requestDocument = this.getRequestDocument(serverId, stopId, lineId, destId, operatorId, start, preview, typeVisit, maxStop, minStLine, onWard);
+        GetStopMonitoringDocument requestDocument = this.getRequestDocument(serverId, stopId, lineId, destId, operatorId, start, preview, typeVisit, maxStop, minStLine, onWard, detailLevel);
         GetStopMonitoringResponseDocument responseDocument;
         //try {
             getTrace().addMessage(requestDocument);
@@ -285,7 +289,7 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     @Override
     public StopMonitoringFilterStructure getFilterStructure(String stopId, String lineId, String destId,
             String operatorId, Calendar start, GDuration preview,
-            String typeVisit, int maxStop, int minStLine, int onWard) {
+            String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel) {
         StopMonitoringFilterStructure request = StopMonitoringFilterStructure.Factory.newInstance();
         request.addNewMonitoringRef().setStringValue(stopId);
 
@@ -316,6 +320,10 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
 
         if (typeVisit != null && !typeVisit.equals("")) {
             request.setStopVisitTypes(StopVisitTypeEnumeration.Enum.forString(typeVisit));
+        }
+
+        if (detailLevel != null && !detailLevel.equals("")) {
+            request.setStopMonitoringDetailLevel(StopMonitoringDetailEnumeration.Enum.forString(detailLevel.toLowerCase()));
         }
 
         return request;
@@ -384,9 +392,9 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     public StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId,
             String lineId, String destId, String operatorId, String start,
             int preview, String typeVisit, int maxStop, int minStLine,
-            int onWard, Calendar timestamp,
+            int onWard, String detailLevel, Calendar timestamp,
             MessageQualifierStructure messageIdentifier) throws SiriException {
-        return getRequestStructure(serverId, stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard, timestamp, messageIdentifier);
+        return getRequestStructure(serverId, stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard, detailLevel, timestamp, messageIdentifier);
     }
 
     /* (non-Javadoc)
@@ -396,8 +404,8 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     public StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId,
             String lineId, String destId, String operatorId, String start,
             int preview, String typeVisit, int maxStop, int minStLine,
-            int onWard) throws SiriException {
-        return getRequestStructure(serverId, stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard);
+            int onWard, String detailLevel) throws SiriException {
+        return getRequestStructure(serverId, stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard, detailLevel);
     }
 
 
@@ -408,8 +416,8 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     public GetStopMonitoringResponseDocument getResponseDocument(
             String serverId, String stopId, String lineId, String destId,
             String operatorId, String start, int preview, String typeVisit,
-            int maxStop, int minStLine, int onWard) throws SiriException {
-        return getResponseDocument(serverId, stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard);
+            int maxStop, int minStLine, int onWard, String detailLevel) throws SiriException {
+        return getResponseDocument(serverId, stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard, detailLevel);
     }
 
 
@@ -420,8 +428,8 @@ public class StopMonitoringClient extends AbstractClient implements StopMonitori
     public StopMonitoringFilterStructure getFilterStructure(String stopId,
             String lineId, String destId, String operatorId, String start,
             int preview, String typeVisit, int maxStop, int minStLine,
-            int onWard) {
-        return getFilterStructure(stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard);
+            int onWard, String detailLevel) {
+        return getFilterStructure(stopId, lineId, destId, operatorId, toCalendar(start), toGDuration(preview), typeVisit, maxStop, minStLine, onWard,detailLevel);
     }
     
     public void setMultipleStopMonitoredSupported(boolean isMultipleStopMonitoredSupported) {

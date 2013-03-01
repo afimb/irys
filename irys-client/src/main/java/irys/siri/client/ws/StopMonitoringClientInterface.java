@@ -59,6 +59,7 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @param timestamp request timestamp (optional, current time if null)
 	 * @param messageIdentifier unique identifier used by server in responses (optional, generated if null)
 	 * @return the SIRI request in SIRI XSD XMLBeans mapping format 
@@ -67,7 +68,7 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 */
 	StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId, String lineId, String destId,
 			String operatorId, Calendar start, GDuration preview,
-			String typeVisit, int maxStop, int minStLine, int onWard, Calendar timestamp, MessageQualifierStructure messageIdentifier) throws SiriException;
+			String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel, Calendar timestamp, MessageQualifierStructure messageIdentifier) throws SiriException;
 	/**
 	 * prepare a StopMonitoringRequest for recurrent usage
 	 * 
@@ -81,6 +82,7 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param typeVisit filter on Arrivals/Departures/All times (optional, null for 'Departures')
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @return the SIRI request in SIRI XSD XMLBeans mapping format 
 	 * @throws SiriException unknown serverId
@@ -88,7 +90,7 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 */
 	StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId, String lineId, String destId, 
 			String operatorId, Calendar start, GDuration preview, 
-			String typeVisit, int maxStop, int minStLine, int onWard)throws SiriException;
+			String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel)throws SiriException;
 	/**
 	 * invoke StopMonitoringService on a declared SIRI server
 	 * 
@@ -103,12 +105,13 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @return the SIRI response in SIRI XSD XMLBeans mapping format 
 	 * @throws SiriException server or transport failure
 	 */
 	GetStopMonitoringResponseDocument getResponseDocument(String serverId,String stopId, String lineId, 
 			String destId, String operatorId, Calendar start, GDuration preview,
-			String typeVisit, int maxStop, int minStLine, int onWard) throws SiriException;
+			String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel) throws SiriException;
 	/**
 	 * prepare a StopMonitoringRequest for recurrent usage
 	 * 
@@ -123,6 +126,7 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @param timestamp request timestamp (optional, current time if null)
 	 * @param messageIdentifier unique identifier used by server in responses (optional, generated if null)
 	 * @return the SIRI request in SIRI XSD XMLBeans mapping format 
@@ -130,7 +134,7 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 */
 	StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId, String lineId, String destId,
 			String operatorId, String start, int preview,
-			String typeVisit, int maxStop, int minStLine, int onWard, Calendar timestamp, MessageQualifierStructure messageIdentifier) throws SiriException ;
+			String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel, Calendar timestamp, MessageQualifierStructure messageIdentifier) throws SiriException ;
 	/**
 	 * prepare a StopMonitoringRequest for recurrent usage
 	 * 
@@ -145,11 +149,12 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @return the SIRI request in SIRI XSD XMLBeans mapping format 
 	 * @throws SiriException unknown serverId
 	 */
 	StopMonitoringRequestStructure getRequestStructure(String serverId, String stopId, String lineId, String destId, String operatorId, String start,
-			int preview, String typeVisit, int maxStop, int minStLine, int onWard) throws SiriException;
+			int preview, String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel) throws SiriException;
 	/**
 	 * invoke StopMonitoringService on a declared SIRI server
 	 * 
@@ -164,11 +169,12 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @return the SIRI response in SIRI XSD XMLBeans mapping format 
 	 * @throws SiriException server or transport failure
 	 */
 	GetStopMonitoringResponseDocument getResponseDocument(String serverId,String stopId, String lineId, String destId, String operatorId, String start,
-			int preview, String typeVisit, int maxStop, int minStLine, int onWard) throws SiriException;
+			int preview, String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel) throws SiriException;
 	/**
 	 * invoke StopMonitoringService on a declared SIRI server
 	 * 
@@ -192,10 +198,11 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @return the SIRI request in SIRI XSD XMLBeans mapping format 
 	 */
 	StopMonitoringFilterStructure getFilterStructure(String stopId, String lineId, String destId, String operatorId, String start,
-			int preview, String typeVisit, int maxStop, int minStLine, int onWard);
+			int preview, String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel);
 	/**
 	 * prepare a FilterStructure form MultipleStopMonitoring call
 	 * 
@@ -209,10 +216,11 @@ public interface StopMonitoringClientInterface extends ServiceInterface
 	 * @param maxStop filter on maximum calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param minStLine filter on minimum calls per line returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
 	 * @param onWard filter on onward calls returned (optional, must be SiriInterface.UNDEFINED_NUMBER to ignore) 
+	 * @param detailLevel filter on detailLevel returned (optional, null to ignore) 
 	 * @return the SIRI request in SIRI XSD XMLBeans mapping format 
 	 */
 	StopMonitoringFilterStructure getFilterStructure(String stopId, String lineId, String destId, String operatorId, 
-			Calendar start, GDuration preview, String typeVisit, int maxStop, int minStLine, int onWard);
+			Calendar start, GDuration preview, String typeVisit, int maxStop, int minStLine, int onWard, String detailLevel);
 	/**
 	 * invoke MultipleStopMonitoringService on a declared SIRI server
 	 * 

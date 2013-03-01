@@ -55,7 +55,7 @@ public class DiscoveryStopPointIntegrationTest {
                 "<wsdl:StopPointsDiscovery xmlns:wsdl='http://wsdl.siri.org.uk' xmlns:siri='http://www.siri.org.uk/siri'>"
                 + "<Request version='1.3'>"
                 + "<siri:RequestTimestamp>" + timeProvider.getXmlDate() + "</siri:RequestTimestamp>"
-                + "<siri:RequestorRef>siri-pom</siri:RequestorRef>"
+                + "<siri:RequestorRef>siri-client</siri:RequestorRef>"
                 + "<siri:MessageIdentifier>Discovery:Test:0</siri:MessageIdentifier>"
                 + "</Request>"
                 + "<RequestExtension/>"

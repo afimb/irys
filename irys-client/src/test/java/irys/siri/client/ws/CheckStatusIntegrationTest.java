@@ -54,7 +54,7 @@ public class CheckStatusIntegrationTest {
                 "<wsdl:CheckStatus xmlns:wsdl='http://wsdl.siri.org.uk'>"
                 + "<Request>"
                 + "<siri:RequestTimestamp xmlns:siri='http://www.siri.org.uk/siri'>" + timeProvider.getXmlDate() + "</siri:RequestTimestamp>"
-                + "<siri:RequestorRef xmlns:siri='http://www.siri.org.uk/siri'>siri-pom</siri:RequestorRef>"
+                + "<siri:RequestorRef xmlns:siri='http://www.siri.org.uk/siri'>siri-client</siri:RequestorRef>"
                 + "<siri:MessageIdentifier xmlns:siri='http://www.siri.org.uk/siri'>CheckStatus:Dryade:0</siri:MessageIdentifier>"
                 + "</Request>"
                 + "<RequestExtension>"

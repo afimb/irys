@@ -5,12 +5,12 @@
    <parent>
       <artifactId>irys</artifactId>
       <groupId>irys</groupId>
-      <version>2.0</version>
+      <version>2.0.1</version>
    </parent>
 
    <groupId>irys</groupId>
    <artifactId>webtopo-server</artifactId>
-   <version>2.0</version>
+   <version>2.0.1</version>
    <packaging>war</packaging>
    <name>Irys webtopo server</name>
 

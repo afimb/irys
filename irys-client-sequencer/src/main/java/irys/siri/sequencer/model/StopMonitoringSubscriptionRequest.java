@@ -243,14 +243,14 @@ public class StopMonitoringSubscriptionRequest extends AbstractSubscriptionReque
 	public StopMonitoringRequestStructure toRequestStructure(StopMonitoringClientInterface service, String serverId) throws SiriException
 	{
 		if (requestStructure == null)
-			requestStructure =  service.getRequestStructure(serverId,monitoringRef, lineRef, destinationRef, null, null, previewInterval, stopVisitType.name(), maximumStopVisits, ServiceInterface.UNDEFINED_NUMBER, ServiceInterface.UNDEFINED_NUMBER,null,null);
+			requestStructure =  service.getRequestStructure(serverId,monitoringRef, lineRef, destinationRef, null, null, previewInterval, stopVisitType.name(), maximumStopVisits, ServiceInterface.UNDEFINED_NUMBER, ServiceInterface.UNDEFINED_NUMBER,null,null,null);
 		return requestStructure;
 	}
 
 	public StopMonitoringFilterStructure toFilterStructure(StopMonitoringClientInterface service, String serverId)
 	{
 		if (filterStructure == null)
-			filterStructure = service.getFilterStructure(monitoringRef, lineRef, destinationRef, null, null, previewInterval, stopVisitType.name(), maximumStopVisits, ServiceInterface.UNDEFINED_NUMBER, ServiceInterface.UNDEFINED_NUMBER);
+			filterStructure = service.getFilterStructure(monitoringRef, lineRef, destinationRef, null, null, previewInterval, stopVisitType.name(), maximumStopVisits, ServiceInterface.UNDEFINED_NUMBER, ServiceInterface.UNDEFINED_NUMBER,null);
 		return filterStructure;
 	}
 

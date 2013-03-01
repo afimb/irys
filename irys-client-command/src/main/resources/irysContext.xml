@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+   default-init-method="init" default-destroy-method="close">
+
+   <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="ignoreUnresolvablePlaceholders" value="true" />
+      <property name="locations">
+         <list>
+            <value>classpath:irys-client.properties</value>
+            <value>classpath:spring.properties</value>
+         </list>
+      </property>
+      <property name="ignoreResourceNotFound" value="true" />
+   </bean>
+   
+      <bean id="siriTool" name="siriTool" class="irys.common.SiriTool">
+      <property name="boardingPositionWithLoc" value="${siri.idWithLoc.StopPoint.BP}" />
+      <property name="companyWithLoc" value="${siri.idWithLoc.Company}" />
+      <property name="journeyPatternWithLoc" value="${siri.idWithLoc.JourneyPattern}" />
+      <property name="lineWithLoc" value="${siri.idWithLoc.Line}" />
+      <property name="networkWithLoc" value="${siri.idWithLoc.Network}" />
+      <property name="quayWithLoc" value="${siri.idWithLoc.StopPoint.QUAY}" />
+      <property name="routeWithLoc" value="${siri.idWithLoc.Route}" />
+      <property name="stopPlaceWithLoc" value="${siri.idWithLoc.StopPoint.SP}" />
+      <property name="stopPointOnRouteWithLoc" value="${siri.idWithLoc.StopPoint.SPOR}" />
+      <property name="vehicleJourneyWithLoc" value="${siri.idWithLoc.VehicleJourney}" />
+      <property name="vehicleWithLoc" value="${siri.idWithLoc.Vehicle}" />
+      <property name="types" value="${siri.allowedStopPointTypes}" />
+   </bean>
+
+   <bean id="AbstractClient" name="AbstractClient" class="irys.siri.client.cmd.AbstractCommand" abstract="true">
+      <property name="siriTool" ref="siriTool"/>
+   </bean>
+   
+   <bean id="SMClient" name="SMClient" class="irys.siri.client.cmd.SMCommand" parent="AbstractClient">
+      <property name="service" ref="stopMonitoringClient"/>
+   </bean>
+   <bean id="GMClient" name="GMClient" class="irys.siri.client.cmd.GMCommand" parent="AbstractClient">
+      <property name="service" ref="generalMessageClient"/>
+   </bean>
+   <bean id="VMClient" name="VMClient" class="irys.siri.client.cmd.VMCommand" parent="AbstractClient">
+      <property name="service" ref="vehicleMonitoringClient"/>
+   </bean>
+   <bean id="DSClient" name="DSClient" class="irys.siri.client.cmd.DSCommand" parent="AbstractClient">
+      <property name="service" ref="discoveryClient"/>
+   </bean>
+   <bean id="CSClient" name="CSClient" class="irys.siri.client.cmd.CSCommand" parent="AbstractClient">
+      <property name="service" ref="checkStatusClient"/>
+   </bean>
+   
+</beans>

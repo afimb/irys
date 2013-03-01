@@ -55,7 +55,7 @@ public class StopMonitoringIntegrationTest {
                 "<wsdl:GetStopMonitoring xmlns:wsdl='http://wsdl.siri.org.uk' xmlns:siri='http://www.siri.org.uk/siri'>"
                 + "<ServiceRequestInfo>"
                 + "<siri:RequestTimestamp>" + timeProvider.getXmlDate() + "</siri:RequestTimestamp>"
-                + "<siri:RequestorRef>siri-pom</siri:RequestorRef>"
+                + "<siri:RequestorRef>siri-client</siri:RequestorRef>"
                 + "<siri:MessageIdentifier>StopMonitoring:Test:0</siri:MessageIdentifier>"
                 + "</ServiceRequestInfo>"
                 + "<Request version='1.3'>"
@@ -136,7 +136,7 @@ public class StopMonitoringIntegrationTest {
         StopMonitoringClient.setRequestNumber(0);
        
          GetStopMonitoringResponseDocument result = (GetStopMonitoringResponseDocument) stopMonitoringClient.getResponseDocument("", "", "NINOXE:Line:15568799:LOC", "", "",
-                                                timeProvider.getCalendarInstance() , new GDuration(), "", 0, 0, 0);
+                                                timeProvider.getCalendarInstance() , new GDuration(), "", 0, 0, 0, null);
          assertNotNull(result);
          
 

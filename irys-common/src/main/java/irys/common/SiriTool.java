@@ -18,6 +18,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.Setter;
+
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlObject;
 import org.apache.xmlbeans.XmlOptions;
@@ -81,6 +83,12 @@ public class SiriTool {
 	 */
 	public static final String ID_NETWORK = "GroupOfLines";
 
+	
+	/**
+	 * marker for vehicle identifiers
+	 */
+	public static final String ID_VEHICLE = "Vehicle";
+
 	/**
 	 * indicate when Siri identifiers are suffixed by :LOC
 	 */
@@ -91,27 +99,29 @@ public class SiriTool {
 	 */
 	private Set<String> stopPointTypes;
 
-	private Boolean networkWithLoc = true;
+	@Setter private Boolean networkWithLoc = true;
 
-	private Boolean journeyPatternWithLoc = true;
+	@Setter private Boolean journeyPatternWithLoc = true;
 
-	private Boolean vehicleJourneyWithLoc = true;
+	@Setter private Boolean vehicleJourneyWithLoc = true;
 
-	private Boolean lineWithLoc = true;
+	@Setter private Boolean vehicleWithLoc = true;
 
-	private Boolean companyWithLoc = true;
+	@Setter private Boolean lineWithLoc = true;
 
-	private Boolean routeWithLoc = true;
+	@Setter private Boolean companyWithLoc = true;
 
-	private Boolean stopPlaceWithLoc = true;
+	@Setter private Boolean routeWithLoc = true;
 
-	private Boolean stopPointOnRouteWithLoc = true;
+	@Setter private Boolean stopPlaceWithLoc = true;
 
-	private Boolean boardingPositionWithLoc = true;
+	@Setter private Boolean stopPointOnRouteWithLoc = true;
 
-	private Boolean quayWithLoc = true;
+	@Setter private Boolean boardingPositionWithLoc = true;
 
-	private String types = "BP,SPOR,SP,QUAY";
+	@Setter private Boolean quayWithLoc = true;
+
+	@Setter private String types = "BP,SPOR,SP,QUAY";
 
 
 
@@ -126,6 +136,7 @@ public class SiriTool {
 		withLoc.put(ID_LINE, lineWithLoc );
 		withLoc.put(ID_COMPANY, companyWithLoc );
 		withLoc.put(ID_ROUTE, routeWithLoc );
+		withLoc.put(ID_VEHICLE, vehicleWithLoc );
 		withLoc.put(ID_STOPPOINT+":"+ID_SP, stopPlaceWithLoc );
 		withLoc.put(ID_STOPPOINT+":"+ID_SPOR, stopPointOnRouteWithLoc );
 		withLoc.put(ID_STOPPOINT+":"+ID_BP, boardingPositionWithLoc );
@@ -406,104 +417,7 @@ public class SiriTool {
 		return validation;
 	}
 
-	/**
-	 * set the LOC rule for Network ids
-	 *
-	 * @param networkWithLoc the networkWithLoc to set
-	 */
-	public void setNetworkWithLoc(Boolean networkWithLoc) {
-		this.networkWithLoc = networkWithLoc;
-	}
 
-	/**
-	 * set the LOC rule for JourneyPattern ids
-	 *
-	 * @param journeyPatternWithLoc the journeyPatternWithLoc to set
-	 */
-	public void setJourneyPatternWithLoc(Boolean journeyPatternWithLoc) {
-		this.journeyPatternWithLoc = journeyPatternWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for VehicleJourney ids
-	 *
-	 * @param vehicleJourneyWithLoc the vehicleJourneyWithLoc to set
-	 */
-	public void setVehicleJourneyWithLoc(Boolean vehicleJourneyWithLoc) {
-		this.vehicleJourneyWithLoc = vehicleJourneyWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for Line ids
-	 *
-	 * @param lineWithLoc the lineWithLoc to set
-	 */
-	public void setLineWithLoc(Boolean lineWithLoc) {
-		this.lineWithLoc = lineWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for Company ids
-	 *
-	 * @param companyWithLoc the companyWithLoc to set
-	 */
-	public void setCompanyWithLoc(Boolean companyWithLoc) {
-		this.companyWithLoc = companyWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for Route ids
-	 *
-	 * @param routeWithLoc the routeWithLoc to set
-	 */
-	public void setRouteWithLoc(Boolean routeWithLoc) {
-		this.routeWithLoc = routeWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for StopPoint:SP ids
-	 *
-	 * @param stopPlaceWithLoc the stopPlaceWithLoc to set
-	 */
-	public void setStopPlaceWithLoc(Boolean stopPlaceWithLoc) {
-		this.stopPlaceWithLoc = stopPlaceWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for StopPoint:SPOR ids
-	 *
-	 * @param stopPointOnRouteWithLoc the stopPointOnRouteWithLoc to set
-	 */
-	public void setStopPointOnRouteWithLoc(Boolean stopPointOnRouteWithLoc) {
-		this.stopPointOnRouteWithLoc = stopPointOnRouteWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for StopPoint:BP ids
-	 *
-	 * @param boardingPositionWithLoc the boardingPositionWithLoc to set
-	 */
-	public void setBoardingPositionWithLoc(Boolean boardingPositionWithLoc) {
-		this.boardingPositionWithLoc = boardingPositionWithLoc;
-	}
-
-	/**
-	 * set the LOC rule for StopPoint:Q ids
-	 *
-	 * @param quayWithLoc the quayWithLoc to set
-	 */
-	public void setQuayWithLoc(Boolean quayWithLoc) {
-		this.quayWithLoc = quayWithLoc;
-	}
-
-	/**
-	 * set the allowed subtypes for StopPoint ids
-	 *
-	 * @param types the types to set
-	 */
-	public void setTypes(String types) {
-		this.types = types;
-	}
 
 
 }

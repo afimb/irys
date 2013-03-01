@@ -89,6 +89,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
             if (!validate) {
                 requestMessageRef.setStringValue("Invalid Request Structure");
                 answer = response.addNewAnswer();
+                answer.setVersion(wsdlVersion);
                 answer.setResponseTimestamp(responseTimestamp);
                 ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewErrorCondition();
                 setOtherError(errorCondition, SiriException.Code.BAD_REQUEST, "Invalid Request Structure");
@@ -109,6 +110,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
                     } else {
                         answer = response.addNewAnswer();
                         answer.setResponseTimestamp(responseTimestamp);
+                        answer.setVersion(wsdlVersion);
                         ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewErrorCondition();
                         CapabilityNotSupportedErrorStructure error = errorCondition.addNewCapabilityNotSupportedError();
                         error.setErrorText("LinesDiscovery");
@@ -119,6 +121,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
                 } catch (Exception e) {
                     answer = response.addNewAnswer();
                     answer.setResponseTimestamp(responseTimestamp);
+                    answer.setVersion(wsdlVersion);
                     ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewErrorCondition();
                     setOtherError(errorCondition, e);
                     answer.setStatus(false);
@@ -185,6 +188,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
                 requestMessageRef.setStringValue("Invalid Request Structure");
                 answer = response.addNewAnswer();
                 answer.setResponseTimestamp(responseTimestamp);
+                answer.setVersion(wsdlVersion);
                 ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewErrorCondition();
                 setOtherError(errorCondition, SiriException.Code.BAD_REQUEST, "Invalid Request Structure");
                 answer.setStatus(false);
@@ -204,6 +208,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
                     } else {
                         answer = response.addNewAnswer();
                         answer.setResponseTimestamp(responseTimestamp);
+                        answer.setVersion(wsdlVersion);
                         ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewErrorCondition();
                         CapabilityNotSupportedErrorStructure error = errorCondition.addNewCapabilityNotSupportedError();
                         error.setErrorText("LinesDiscovery");
@@ -216,6 +221,7 @@ public class DiscoveryService extends AbstractSiriServiceDelegate {
                 } catch (Exception e) {
                     answer = response.addNewAnswer();
                     answer.setResponseTimestamp(responseTimestamp);
+                    answer.setVersion(wsdlVersion);
                     ServiceDeliveryErrorConditionStructure errorCondition = answer.addNewErrorCondition();
                     setOtherError(errorCondition, e);
                     answer.setStatus(false);
