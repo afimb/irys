@@ -35,31 +35,30 @@
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
          <version>4.10</version>
+         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>javax.servlet</groupId>
          <artifactId>javax.servlet-api</artifactId>
-         <version>3.0.1</version>
+         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.springframework.ws</groupId>
          <artifactId>spring-ws-core</artifactId>
-         <version>2.0.2.RELEASE</version>
       </dependency>
       <dependency>
          <groupId>org.springframework.ws</groupId>
          <artifactId>spring-ws-test</artifactId>
-         <version>2.0.2.RELEASE</version>
+         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-test</artifactId>
-         <version>3.0.6.RELEASE</version>
+         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-beans</artifactId>
-         <version>3.0.6.RELEASE</version>
       </dependency>
 
       <!-- Property annotation (only for compile use) -->
@@ -95,12 +94,10 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-deploy-plugin</artifactId>
-            <version>2.7</version>
          </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
-            <version>2.3.2</version>
             <configuration>
                <excludes>
                   <exclude>**/irys.properties</exclude>
