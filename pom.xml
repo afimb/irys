@@ -11,6 +11,11 @@
 			<name>Official Chouette Repository</name>
 			<url>http://www.chouette.mobi/maven/</url>
 		</repository>
+		<repository>
+			<id>maven repo</id>
+			<name>Maven Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -38,8 +43,8 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.ws.version>2.0.2.RELEASE</spring.ws.version>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.ws.version>2.1.2.RELEASE</spring.ws.version>
+		<spring.version>3.2.2.RELEASE</spring.version>
 	</properties>
 
 	<distributionManagement>
@@ -52,6 +57,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- Property annotation (only for compile use) -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>0.10.8</version>
+			</dependency>
 			<!-- Logging dependencies -->
 			<dependency>
 				<groupId>log4j</groupId>
@@ -61,12 +72,12 @@
 			<dependency>
 				<groupId>irys</groupId>
 				<artifactId>irys-common</artifactId>
-				<version>2.0.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>irys</groupId>
 				<artifactId>irys-client</artifactId>
-				<version>2.0.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>net.dryade.siri</groupId>
@@ -100,10 +111,42 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>${spring.version}</version>
 				<type>jar</type>
 			</dependency>
+			<!-- added for version conflict -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-oxm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
@@ -117,7 +160,7 @@
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
-				<version>1.4</version>
+				<version>2.3</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>

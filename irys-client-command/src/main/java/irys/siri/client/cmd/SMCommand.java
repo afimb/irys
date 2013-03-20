@@ -11,6 +11,9 @@
  */
 package irys.siri.client.cmd;
 
+import irys.common.SiriException;
+import irys.siri.client.ws.StopMonitoringClientInterface;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,8 +27,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import lombok.Setter;
-import irys.siri.client.ws.StopMonitoringClientInterface;
-import irys.common.SiriException;
 
 import org.apache.log4j.Logger;
 
