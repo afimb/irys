@@ -123,7 +123,7 @@ public class SiriTool {
 
 	@Setter private String types = "BP,SPOR,SP,QUAY";
 
-
+    @Setter private boolean emptySubtype = false;
 
 	/**
 	 * initializations
@@ -182,7 +182,7 @@ public class SiriTool {
 	 * build a Siri identifier with subcategory type
 	 * <p/>
 	 * a Siri Identifier is composed as below :
-	 * <pre>[provider_id]:[type]:[subtype][technical id][:LOC]</pre>
+	 * <pre>[provider_id]:[type]:[subtype]:[technical id][:LOC]</pre>
 	 *
 	 * :LOC is appended if the technical id is locally managed (i.e. provider dependent)
 	 * <br/>
@@ -201,6 +201,10 @@ public class SiriTool {
 		if (localType.equals("StopPoint") )
 		{
 			localType = localType+":"+subtype;
+		}
+		else if (emptySubtype)
+		{
+			localType = localType+":";
 		}
 		String siriID = provider+":"+localType+":"+id;
 		if (isLoc(localType)) siriID+= ":LOC";
