@@ -38,7 +38,7 @@ Installation
 Get git repository
 ```sh
 cd workspace
-git clone -b V2_0_3 git://github.com/dryade/irys
+git clone -b V2_0_1 git://github.com/afimb/irys
 cd irys
 ```
 
@@ -52,8 +52,8 @@ mvn test
 More Information
 ----------------
 
-More information can be found on the [project website on GitHub](http://github.com/dryade/irys).
-There is extensive usage documentation available [on the wiki](https://github.com/dryade/irys/wiki).
+More information can be found on the [project website on GitHub](.).
+There is extensive usage documentation available [on the wiki](../../wiki).
 
 Example Usage
 -------------
@@ -66,17 +66,14 @@ mvn -Dmaven.test.skip=true install
 License
 -------
 
-This project is licensed under the CeCILL-B license, a copy of which can be found in the [LICENSE](https://github.com/dryade/irys/blob/master/LICENSE.md) file.
+This project is licensed under the CeCILL-B license, a copy of which can be found in the [LICENSE](./LICENSE.md) file.
 
 Release Notes
 -------------
 
-The release notes can be found in [CHANGELOG](https://github.com/dryade/irys/blob/master/CHANGELOG.md) file
+The release notes can be found in [CHANGELOG](./CHANGELOG.md) file
 
 Support
 -------
 
-Users looking for support should file an issue on the GitHub issue tracking page (https://github.com/dryade/irys/issues), or file a pull request (https://github.com/dryade/irys/pulls) if you have a fix available.
-=======
-irys
-====
+Users looking for support should file an issue on the GitHub [issue tracking page](../../issues), or file a [pull request](../../pulls) if you have a fix available.
