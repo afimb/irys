@@ -59,27 +59,32 @@ public class SiriServicesCommand
 			ConfigurableBeanFactory factory = applicationContext.getBeanFactory();
 
 			String service = args[0];
-			if (service.equals("SMClient"))
+			if (service.equalsIgnoreCase("SMClient"))
 			{
 				AbstractCommand client =  (AbstractCommand) factory.getBean("SMClient");
 				client.call(args);
 			}
-			else if (service.equals("GMClient"))
+			else if (service.equalsIgnoreCase("GMClient"))
 			{
 				AbstractCommand client = (AbstractCommand) factory.getBean("GMClient");
 				client.call(args);
 			}
-			else if (service.equals("VMClient"))
+			else if (service.equalsIgnoreCase("VMClient"))
 			{
 				AbstractCommand client = (AbstractCommand) factory.getBean("VMClient");
 				client.call(args);
 			}
-			else if (service.equals("DSClient"))
+			else if (service.equalsIgnoreCase("ETClient"))
+			{
+				AbstractCommand client = (AbstractCommand) factory.getBean("ETClient");
+				client.call(args);
+			}
+			else if (service.equalsIgnoreCase("DSClient"))
 			{
 				AbstractCommand client = (AbstractCommand) factory.getBean("DSClient");
 				client.call(args);
 			}
-			else if (service.equals("CSClient"))
+			else if (service.equalsIgnoreCase("CSClient"))
 			{
 				AbstractCommand client = (AbstractCommand) factory.getBean("CSClient");
 				client.call(args);
@@ -102,7 +107,7 @@ public class SiriServicesCommand
 	{
 		System.out.println("client.sh serviceName [serviceOption]+");
 		System.out.println("                   -[help]");
-		System.out.println(" serviceName : SMClient|GMClient|VMClient|DSClient|CSClient ");
+		System.out.println(" serviceName : SMClient|GMClient|ETClient|VMClient|DSClient|CSClient ");
 		System.out.println("");
 		System.out.println("call client.sh serviceName -help for serviceOptions help");
 	}

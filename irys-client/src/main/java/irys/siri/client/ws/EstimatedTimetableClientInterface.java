@@ -28,7 +28,7 @@ import uk.org.siri.siri.EstimatedTimetableRequestStructure;
  * @author michel
  *
  */
-public interface EstimatedTimetableServiceInterface extends ServiceInterface
+public interface EstimatedTimetableClientInterface extends ServiceInterface
 {	
 	/**
 	 * build a request to prepare Subscription request

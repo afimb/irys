@@ -134,7 +134,7 @@ public class DSCommand extends AbstractCommand
 			System.out.println("ERREUR DE SYNTAXE : " + errorMsg);
 			System.out.println("");
 		}
-		System.out.println("client.sh DiscoveryClient [-StopDiscovery | -LineDiscovery] ");
+		System.out.println("client.sh DiscoveryClient [-Stop | -Line] ");
 		// System.out.println("                  -v (verbose)");
 		System.out.println("                  -h[elp]");
 		System.out.println(" les noms des options sont case-insensitive");
@@ -152,7 +152,7 @@ public class DSCommand extends AbstractCommand
 
 		for (int i = 0; i < args.length; i++) 
 		{
-			if (args[i].equalsIgnoreCase("-StopDiscovery")) 
+			if (args[i].equalsIgnoreCase("-StopDiscovery") || args[i].equalsIgnoreCase("-Stop")) 
 			{
 				if (stopDiscovery) 
 				{
@@ -162,7 +162,7 @@ public class DSCommand extends AbstractCommand
 				stopDiscovery = true;
 				continue;
 			}
-			if (args[i].equalsIgnoreCase("-LineDiscovery")) 
+			if (args[i].equalsIgnoreCase("-LineDiscovery") || args[i].equalsIgnoreCase("-Line")) 
 			{
 				if (lineDiscovery) 
 				{
@@ -253,12 +253,12 @@ public class DSCommand extends AbstractCommand
 
 		if (!stopDiscovery && !lineDiscovery) 
 		{
-			printHelp("option -StopDiscovery ou -LineDiscovery absente");
+			printHelp("option -Stop ou -Line absente");
 			System.exit(2);
 		}
 		if (stopDiscovery && lineDiscovery) 
 		{
-			printHelp("option -StopDiscovery et -LineDiscovery en conflit");
+			printHelp("option -Stop et -Line en conflit");
 			System.exit(2);
 		}
 

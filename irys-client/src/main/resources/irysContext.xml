@@ -115,6 +115,12 @@
          <value>${siri.vehicleMonitoring.requestIdentifierPrefix}</value>
       </property>
    </bean>
+   
+   <bean id="estimatedTimetableClient" parent="abstractClient" class="irys.siri.client.ws.EstimatedTimetableClient">
+      <property name="requestIdentifierPrefix">
+         <value>${siri.estimatedTimetable.requestIdentifierPrefix}</value>
+      </property>
+   </bean>
 
    <bean id="discoveryClient" parent="abstractClient" class="irys.siri.client.ws.DiscoveryClient">
       <property name="requestIdentifierPrefix">

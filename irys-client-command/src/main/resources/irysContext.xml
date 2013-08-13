@@ -49,5 +49,8 @@
    <bean id="CSClient" name="CSClient" class="irys.siri.client.cmd.CSCommand" parent="AbstractClient">
       <property name="service" ref="checkStatusClient"/>
    </bean>
+   <bean id="ETlient" name="ETClient" class="irys.siri.client.cmd.ETCommand" parent="AbstractClient">
+      <property name="service" ref="estimatedTimetableClient"/>
+   </bean>
    
 </beans>
