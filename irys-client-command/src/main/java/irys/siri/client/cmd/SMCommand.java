@@ -328,6 +328,7 @@ public class SMCommand extends AbstractCommand
 					GetStopMonitoringResponseDocument responseDocument = service.getResponseDocument(serverId,stopId,lineId,destId,operatorId,start,preview,typeVisit,maxStop,minStLine,onWard,detailLevel);
 					save(service.getLastRequest(),"SMRequest.xml");
 					save(responseDocument, "SMResponse.xml");
+					checkXmlSchema(responseDocument);
 					if (verbose)
 					{
 						// TODO : System.out.println(getTextFormattedPrint(responseDocument));

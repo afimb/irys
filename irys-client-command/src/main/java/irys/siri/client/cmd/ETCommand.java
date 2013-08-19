@@ -57,6 +57,7 @@ public class ETCommand extends AbstractCommand
 		    GetEstimatedTimetableResponseDocument responseDocument = service.getResponseDocument(serverId,lineIds.toArray(new String[0]),timetableVersionId,operatorId,preview);
 			save(service.getLastRequest(),requestFileName);
 			save(responseDocument, responseFileName);
+			checkXmlSchema(responseDocument);
 			if (verbose)
 			{
 				// TODO : System.out.println(getTextFormattedPrint(responseDocument));

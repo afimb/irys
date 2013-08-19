@@ -57,6 +57,7 @@ public class DSCommand extends AbstractCommand
 				LinesDiscoveryResponseDocument responseDocument = service.getLinesDiscovery(serverId);
 				save(service.getLastLineRequest(),requestLineFileName);
 				save(responseDocument, responseLineFileName);
+				checkXmlSchema(responseDocument);
 				if (verbose)
 				{
 					// TODO : System.out.println(getTextFormattedPrint(responseDocument));
@@ -67,6 +68,7 @@ public class DSCommand extends AbstractCommand
 				StopPointsDiscoveryResponseDocument responseDocument = service.getStopPointsDiscovery(serverId);
 				save(service.getLastStopPointRequest(),requestStopFileName);
 				save(responseDocument, responseStopFileName);
+				checkXmlSchema(responseDocument);
 				if (verbose)
 				{
 					// TODO : System.out.println(getTextFormattedPrint(responseDocument));

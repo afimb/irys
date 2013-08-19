@@ -49,6 +49,7 @@ public class VMCommand extends AbstractCommand
 			GetVehicleMonitoringResponseDocument responseDocument = service.getResponseDocument(serverId,vehicleId,lineId,maxVehicle);
 			save(service.getLastRequest(),requestFileName);
 			save(responseDocument, responseFileName);
+			checkXmlSchema(responseDocument);
 			if (verbose)
 			{
 				// TODO : System.out.println(getTextFormattedPrint(responseDocument));

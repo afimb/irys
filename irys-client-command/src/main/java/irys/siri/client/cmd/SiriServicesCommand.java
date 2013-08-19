@@ -89,11 +89,11 @@ public class SiriServicesCommand
 				AbstractCommand client = (AbstractCommand) factory.getBean("CSClient");
 				client.call(args);
 			}
-//			else if (service.equals("Subscribe") || service.equals("Unsubscribe"))
-//			{
-//				AbstractCommand client = (AbstractCommand) factory.getBean("Subscribe");
-//				client.call(args);
-//			}
+			else if (service.equalsIgnoreCase("Subscribe") || service.equalsIgnoreCase("Unsubscribe"))
+			{
+				AbstractCommand client = (AbstractCommand) factory.getBean("Subscribe");
+				client.call(args);
+			}
 			else
 			{
 				printHelp();
@@ -108,6 +108,7 @@ public class SiriServicesCommand
 		System.out.println("client.sh serviceName [serviceOption]+");
 		System.out.println("                   -[help]");
 		System.out.println(" serviceName : SMClient|GMClient|ETClient|VMClient|DSClient|CSClient ");
+		System.out.println("               Subscribe|Unsubscribe");
 		System.out.println("");
 		System.out.println("call client.sh serviceName -help for serviceOptions help");
 	}

@@ -43,6 +43,7 @@ public class CSCommand extends AbstractCommand
 			CheckStatusResponseDocument responseDocument = service.getResponseDocument(serverId);
 			save(service.getLastRequest(),requestFileName);
 			save(responseDocument, responseFileName);
+			checkXmlSchema(responseDocument);
 			if (verbose)
 			{
 				// TODO : System.out.println(getTextFormattedPrint(responseDocument));

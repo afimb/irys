@@ -49,8 +49,29 @@
    <bean id="CSClient" name="CSClient" class="irys.siri.client.cmd.CSCommand" parent="AbstractClient">
       <property name="service" ref="checkStatusClient"/>
    </bean>
-   <bean id="ETlient" name="ETClient" class="irys.siri.client.cmd.ETCommand" parent="AbstractClient">
+   <bean id="ETClient" name="ETClient" class="irys.siri.client.cmd.ETCommand" parent="AbstractClient">
       <property name="service" ref="estimatedTimetableClient"/>
    </bean>
+   <bean id="Subscribe" name="Subscribe" class="irys.siri.client.cmd.SubscribeCommand" parent="AbstractClient">
+      <property name="service" ref="subscriptionClient"/>
+   
+   		<property name="services">
+			<map>
+				<entry key="SMClient">
+					<ref bean="SMClient" />
+				</entry>
+				<entry key="GMClient">
+					<ref bean="GMClient" />
+				</entry>
+				<entry key="VMClient">
+					<ref bean="VMClient" />
+				</entry>
+				<entry key="ETClient">
+					<ref bean="ETClient" />
+				</entry>
+			</map>
+		</property>
+   </bean>
+
    
 </beans>

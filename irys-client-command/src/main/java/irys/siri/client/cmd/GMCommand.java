@@ -76,6 +76,7 @@ public class GMCommand extends AbstractCommand
       GetGeneralMessageResponseDocument responseDocument = call(service);
       save(service.getLastRequest(),requestFileName);
       save(responseDocument, responseFileName);
+		checkXmlSchema(responseDocument);
       if (verbose)
       {
     	  // TODO

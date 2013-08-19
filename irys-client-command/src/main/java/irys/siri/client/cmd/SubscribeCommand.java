@@ -11,16 +11,17 @@
  */
 package irys.siri.client.cmd;
 
+import irys.siri.client.ws.SubscriptionServiceInterface;
+
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
+import lombok.Getter;
 import lombok.Setter;
-
-
-import irys.siri.client.ws.SubscriptionServiceInterface;
 
 import org.apache.xmlbeans.GDuration;
 
@@ -32,6 +33,8 @@ import uk.org.siri.wsdl.SubscribeResponseDocument;
 
 public class SubscribeCommand extends AbstractCommand
 {
+
+	@Getter @Setter private Map<String,AbstractCommand> services;
 
   public static void printHelp(String errorMsg) 
   {
@@ -47,7 +50,7 @@ public class SubscribeCommand extends AbstractCommand
     System.out.println("                   -[h(elp)]");
     System.out.println(" dateTime : yyyy/mm/dd-hh:mm");
     System.out.println(" time : mmm");
-    System.out.println(" ZZClient : GMClient ou SMClient, suivi par leurs arguments spécifiques");
+    System.out.println(" ZZClient : GMClient, SMClient, VMClient ou ETClient, suivi par leurs arguments spécifiques");
     System.out.println("\nclient.sh Unsubscribe -SubscriptionId id");    
     System.out.println("\n les noms des options sont case-insensitive");
   }
@@ -58,6 +61,7 @@ public class SubscribeCommand extends AbstractCommand
   private String askedService;
   private boolean verbose = false;
   private String subscriptionId = null;
+  
   
   private @Setter SubscriptionServiceInterface service;
 	/**
@@ -88,22 +92,28 @@ public class SubscribeCommand extends AbstractCommand
       else
       {
         SubscribeDocument requestDocument = service.getNewSubscriptionRequest(notify,serverId);
+		
         AbstractCommand command = null;
-
-        if (askedService.equals("GMClient"))
-        {
-          command = new GMCommand();
-
-        }
-        else if (askedService.equals("SMClient"))
-        {
-
-        }
-        else
-        {
-          printHelp("service "+askedService+" inconnu");
-          System.exit(2);
-        }
+		if (askedService.equalsIgnoreCase("SMClient"))
+		{
+			command = services.get("SMClient");
+		}
+		else if (askedService.equalsIgnoreCase("GMClient"))
+		{
+			command = services.get("GMClient");
+		}
+		else if (askedService.equalsIgnoreCase("VMClient"))
+		{
+			command = services.get("VMClient");
+		}
+		else if (askedService.equalsIgnoreCase("ETClient"))
+		{
+			command = services.get("ETClient");
+		}
+		else
+		{
+			printHelp("unavailable service "+askedService);
+		}
         AbstractServiceRequestStructure request = command.getRequest(args);
 
         service.addRequestStructure(requestDocument, request, validUntil, false, changeBeforeTime );

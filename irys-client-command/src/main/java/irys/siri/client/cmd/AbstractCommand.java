@@ -13,6 +13,7 @@ package irys.siri.client.cmd;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,10 @@ import irys.common.SiriException;
 import irys.common.SiriTool;
 
 import org.apache.commons.io.output.FileWriterWithEncoding;
+import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlObject;
+import org.apache.xmlbeans.XmlOptions;
+import org.apache.xmlbeans.XmlValidationError;
 
 import uk.org.siri.siri.AbstractServiceRequestStructure;
 
@@ -64,6 +68,56 @@ public abstract class AbstractCommand
 
   public abstract AbstractServiceRequestStructure getRequest(String[] args) throws SiriException;
   
-  
+  /**
+   * check an object xml validity, add error details in log
+   *
+   * @param object object to check
+   * @return validity result
+   */
+  public boolean checkXmlSchema(XmlObject object) {
+      if (object == null) {
+    	  System.err.println("validate null object");
+          return false;
+      }
+      ArrayList<XmlValidationError> validationErrors = new ArrayList<XmlValidationError>();
+      XmlOptions validationOptions = new XmlOptions();
+      validationOptions.setErrorListener(validationErrors);
+
+      boolean validation = object.validate(validationOptions);
+      if (!validation) {
+          // TODO patch pour contourner un pb sur le ANY du generalMessage
+          // actuellement, le contenu du GeneralMessage ne peut donc pas etre valide par cette methode
+          ArrayList<XmlValidationError> validationWrongErrors = new ArrayList<XmlValidationError>();
+          for (XmlValidationError error : validationErrors) {
+              if (error.toString().contains("IDFGeneralMessageStructure")) {
+                  validationWrongErrors.add(error);
+              } else if (error.toString().contains("IDFGeneralMessageRequestFilterStructure")) {
+                  validationWrongErrors.add(error);
+              }
+
+          }
+          validationErrors.removeAll(validationWrongErrors);
+          if (validationErrors.size() == 0) {
+              validation = true;
+          } else {
+              StringBuffer errorTxt = new StringBuffer(">> Invalid object " + object.getClass().getName());
+              for (XmlValidationError error : validationErrors) {
+                  errorTxt.append("\n >> [");
+                  errorTxt.append(XmlValidationError.severityAsString(error.getSeverity()));
+                  errorTxt.append("] ");
+                  errorTxt.append(error.getMessage());
+                  errorTxt.append(" (");
+                  errorTxt.append(error.getErrorCode());
+                  errorTxt.append(")");
+                  errorTxt.append("\n >> ");
+                  errorTxt.append(error.toString());
+              }
+              System.err.println(errorTxt);
+              System.err.println("Invalid content = \n" + object.toString());
+          }
+      }
+      return validation;
+  }
+
    
 }
