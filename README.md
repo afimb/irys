@@ -38,7 +38,7 @@ Installation
 Get git repository
 ```sh
 cd workspace
-git clone -b V2_0_1 git://github.com/afimb/irys
+git clone -b V2_1_0 git://github.com/afimb/irys
 cd irys
 ```
 
