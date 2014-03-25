@@ -18,14 +18,14 @@ import irys.siri.server.data.SubscriberBean;
 import java.util.Calendar;
 import java.util.List;
 
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.GeneralMessageDeliveriesStructure;
-import uk.org.siri.siri.GeneralMessageRequestStructure;
-import uk.org.siri.siri.GeneralMessageSubscriptionStructure;
-import uk.org.siri.siri.InfoMessageCancellationStructure;
-import uk.org.siri.siri.InfoMessageStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.SubscriptionResponseBodyStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.GeneralMessageDeliveriesStructure;
+import irys.uk.org.siri.siri.GeneralMessageRequestStructure;
+import irys.uk.org.siri.siri.GeneralMessageSubscriptionStructure;
+import irys.uk.org.siri.siri.InfoMessageCancellationStructure;
+import irys.uk.org.siri.siri.InfoMessageStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.SubscriptionResponseBodyStructure;
 
 
 /**

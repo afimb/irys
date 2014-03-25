@@ -18,8 +18,8 @@ import java.util.List;
 
 import uk.org.siri.wsdl.GetGeneralMessageDocument;
 import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
-import uk.org.siri.siri.GeneralMessageRequestStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.GeneralMessageRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
 
 /**
  * Methods required to implement a General Messaging Service Proxy

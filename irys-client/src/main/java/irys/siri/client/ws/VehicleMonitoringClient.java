@@ -20,9 +20,9 @@ import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlObject;
 import org.springframework.ws.WebServiceMessageFactory;
 
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.VehicleMonitoringRequestStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.VehicleMonitoringRequestStructure;
 import uk.org.siri.wsdl.GetVehicleMonitoringDocument;
 import uk.org.siri.wsdl.GetVehicleMonitoringResponseDocument;
 import uk.org.siri.wsdl.VehicleMonitoringRequestType;
@@ -59,7 +59,7 @@ public class VehicleMonitoringClient extends AbstractClient implements VehicleMo
     }
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.client.ws.VehicleMonitoringClientInterface#getRequestStructure(java.lang.String, java.lang.String, java.lang.String, int, java.util.Calendar, uk.org.siri.siri.MessageQualifierStructure)
+     * @see net.dryade.siri.client.ws.VehicleMonitoringClientInterface#getRequestStructure(java.lang.String, java.lang.String, java.lang.String, int, java.util.Calendar, irys.uk.org.siri.siri.MessageQualifierStructure)
      */
     @Override
     public VehicleMonitoringRequestStructure getRequestStructure(String serverId, String vehicleId, String lineId,
@@ -160,7 +160,7 @@ public class VehicleMonitoringClient extends AbstractClient implements VehicleMo
 
 
     /* (non-Javadoc)
-     * @see net.dryade.siri.client.ws.VehicleMonitoringClientInterface#getResponseDocument(java.lang.String, uk.org.siri.siri.VehicleMonitoringRequestStructure)
+     * @see net.dryade.siri.client.ws.VehicleMonitoringClientInterface#getResponseDocument(java.lang.String, irys.uk.org.siri.siri.VehicleMonitoringRequestStructure)
      */
     @Override
     public GetVehicleMonitoringResponseDocument getResponseDocument(String serverId,

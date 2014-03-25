@@ -6,7 +6,7 @@ package irys.siri.server.ws;
 
 import org.springframework.ws.soap.server.endpoint.annotation.FaultCode;
 import org.springframework.ws.soap.server.endpoint.annotation.SoapFault;
-import uk.org.siri.siri.ErrorConditionElementDocument;
+import irys.uk.org.siri.siri.ErrorConditionElementDocument;
 
 /**
  *

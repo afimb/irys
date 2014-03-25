@@ -3,7 +3,7 @@
  */
 package irys.siri.sequencer.model;
 
-import uk.org.siri.siri.LocationStructure;
+import irys.uk.org.siri.siri.LocationStructure;
 
 /**
  * @author michel

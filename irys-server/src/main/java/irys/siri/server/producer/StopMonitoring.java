@@ -17,17 +17,17 @@ import irys.siri.server.data.ServiceBean;
 import irys.siri.server.data.SubscriberBean;
 
 import java.util.Calendar;
-import uk.org.siri.siri.AccessNotAllowedErrorStructure;
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.ErrorDescriptionStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
-import uk.org.siri.siri.StopMonitoringDeliveriesStructure;
-import uk.org.siri.siri.StopMonitoringDeliveryStructure;
-import uk.org.siri.siri.StopMonitoringMultipleRequestStructure;
-import uk.org.siri.siri.StopMonitoringRequestStructure;
-import uk.org.siri.siri.StopMonitoringSubscriptionStructure;
-import uk.org.siri.siri.SubscriptionResponseBodyStructure;
+import irys.uk.org.siri.siri.AccessNotAllowedErrorStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.ErrorDescriptionStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
+import irys.uk.org.siri.siri.StopMonitoringDeliveriesStructure;
+import irys.uk.org.siri.siri.StopMonitoringDeliveryStructure;
+import irys.uk.org.siri.siri.StopMonitoringMultipleRequestStructure;
+import irys.uk.org.siri.siri.StopMonitoringRequestStructure;
+import irys.uk.org.siri.siri.StopMonitoringSubscriptionStructure;
+import irys.uk.org.siri.siri.SubscriptionResponseBodyStructure;
 
 
 /**

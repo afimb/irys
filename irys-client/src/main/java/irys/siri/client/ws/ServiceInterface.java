@@ -15,7 +15,7 @@ import irys.common.SiriException;
 
 import java.util.Map;
 
-import uk.org.siri.siri.AbstractServiceDeliveryStructure;
+import irys.uk.org.siri.siri.AbstractServiceDeliveryStructure;
 
 public interface ServiceInterface
 {

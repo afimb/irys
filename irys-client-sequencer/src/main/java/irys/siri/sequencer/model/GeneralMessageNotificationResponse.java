@@ -11,8 +11,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import uk.org.siri.siri.GeneralMessageDeliveryStructure;
-import uk.org.siri.siri.InfoMessageStructure;
+import irys.uk.org.siri.siri.GeneralMessageDeliveryStructure;
+import irys.uk.org.siri.siri.InfoMessageStructure;
 
 public class GeneralMessageNotificationResponse extends AbstractNotificationResponse 
 {

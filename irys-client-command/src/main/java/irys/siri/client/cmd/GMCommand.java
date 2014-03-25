@@ -21,7 +21,7 @@ import lombok.Setter;
 import irys.siri.client.ws.GeneralMessageClientInterface;
 import irys.siri.client.ws.GeneralMessageClientInterface.IDFItemRefFilterType;
 import irys.common.SiriException;
-import uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
 import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
 
 public class GMCommand extends AbstractCommand

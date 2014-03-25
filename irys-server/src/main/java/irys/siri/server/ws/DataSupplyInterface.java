@@ -16,9 +16,9 @@ import irys.common.SiriException;
 import java.util.Calendar;
 
 
-import uk.org.siri.siri.ConsumerRequestEndpointStructure;
-import uk.org.siri.siri.DataSupplyRequestBodyStructure;
-import uk.org.siri.siri.ServiceDeliveryBodyStructure;
+import irys.uk.org.siri.siri.ConsumerRequestEndpointStructure;
+import irys.uk.org.siri.siri.DataSupplyRequestBodyStructure;
+import irys.uk.org.siri.siri.ServiceDeliveryBodyStructure;
 
 /**
  * 

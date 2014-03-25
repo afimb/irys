@@ -17,12 +17,12 @@ import irys.siri.server.data.SubscriberBean;
 
 import java.util.Calendar;
 
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.ProductionTimetableDeliveriesStructure;
-import uk.org.siri.siri.ProductionTimetableRequestStructure;
-import uk.org.siri.siri.SubscriptionResponseBodyStructure;
-import uk.org.siri.siri.ProductionTimetableSubscriptionRequestDocument.ProductionTimetableSubscriptionRequest;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.ProductionTimetableDeliveriesStructure;
+import irys.uk.org.siri.siri.ProductionTimetableRequestStructure;
+import irys.uk.org.siri.siri.SubscriptionResponseBodyStructure;
+import irys.uk.org.siri.siri.ProductionTimetableSubscriptionRequestDocument.ProductionTimetableSubscriptionRequest;
 
 /**
  * 

@@ -2,7 +2,7 @@ package irys.siri.realtime.model;
 
 import irys.siri.realtime.model.Message;
 import irys.siri.realtime.model.type.MessageType;
-import uk.org.siri.siri.IDFMessageStructure;
+import irys.uk.org.siri.siri.IDFMessageStructure;
 
 public class Message {
 	private MessageType type;

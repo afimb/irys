@@ -17,8 +17,8 @@ import irys.common.SiriException;
 import org.apache.xmlbeans.XmlObject;
 
 import uk.org.siri.wsdl.GetVehicleMonitoringResponseDocument;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.VehicleMonitoringRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.VehicleMonitoringRequestStructure;
 
 /**
  * Methods required to implement a Vehicle Monitoring Service Proxy

@@ -12,35 +12,34 @@
 package irys.siri.client.ws;
 
 import irys.common.SiriException;
+import irys.uk.org.siri.siri.AbstractServiceDeliveryStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.ExtensionsStructure;
+import irys.uk.org.siri.siri.GeneralMessageDeliveriesStructure;
+import irys.uk.org.siri.siri.GeneralMessageDeliveryStructure;
+import irys.uk.org.siri.siri.GeneralMessageRequestStructure;
+import irys.uk.org.siri.siri.IDFGeneralMessageRequestFilterDocument;
+import irys.uk.org.siri.siri.IDFGeneralMessageRequestFilterStructure;
+import irys.uk.org.siri.siri.InfoChannelRefStructure;
+import irys.uk.org.siri.siri.InfoMessageStructure;
+import irys.uk.org.siri.siri.JourneyPatternRefStructure;
+import irys.uk.org.siri.siri.LineRefStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.RouteRefStructure;
+import irys.uk.org.siri.siri.StopPointRefStructure;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-
 import org.apache.log4j.Logger;
-
 import org.springframework.ws.WebServiceMessageFactory;
-import uk.org.siri.siri.AbstractServiceDeliveryStructure;
-import uk.org.siri.wsdl.GetGeneralMessageDocument;
-import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.ExtensionsStructure;
-import uk.org.siri.siri.GeneralMessageDeliveriesStructure;
-import uk.org.siri.siri.GeneralMessageDeliveryStructure;
-import uk.org.siri.siri.GeneralMessageRequestStructure;
-import uk.org.siri.siri.IDFGeneralMessageRequestFilterDocument;
-import uk.org.siri.siri.IDFGeneralMessageRequestFilterStructure;
-import uk.org.siri.siri.InfoChannelRefStructure;
-import uk.org.siri.siri.InfoMessageStructure;
-import uk.org.siri.siri.JourneyPatternRefStructure;
-import uk.org.siri.siri.LineRefStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.RouteRefStructure;
-import uk.org.siri.siri.StopPointRefStructure;
+
 import uk.org.siri.wsdl.GeneralMessageAnswerType;
 import uk.org.siri.wsdl.GeneralMessageRequestType;
+import uk.org.siri.wsdl.GetGeneralMessageDocument;
+import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
 
 /**
  * implementation of a GeneralMessageClient Proxy

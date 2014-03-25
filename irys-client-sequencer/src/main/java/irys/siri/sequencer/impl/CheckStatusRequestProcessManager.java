@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
 import uk.org.siri.wsdl.CheckStatusResponseType;
-import uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
 
 /**
  * @author michel
@@ -123,7 +123,7 @@ public class CheckStatusRequestProcessManager extends RequestProcessManager<Chec
 				String text = "[INTERNAL_ERROR] : status false without ErrorCondition";
 				if (siriResponse.getAnswer().isSetErrorCondition())
 				{
-					uk.org.siri.siri.CheckStatusResponseBodyStructure.ErrorCondition siriError = siriResponse.getAnswer().getErrorCondition();
+					irys.uk.org.siri.siri.CheckStatusResponseBodyStructure.ErrorCondition siriError = siriResponse.getAnswer().getErrorCondition();
 					if (siriError.isSetServiceNotAvailableError() )
 					{
 						text = siriError.getServiceNotAvailableError().getErrorText();

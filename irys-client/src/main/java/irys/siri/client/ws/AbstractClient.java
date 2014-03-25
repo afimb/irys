@@ -28,15 +28,15 @@ import org.apache.xmlbeans.XmlObject;
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
-import uk.org.siri.siri.AbstractServiceDeliveryStructure;
-import uk.org.siri.siri.AccessNotAllowedErrorStructure;
-import uk.org.siri.siri.CapabilityNotSupportedErrorStructure;
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.OtherErrorStructure;
-import uk.org.siri.siri.ParticipantRefStructure;
-import uk.org.siri.siri.RequestStructure;
-import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
+import irys.uk.org.siri.siri.AbstractServiceDeliveryStructure;
+import irys.uk.org.siri.siri.AccessNotAllowedErrorStructure;
+import irys.uk.org.siri.siri.CapabilityNotSupportedErrorStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.OtherErrorStructure;
+import irys.uk.org.siri.siri.ParticipantRefStructure;
+import irys.uk.org.siri.siri.RequestStructure;
+import irys.uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
 
 /**
  * an abstract service proxy implementation to manage common activity of proxies

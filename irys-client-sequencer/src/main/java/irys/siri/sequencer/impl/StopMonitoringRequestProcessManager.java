@@ -26,10 +26,10 @@ import org.apache.log4j.Logger;
 import uk.org.siri.wsdl.GetMultipleStopMonitoringResponseDocument;
 import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
 import uk.org.siri.wsdl.StopMonitoringAnswerType;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.StopMonitoringDeliveryStructure;
-import uk.org.siri.siri.StopMonitoringFilterStructure;
-import uk.org.siri.siri.StopMonitoringRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.StopMonitoringDeliveryStructure;
+import irys.uk.org.siri.siri.StopMonitoringFilterStructure;
+import irys.uk.org.siri.siri.StopMonitoringRequestStructure;
 
 /**
  * @author michel

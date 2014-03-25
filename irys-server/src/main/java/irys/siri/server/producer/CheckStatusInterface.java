@@ -13,8 +13,8 @@ package irys.siri.server.producer;
 
 import irys.common.SiriException;
 
-import uk.org.siri.siri.CheckStatusResponseBodyStructure;
-import uk.org.siri.siri.RequestStructure;
+import irys.uk.org.siri.siri.CheckStatusResponseBodyStructure;
+import irys.uk.org.siri.siri.RequestStructure;
 
 /**
  * 

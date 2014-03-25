@@ -27,7 +27,7 @@ import org.apache.xmlbeans.XmlObject;
 import org.apache.xmlbeans.XmlOptions;
 import org.apache.xmlbeans.XmlValidationError;
 
-import uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
 
 
 public abstract class AbstractCommand

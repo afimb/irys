@@ -14,7 +14,7 @@ package irys.siri.client.cmd;
 import lombok.Setter;
 import irys.siri.client.ws.DiscoveryClientInterface;
 import irys.common.SiriException;
-import uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
 import uk.org.siri.wsdl.LinesDiscoveryDocument;
 import uk.org.siri.wsdl.LinesDiscoveryResponseDocument;
 import uk.org.siri.wsdl.StopPointsDiscoveryDocument;

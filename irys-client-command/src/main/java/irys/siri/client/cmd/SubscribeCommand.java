@@ -25,8 +25,8 @@ import lombok.Setter;
 
 import org.apache.xmlbeans.GDuration;
 
-import uk.org.siri.siri.AbstractServiceRequestStructure;
-import uk.org.siri.siri.SubscriptionQualifierStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.SubscriptionQualifierStructure;
 import uk.org.siri.wsdl.DeleteSubscriptionResponseDocument;
 import uk.org.siri.wsdl.SubscribeDocument;
 import uk.org.siri.wsdl.SubscribeResponseDocument;

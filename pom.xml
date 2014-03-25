@@ -23,7 +23,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>irys</groupId>
 	<artifactId>irys</artifactId>
-	<version>2.1.0</version>
+	<version>2.2.0</version>
 	<packaging>pom</packaging>
 	<name>Irys generic services for SIRI</name>
 	<modules>
@@ -39,8 +39,8 @@
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.ws.version>2.1.2.RELEASE</spring.ws.version>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.ws.version>2.1.4.RELEASE</spring.ws.version>
+		<spring.version>3.2.4.RELEASE</spring.version>
 	</properties>
 
 	<distributionManagement>
@@ -77,19 +77,19 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>net.dryade.siri</groupId>
+				<groupId>irys</groupId>
 				<artifactId>siri-api</artifactId>
-				<version>1.0</version>
+				<version>1.1</version>
 			</dependency>
 			<dependency>
-				<groupId>net.dryade.siri</groupId>
+				<groupId>irys</groupId>
 				<artifactId>webtopo-api</artifactId>
-				<version>1.0</version>
+				<version>1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.xmlbeans</groupId>
 				<artifactId>xmlbeans</artifactId>
-				<version>2.4.0</version>
+				<version>2.6.0</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -248,7 +248,7 @@
 					</compilerArguments>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.1</version>
@@ -272,7 +272,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>

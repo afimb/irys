@@ -14,7 +14,7 @@ package irys.siri.client.cmd;
 import lombok.Setter;
 import irys.siri.client.ws.CheckStatusClientInterface;
 import irys.common.SiriException;
-import uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
 
 public class CSCommand extends AbstractCommand

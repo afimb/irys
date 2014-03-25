@@ -19,9 +19,9 @@ import org.apache.log4j.Logger;
 import org.springframework.ws.WebServiceMessageFactory;
 import uk.org.siri.wsdl.CheckStatusDocument;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.ParticipantRefStructure;
-import uk.org.siri.siri.RequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.ParticipantRefStructure;
+import irys.uk.org.siri.siri.RequestStructure;
 import uk.org.siri.wsdl.CheckStatusType;
 
 /**

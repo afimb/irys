@@ -15,7 +15,7 @@ import lombok.Setter;
 import irys.siri.client.ws.ServiceInterface;
 import irys.siri.client.ws.VehicleMonitoringClientInterface;
 import irys.common.SiriException;
-import uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
 import uk.org.siri.wsdl.GetVehicleMonitoringResponseDocument;
 
 public class VMCommand extends AbstractCommand

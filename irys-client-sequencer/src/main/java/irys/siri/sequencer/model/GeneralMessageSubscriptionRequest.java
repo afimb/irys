@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import uk.org.siri.siri.GeneralMessageRequestStructure;
+import irys.uk.org.siri.siri.GeneralMessageRequestStructure;
 
 
 /**

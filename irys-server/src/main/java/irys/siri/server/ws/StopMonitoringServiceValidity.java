@@ -4,9 +4,9 @@
  */
 package irys.siri.server.ws;
 
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.ParticipantRefStructure;
-import uk.org.siri.siri.StopMonitoringRequestStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.ParticipantRefStructure;
+import irys.uk.org.siri.siri.StopMonitoringRequestStructure;
 import uk.org.siri.wsdl.GetStopMonitoringDocument;
 
 /**

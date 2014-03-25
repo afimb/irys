@@ -22,12 +22,12 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import uk.org.siri.wsdl.CheckStatusDocument;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
 import uk.org.siri.wsdl.CheckStatusResponseType;
-import uk.org.siri.siri.CheckStatusResponseBodyStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.MessageRefStructure;
-import uk.org.siri.siri.OtherErrorStructure;
-import uk.org.siri.siri.ParticipantRefStructure;
-import uk.org.siri.siri.ProducerResponseEndpointStructure;
+import irys.uk.org.siri.siri.CheckStatusResponseBodyStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.MessageRefStructure;
+import irys.uk.org.siri.siri.OtherErrorStructure;
+import irys.uk.org.siri.siri.ParticipantRefStructure;
+import irys.uk.org.siri.siri.ProducerResponseEndpointStructure;
 
 @Endpoint
 public class CheckStatusService extends AbstractSiriServiceDelegate{

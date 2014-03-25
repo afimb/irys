@@ -22,10 +22,10 @@ import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlObject;
 import org.apache.xmlbeans.XmlOptions;
 import org.apache.xmlbeans.XmlValidationError;
-import uk.org.siri.siri.AbstractServiceDeliveryStructure;
-import uk.org.siri.siri.CapabilityNotSupportedErrorStructure;
-import uk.org.siri.siri.OtherErrorStructure;
-import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
+import irys.uk.org.siri.siri.AbstractServiceDeliveryStructure;
+import irys.uk.org.siri.siri.CapabilityNotSupportedErrorStructure;
+import irys.uk.org.siri.siri.OtherErrorStructure;
+import irys.uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
 
 /**
  * @author michel

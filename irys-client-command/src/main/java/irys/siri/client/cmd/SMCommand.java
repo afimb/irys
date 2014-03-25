@@ -30,9 +30,9 @@ import lombok.Setter;
 
 import org.apache.log4j.Logger;
 
-import uk.org.siri.siri.AbstractServiceRequestStructure;
-import uk.org.siri.siri.StopMonitoringFilterStructure;
-import uk.org.siri.siri.StopMonitoringRequestStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.StopMonitoringFilterStructure;
+import irys.uk.org.siri.siri.StopMonitoringRequestStructure;
 import uk.org.siri.wsdl.GetMultipleStopMonitoringResponseDocument;
 import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
 

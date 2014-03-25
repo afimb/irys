@@ -1,6 +1,6 @@
 package irys.siri.realtime.model;
 
-import uk.org.siri.siri.IDFLineSectionStructure;
+import irys.uk.org.siri.siri.IDFLineSectionStructure;
 
 public class Section 
 {

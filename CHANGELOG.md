@@ -1,3 +1,6 @@
+# Version 2.2.0 (25/03/2014)
+* migration technique sur SIRI-API 1.1
+
 # Version 2.1.0 (06/01/2014)
 * ajout du module EstimatedTimetable dans le client SIRI
 

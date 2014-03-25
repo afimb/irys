@@ -21,8 +21,8 @@ import org.apache.xmlbeans.XmlObject;
 import uk.org.siri.wsdl.DeleteSubscriptionResponseDocument;
 import uk.org.siri.wsdl.SubscribeDocument;
 import uk.org.siri.wsdl.SubscribeResponseDocument;
-import uk.org.siri.siri.AbstractServiceRequestStructure;
-import uk.org.siri.siri.SubscriptionQualifierStructure;
+import irys.uk.org.siri.siri.AbstractServiceRequestStructure;
+import irys.uk.org.siri.siri.SubscriptionQualifierStructure;
 
 /**
  * Methods required to implement a Subscription Service Proxy

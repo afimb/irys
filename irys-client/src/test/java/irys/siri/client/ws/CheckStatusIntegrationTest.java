@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.client.MockWebServiceServer;
 import org.springframework.xml.transform.StringSource;
 
-import uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
 
 /**

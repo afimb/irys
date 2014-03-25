@@ -15,9 +15,9 @@ import org.springframework.ws.soap.SoapFaultDetail;
 import org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver;
 import org.springframework.xml.transform.StringSource;
 
-import uk.org.siri.siri.ErrorConditionElementDocument;
-import uk.org.siri.siri.ErrorConditionStructure;
-import uk.org.siri.siri.ErrorDescriptionStructure;
+import irys.uk.org.siri.siri.ErrorConditionElementDocument;
+import irys.uk.org.siri.siri.ErrorConditionStructure;
+import irys.uk.org.siri.siri.ErrorDescriptionStructure;
 
  public class EndpointExceptionResolver extends SoapFaultMappingExceptionResolver {
 	// private static final QName CODE = new QName("code");

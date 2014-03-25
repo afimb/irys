@@ -15,9 +15,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.GDuration;
 
-import uk.org.siri.siri.MonitoredStopVisitStructure;
-import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
-import uk.org.siri.siri.StopMonitoringDeliveryStructure;
+import irys.uk.org.siri.siri.MonitoredStopVisitStructure;
+import irys.uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
+import irys.uk.org.siri.siri.StopMonitoringDeliveryStructure;
 
 public class StopMonitoringNotificationResponse extends
 AbstractNotificationResponse 

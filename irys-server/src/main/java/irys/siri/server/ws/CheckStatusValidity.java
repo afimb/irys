@@ -5,7 +5,7 @@
 package irys.siri.server.ws;
 
 import uk.org.siri.wsdl.CheckStatusDocument;
-import uk.org.siri.siri.RequestStructure;
+import irys.uk.org.siri.siri.RequestStructure;
 /**
  *
  * @author marc

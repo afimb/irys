@@ -5,7 +5,7 @@ import irys.siri.realtime.model.type.InfoChannel;
 
 import java.util.Calendar;
 
-import uk.org.siri.siri.InfoMessageStructure;
+import irys.uk.org.siri.siri.InfoMessageStructure;
 
 
 public class InfoMessageCancellation 

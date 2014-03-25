@@ -13,14 +13,14 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.XmlObject;
 
-import uk.org.siri.siri.IDFGeneralMessageStructure;
-import uk.org.siri.siri.IDFLineSectionStructure;
-import uk.org.siri.siri.IDFMessageStructure;
-import uk.org.siri.siri.InfoMessageStructure;
-import uk.org.siri.siri.JourneyPatternRefStructure;
-import uk.org.siri.siri.LineRefStructure;
-import uk.org.siri.siri.RouteRefStructure;
-import uk.org.siri.siri.StopPointRefStructure;
+import irys.uk.org.siri.siri.IDFGeneralMessageStructure;
+import irys.uk.org.siri.siri.IDFLineSectionStructure;
+import irys.uk.org.siri.siri.IDFMessageStructure;
+import irys.uk.org.siri.siri.InfoMessageStructure;
+import irys.uk.org.siri.siri.JourneyPatternRefStructure;
+import irys.uk.org.siri.siri.LineRefStructure;
+import irys.uk.org.siri.siri.RouteRefStructure;
+import irys.uk.org.siri.siri.StopPointRefStructure;
 
 
 public class InfoMessage

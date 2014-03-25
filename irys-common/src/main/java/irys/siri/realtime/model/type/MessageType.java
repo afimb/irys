@@ -1,7 +1,7 @@
 package irys.siri.realtime.model.type;
 
 import irys.siri.realtime.model.type.MessageType;
-import uk.org.siri.siri.IDFMessageTypeEnumeration.Enum;
+import irys.uk.org.siri.siri.IDFMessageTypeEnumeration.Enum;
 
 public enum MessageType 
 {

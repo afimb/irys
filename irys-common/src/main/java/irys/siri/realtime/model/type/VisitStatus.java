@@ -1,7 +1,7 @@
 package irys.siri.realtime.model.type;
 
 import irys.siri.realtime.model.type.VisitStatus;
-import uk.org.siri.siri.ProgressStatusEnumeration.Enum;
+import irys.uk.org.siri.siri.ProgressStatusEnumeration.Enum;
 
 public enum VisitStatus {
 

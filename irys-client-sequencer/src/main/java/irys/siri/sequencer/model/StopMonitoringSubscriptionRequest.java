@@ -17,8 +17,8 @@ import java.util.Set;
 
 import org.apache.xmlbeans.GDuration;
 
-import uk.org.siri.siri.StopMonitoringFilterStructure;
-import uk.org.siri.siri.StopMonitoringRequestStructure;
+import irys.uk.org.siri.siri.StopMonitoringFilterStructure;
+import irys.uk.org.siri.siri.StopMonitoringRequestStructure;
 
 /**
  * @author michel

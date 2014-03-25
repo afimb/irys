@@ -7,9 +7,9 @@ import irys.common.SiriException;
 import irys.common.SiriTool;
 import lombok.Getter;
 import lombok.Setter;
-import uk.org.siri.siri.AbstractServiceDeliveryStructure;
-import uk.org.siri.siri.OtherErrorStructure;
-import uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
+import irys.uk.org.siri.siri.AbstractServiceDeliveryStructure;
+import irys.uk.org.siri.siri.OtherErrorStructure;
+import irys.uk.org.siri.siri.ServiceDeliveryErrorConditionStructure;
 
 /**
  * @author michel

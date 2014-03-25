@@ -1,7 +1,7 @@
 package irys.siri.realtime.model.type;
 
 import irys.siri.realtime.model.type.InfoChannel;
-import uk.org.siri.siri.InfoChannelRefStructure;
+import irys.uk.org.siri.siri.InfoChannelRefStructure;
 
 public enum InfoChannel {
 

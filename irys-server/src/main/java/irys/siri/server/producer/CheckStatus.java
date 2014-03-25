@@ -13,11 +13,11 @@ package irys.siri.server.producer;
 
 
 import irys.common.SiriException;
-import uk.org.siri.siri.CheckStatusResponseBodyStructure;
-import uk.org.siri.siri.ErrorDescriptionStructure;
-import uk.org.siri.siri.RequestStructure;
-import uk.org.siri.siri.ServiceNotAvailableErrorStructure;
-import uk.org.siri.siri.CheckStatusResponseBodyStructure.ErrorCondition;
+import irys.uk.org.siri.siri.CheckStatusResponseBodyStructure;
+import irys.uk.org.siri.siri.ErrorDescriptionStructure;
+import irys.uk.org.siri.siri.RequestStructure;
+import irys.uk.org.siri.siri.ServiceNotAvailableErrorStructure;
+import irys.uk.org.siri.siri.CheckStatusResponseBodyStructure.ErrorCondition;
 
 
 /**

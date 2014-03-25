@@ -21,10 +21,10 @@ import uk.org.siri.wsdl.LinesDiscoveryDocument;
 import uk.org.siri.wsdl.LinesDiscoveryResponseDocument;
 import uk.org.siri.wsdl.StopPointsDiscoveryDocument;
 import uk.org.siri.wsdl.StopPointsDiscoveryResponseDocument;
-import uk.org.siri.siri.LinesDiscoveryRequestStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.ParticipantRefStructure;
-import uk.org.siri.siri.StopPointsDiscoveryRequestStructure;
+import irys.uk.org.siri.siri.LinesDiscoveryRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.ParticipantRefStructure;
+import irys.uk.org.siri.siri.StopPointsDiscoveryRequestStructure;
 import uk.org.siri.wsdl.LinesDiscoveryType;
 import uk.org.siri.wsdl.StopPointsDiscoveryType;
 

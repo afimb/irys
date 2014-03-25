@@ -21,9 +21,9 @@ import org.apache.xmlbeans.XmlObject;
 
 import uk.org.siri.wsdl.GetMultipleStopMonitoringResponseDocument;
 import uk.org.siri.wsdl.GetStopMonitoringResponseDocument;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.StopMonitoringFilterStructure;
-import uk.org.siri.siri.StopMonitoringRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.StopMonitoringFilterStructure;
+import irys.uk.org.siri.siri.StopMonitoringRequestStructure;
 
 /**
  * Methods required to implement a Stop Monitoring Service Proxy

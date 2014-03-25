@@ -9,10 +9,10 @@ import org.apache.xmlbeans.GDuration;
 import org.apache.xmlbeans.XmlObject;
 import org.springframework.ws.WebServiceMessageFactory;
 
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.EstimatedTimetableRequestStructure;
-import uk.org.siri.siri.LineDirectionStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.EstimatedTimetableRequestStructure;
+import irys.uk.org.siri.siri.LineDirectionStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
 import uk.org.siri.wsdl.EstimatedTimetableRequestType;
 import uk.org.siri.wsdl.GetEstimatedTimetableDocument;
 import uk.org.siri.wsdl.GetEstimatedTimetableResponseDocument;

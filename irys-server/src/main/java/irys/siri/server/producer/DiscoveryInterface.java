@@ -16,10 +16,10 @@ import irys.common.SiriException;
 import java.util.Calendar;
 
 
-import uk.org.siri.siri.LinesDeliveryStructure;
-import uk.org.siri.siri.LinesDiscoveryRequestStructure;
-import uk.org.siri.siri.StopPointsDeliveryStructure;
-import uk.org.siri.siri.StopPointsDiscoveryRequestStructure;
+import irys.uk.org.siri.siri.LinesDeliveryStructure;
+import irys.uk.org.siri.siri.LinesDiscoveryRequestStructure;
+import irys.uk.org.siri.siri.StopPointsDeliveryStructure;
+import irys.uk.org.siri.siri.StopPointsDiscoveryRequestStructure;
 
 
 /**

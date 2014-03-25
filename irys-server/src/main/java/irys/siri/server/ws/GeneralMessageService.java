@@ -23,14 +23,14 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import uk.org.siri.wsdl.GetGeneralMessageDocument;
 import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
-import uk.org.siri.siri.ContextualisedRequestStructure;
-import uk.org.siri.siri.GeneralMessageDeliveriesStructure;
-import uk.org.siri.siri.GeneralMessageDeliveryStructure;
-import uk.org.siri.siri.GeneralMessageRequestStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.MessageRefStructure;
-import uk.org.siri.siri.ParticipantRefStructure;
-import uk.org.siri.siri.ProducerResponseEndpointStructure;
+import irys.uk.org.siri.siri.ContextualisedRequestStructure;
+import irys.uk.org.siri.siri.GeneralMessageDeliveriesStructure;
+import irys.uk.org.siri.siri.GeneralMessageDeliveryStructure;
+import irys.uk.org.siri.siri.GeneralMessageRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.MessageRefStructure;
+import irys.uk.org.siri.siri.ParticipantRefStructure;
+import irys.uk.org.siri.siri.ProducerResponseEndpointStructure;
 import uk.org.siri.wsdl.GeneralMessageAnswerType;
 
 /**

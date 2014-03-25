@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import uk.org.siri.siri.InfoMessageCancellationStructure;
-import uk.org.siri.siri.InfoMessageStructure;
+import irys.uk.org.siri.siri.InfoMessageCancellationStructure;
+import irys.uk.org.siri.siri.InfoMessageStructure;
 
 /**
  * @author Michel Etienne

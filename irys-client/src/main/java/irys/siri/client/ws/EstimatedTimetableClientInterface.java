@@ -19,8 +19,8 @@ import org.apache.xmlbeans.GDuration;
 import org.apache.xmlbeans.XmlObject;
 
 import uk.org.siri.wsdl.GetEstimatedTimetableResponseDocument;
-import uk.org.siri.siri.MessageQualifierStructure;
-import uk.org.siri.siri.EstimatedTimetableRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.EstimatedTimetableRequestStructure;
 
 /**
  * Methods required to implement an Estimated Timetable Service Proxy

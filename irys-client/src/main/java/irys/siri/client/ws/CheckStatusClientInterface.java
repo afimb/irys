@@ -13,7 +13,7 @@ package irys.siri.client.ws;
 import irys.common.SiriException;
 import uk.org.siri.wsdl.CheckStatusDocument;
 import uk.org.siri.wsdl.CheckStatusResponseDocument;
-import uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
 
 /**
  * Methods required to implement a Check Status Service Proxy

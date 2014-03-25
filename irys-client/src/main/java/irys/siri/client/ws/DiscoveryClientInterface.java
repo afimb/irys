@@ -15,7 +15,7 @@ import uk.org.siri.wsdl.LinesDiscoveryDocument;
 import uk.org.siri.wsdl.LinesDiscoveryResponseDocument;
 import uk.org.siri.wsdl.StopPointsDiscoveryDocument;
 import uk.org.siri.wsdl.StopPointsDiscoveryResponseDocument;
-import uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
 
 /**
  * Methods required to implement a Discovery Service Proxy

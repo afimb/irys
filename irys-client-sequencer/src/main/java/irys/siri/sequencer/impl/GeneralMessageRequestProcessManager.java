@@ -17,9 +17,9 @@ import org.apache.log4j.Logger;
 
 import uk.org.siri.wsdl.GeneralMessageAnswerType;
 import uk.org.siri.wsdl.GetGeneralMessageResponseDocument;
-import uk.org.siri.siri.GeneralMessageDeliveryStructure;
-import uk.org.siri.siri.GeneralMessageRequestStructure;
-import uk.org.siri.siri.MessageQualifierStructure;
+import irys.uk.org.siri.siri.GeneralMessageDeliveryStructure;
+import irys.uk.org.siri.siri.GeneralMessageRequestStructure;
+import irys.uk.org.siri.siri.MessageQualifierStructure;
 
 public class GeneralMessageRequestProcessManager
 		extends

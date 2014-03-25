@@ -14,9 +14,9 @@ import lombok.Setter;
 import org.apache.log4j.Logger;
 import org.apache.xmlbeans.GDuration;
 
-import uk.org.siri.siri.MonitoredCallStructure;
-import uk.org.siri.siri.MonitoredStopVisitStructure;
-import uk.org.siri.siri.MonitoredVehicleJourneyStructure;
+import irys.uk.org.siri.siri.MonitoredCallStructure;
+import irys.uk.org.siri.siri.MonitoredStopVisitStructure;
+import irys.uk.org.siri.siri.MonitoredVehicleJourneyStructure;
 
 public class MonitoredVisit 
 {
