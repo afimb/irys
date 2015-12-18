@@ -1,20 +1,20 @@
 # Irys
 
-Irys is a java open source project on SIRI normalization projet. It's divided in differents module :
+Irys is a java open source project dedicated to the SIRI real time public data exchange standard. It has several modules :
 * irys-common : common classes
-* irys-server : generic SIRI server including following SIRI services in Request/Response mode
+* irys-server : generic SIRI server including the following SIRI services in Request/Response mode
   * General Messaging
   * Stop Monitoring
   * Check Status
   * Line Discovery
   * Stop Discovery
-* irys-client : generic SIRI client including same services as server
-* irys-client-sequencer : generic SIRI client simulating subscrption mode when server does not provide this mode
+* irys-client : generic SIRI client (implementing the same services as the server)
+* irys-client-sequencer : generic SIRI client simulating subscription mode when server does not provide this mode
 * irys-client-command : command-line mode Siri client
-* webtopo-server : small web server for theorical data exchange on Neptune format
-* webtopo-client : small client for theorical data exchange on Neptune format
+* webtopo-server : small web server for theorical data exchange based on Neptune format
+* webtopo-client : small client for theorical data exchange based on Neptune format
 
-Irys is a toolbox must be connected to an external data provider
+Irys is a toolbox : it must be connected to an external data provider
 
 see irys-chouette as exemple connected to a Chouette database.
 
